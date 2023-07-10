@@ -1,0 +1,168 @@
+﻿@using Model.Models.UserDetail
+@using Utility;
+@{
+    int roleid = 0;
+    int UDID = 0;
+    string userId = null;
+    if (Session["UserDetails"] != null)
+    {
+        UserDetailModel userdetail = (UserDetailModel)Session["UserDetails"];
+        roleid = userdetail.RoleId;
+        userId = userdetail.EmployeeName;
+        UDID = userdetail.UDID;
+    }
+
+    else
+    {
+        @Html.Action("LogOut", "Account")
+    }
+}
+@{
+    ViewBag.Title = "TruckCheckedInList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Truck Checkin List</h4>
+
+                    <div class="excelExport">
+                        <a href="@Url.Action("ExportExcel", "Truck", new { page= "TruckCheckedInList" })" class="ms-text-primary btn btn-success_a btn-sm"><i class="flaticon-list mr-2"></i> Export Excel </a>
+                    </div>
+                    @using (Html.BeginForm("UpdateStatus", "Truck", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        TempData["Data"] = ViewBag.TruckList;
+
+                        <div class="table-responsive">
+                            <table id="responsive-data-table" class="table  table table-striped table-bordered table-sm tbl-hd" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th scope="col" style="display:none;">TruckDetailsId</th>
+                                        @if (roleid == (int)CommonEnum.Role.LFZAdmin || roleid == (int)CommonEnum.Role.LFZSecurity || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin)
+                                        {
+                                            <th scope="col" style="width: 100px;">
+                                                <label class="ms-checkbox-wrap">
+                                                    <input type="checkbox" value="" id="TruckDetailsId">
+                                                    <i class="ms-checkbox-check"></i>
+                                                </label> Action
+                                            </th>
+                                        }
+                                        else
+                                        {
+                                            <th></th>
+                                        }
+                                        <th scope="col">Truck No</th>
+                                        <th scope="col">Organization Name</th>
+                                        @if (!(roleid == (int)CommonEnum.Role.LFZSecurity))
+                                        {
+                                            <th scope="col">Expected Arrival Date</th>
+                                            <th scope="col">Expected Departure Date</th>
+                                        }
+                                        <th scope="col">Truck Capacity</th>
+                                        @*<th>Location/Destination</th>*@
+                                        <th scope="col">Actual Arrival Date</th>
+                                        <th scope="col">Actual Departure Date</th>
+                                        <th scope="col">Transporter Name</th>
+                                        <th scope="col">Transporter Number</th>
+                                        <th scope="col">Driver Name</th>
+                                        <th scope="col">Driver Number</th>
+                                        <th scope="col">Material Type</th>
+                                        <th scope="col">Material Goods</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.TruckList)
+                                    {
+                                        <tr role="row" class="odd">
+                                            <td data-label="TruckDetailsId" style="display:none;">
+                                                @item.TruckDetailsId
+                                            </td>
+                                            <td data-label="TruckDetailsId">
+                                                @if (roleid == (int)CommonEnum.Role.LFZAdmin || roleid == (int)CommonEnum.Role.LFZSecurity)
+                                                {
+                                                    <label class="ms-checkbox-wrap">
+                                                        <input type="checkbox" id="TruckDetailsId" name="TruckDetailsId" value="@item.TruckDetailsId" class="custom-checkbox chkCheckBoxId">
+                                                        <i class="ms-checkbox-check"></i>
+                                                    </label>
+                                                }
+
+                                                @if (roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin)
+                                                {
+                                                    <a href="@Url.Action("Edit", "Truck", new { id = item.TruckDetailsId })" title="Edit Truck"><i class="fas fa-calendar-alt ms-text-primary"></i>Edit Truck</a>
+                                                }
+                                            </td>
+                                            <td data-label="TruckNo">@item.TruckNo</td>
+                                            <td data-label="Organization Name">@item.OwnedByOrganization</td>
+                                            @if (!(roleid == (int)CommonEnum.Role.LFZSecurity))
+                                            {
+                                                <td data-label="ExpectedArrivalDate">@item.ExpectedArrivalDate</td>
+                                                <td data-label="ExpectedDepatureDate">@item.ExpectedDepatureDate</td>
+                                            }
+                                            <td data-label="TruckCapacity">@item.TruckCapacity </td>
+                                            @*<td>@item</td>*@
+                                            <td data-label="ActualArrivalDate">@item.ActualArrivalDate</td>
+                                            <td data-label="ActualDepartureDate">@item.ActualDepatureDate</td>
+                                            <td data-label="TransportName">@item.TransportName</td>
+                                            <td data-label="TransportNo">@item.TransportNo</td>
+                                            <td data-label="DriverName">@item.DriverName</td>
+                                            <td data-label="DriverNo">@item.DriverNo</td>
+                                            <td data-label="MaterialType">@item.MaterialType</td>
+                                            <td data-label="MaterialGoods">@item.MaterialGoods</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    @if (roleid == (int)CommonEnum.Role.LFZSecurity)
+                                    {
+                                        <tr>
+                                            <th colspan="12">
+                                                <div class="table-butn">
+                                                    <button style="margin-top:0px;" type="submit" name="Command" class="btn btn-outline-dribbble btn-dribbble" id="checkout" value="checkout">
+                                                        <i class="ti-angle-double-down text-info">   Checkout</i>
+                                                    </button>
+
+                                                    @*<button type="submit" name="Command" class="btn btn-outline-secondary" data-swal="multi-step" id="callout" value="callout">
+                                                        <i class="ti-announcement text-info"> Call Out</i>
+                                                    </button>*@
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    }
+                                    @if (roleid == (int)CommonEnum.Role.EnterpriseAdmin || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin)
+                                    {
+                                        <tr>
+                                            <th colspan="12">
+                                                <div class="table-butn">
+                                                    <button type="submit" name="Command" class="btn btn-outline-secondary" data-swal="multi-step" id="callout" value="callout">
+                                                        <i class="ti-announcement text-info"> Call Out</i>
+                                                    </button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    }
+                                    @if (roleid == (int)CommonEnum.Role.LFZAdmin)
+                                    {
+                                        <tr>
+                                            <th colspan="12">
+                                                <div class="table-butn">
+                                                    <button style="margin-top:0px;" type="submit" name="Command" class="btn btn-outline-danger  btn-danger" id="delete" value="delete">
+                                                        <i class="ti-trash text-info">  Delete All</i>
+                                                    </button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    }
+                                </tfoot>
+
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

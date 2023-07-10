@@ -1,0 +1,146 @@
+﻿
+@using Model.Models.Menu;
+@using Model.Models.UserDetail;
+@using Utility;
+
+@model List<M_Modules>
+@{
+    /**/
+
+    Layout = null;
+}
+
+@{
+    var lstMain = Model.Where(m => m.Parentid != m.Id).ToList();
+    //Session["ActiveMenu"] =
+    var activeMenuId = 0;
+
+    //var a = Session["UserDetails"];
+    UserDetailModel userdetail = (UserDetailModel)Session["UserDetails"];
+
+
+    if (Session["ActiveMenu"] == null)
+    {
+        Session["ActiveMenu"] = 1;
+    }
+
+}
+
+
+
+<!-- Navigation -->
+<ul class="accordion ms-main-aside fs-14" id="side-nav-accordion">
+    <!-- Dashboard -->
+    <li class="menu-item">
+        <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false" aria-controls="dashboard">
+            <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
+        </a>
+
+    </li>
+    <!-- /Dashboard -->
+    <!-- Doctor -->
+    <li class="menu-item">
+        <a href="#" class="has-chevron" data-toggle="collapse" data-target="#doctor" aria-expanded="false" aria-controls="doctor">
+            <span><i class="fas fa-stethoscope"></i>Appointment</span>
+        </a>
+        <ul id="doctor" class="collapse" aria-labelledby="doctor" data-parent="#side-nav-accordion">
+            <li> <a href="@Url.Action("Create", "Appointment")">Add Appointment</a> </li>
+            <li> <a href="@Url.Action("List", "Appointment")">Appointment List</a> </li>
+            <li> <a href="@Url.Action("Visits", "Appointment")">Complete Visits</a> </li>
+            <li> <a href="@Url.Action("Visits", "Appointment")">All Check-Up Done</a> </li>
+            <li> <a href="@Url.Action("Visits", "Appointment")">Visit History</a> </li>
+        </ul>
+    </li>
+    <!-- Doctor -->
+    <!-- /Form Elements -->
+    <!-- /Bonus Pages -->
+    <!-- Apps -->
+    <!-- /Apps -->
+</ul>
+
+
+
+@if (lstMain.Where(m => m.Parentid == 1).Count() == lstMain.Count() && (int)Session["ActiveMenu"] == 1 || (string)Session["ErrorMenu"] == "ErrorMenu")
+{
+    if (1 == 1)
+    {
+        Session["ErrorMenu"] = "";
+        var myList = (List<Model.Models.Menu.M_Modules>)Session["Menu"];
+        myList = myList.Where(m => m.Parentid == 1 && m.IsActive == true).ToList();
+        myList = myList.Where(m => m.Id != 1).ToList();
+
+        <div class="list-group">
+
+
+            @foreach (var item in myList)
+            {
+                <a href="/@item.ControllerName/@item.ActionName" class="list-group-item"><img src="@BaseConfig.Url@item.IconImage" /> @item.ModuleName</a>
+            }
+        </div>
+    }
+
+}
+else
+{
+
+    <div class="user-links">
+        <ul class="accordion ms-main-aside fs-14" id="side-nav-accordion">
+            @foreach (var item in lstMain)
+                {
+                    if (!Model.Where(m => m.Id == item.Parentid).Any())
+                    {
+                        var url = @"/" + item.ControllerName + "/" + item.ActionName + "?Mid=" + CryptoEngin.Encrypt(Convert.ToString(item.Id)) + "&MRoleids=" + CryptoEngin.Encrypt(Convert.ToString(item.RoleIds));
+                        var childMenu = Model.Where(m => m.Parentid == item.Id).ToList();
+                    <li class="dropdownz">
+                        @if (childMenu.Count == 0)
+                        {
+                            <a href="@url">
+                                <img src="@BaseConfig.Url@item.IconImage" />
+                                <span>@item.ModuleName</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0)">
+                                <img src="@BaseConfig.Url@Html.Raw(@item.IconImage)" />
+                                <span>@item.ModuleName</span>
+                            </a>
+                        }
+                        @{
+                            Session["ActiveMenu"] = item.Parentid;
+                            Session["ModuleId"] = item.Id;
+                            Session["ModuleRoleIds"] = item.RoleIds;
+
+                            if (childMenu.Count > 0)
+                            {
+                                <ul id="doctor" class="collapse" aria-labelledby="doctor" data-parent="#side-nav-accordion">
+                                    @foreach (var childItems in childMenu)
+                                    {
+                                        var curl = @"/" + childItems.ControllerName + "/" + childItems.ActionName + "?Mid=" + CryptoEngin.Encrypt(Convert.ToString(childItems.Id)) + "&MRoleids=" + CryptoEngin.Encrypt(Convert.ToString(childItems.RoleIds));
+                                        <li>
+                                            <a href="@curl">
+                                                <span>@childItems.ModuleName</span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+
+                        }
+                    </li>
+                                }
+
+                            }
+
+        </ul>
+    </div>
+
+                            }
+
+<script>
+
+    $('li.dropdownz').click(function () {
+        $('.dropdownz ul').hide();
+        $(this).children('ul').show();
+    });
+</script>

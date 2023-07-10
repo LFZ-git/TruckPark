@@ -1,0 +1,231 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>LFTZ Dashboard</title>
+
+
+    <link rel="shortcut icon" href="http://www.lagosftz.com/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://www.lagosftz.com/images/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' href='~/Content/dataTables.bootstrap4.min.css'>
+    <link rel='stylesheet' href='~/Content/responsive.dataTables.min.css'>
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+    <link href="~/css/page-cs.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+    
+    <div id="wrapper">
+
+
+
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">Admin User</li>
+                </ol>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card" id="accordion" role="tablist" aria-multiselectable="true">
+
+
+                            <a class="accord_a" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <div class="card-header text-left">
+                                    <h2 class="h2-card">ADD USER  </h2>
+
+                                    @*<i class="material-icons mat_acc">expand_more</i>*@
+                                </div>
+                            </a>
+
+
+                            <div class="card-body text-left panel-collapse collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne" style="">
+
+
+
+                                <div class="card-body" style="padding:2%;">
+                                    <form>
+
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+
+                                                <span class="bmd-form-group">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01">User Name</label>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                    </div>
+                                                </span>
+
+
+
+                                                <span class="bmd-form-group">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01">Password</label>
+                                                        </div>
+                                                        <input type="password" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="( Min 6 Charcters Long with 1 Special and 1 Numeric Value )">
+                                                    </div>
+                                                </span>
+
+
+
+
+
+                                                <span class="bmd-form-group is-filled">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01">Role</label>
+                                                        </div>
+                                                        <select class="custom-select" id="inputGroupSelect01">
+                                                            <option selected="">Choose...</option>
+                                                            <option value="1">Packaging</option>
+                                                            <option value="2">Digital Services</option>
+                                                            <option value="3">Warehousing</option>
+                                                            <option value="3">Transportation</option>
+                                                            <option value="3">manufacturing</option>
+                                                        </select>
+                                                    </div>
+                                                </span>
+
+
+
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <span class="bmd-form-group is-filled">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <label class="input-group-text" for="inputGroupSelect01">Department</label>
+                                                                </div>
+                                                                <select class="custom-select" id="inputGroupSelect01">
+                                                                    <option selected="">Choose...</option>
+                                                                    <option value="1">One</option>
+                                                                    <option value="2">Two</option>
+                                                                    <option value="3">Three</option>
+                                                                </select>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+
+
+                                                    <div class="col-md-6">
+                                                        <span class="bmd-form-group is-filled">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <label class="input-group-text" for="inputGroupSelect01">Reporting To</label>
+                                                                </div>
+                                                                <select class="custom-select" id="inputGroupSelect01">
+                                                                    <option selected="">Choose...</option>
+                                                                    <option value="1">One</option>
+                                                                    <option value="2">Two</option>
+                                                                    <option value="3">Three</option>
+                                                                </select>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <span class="bmd-form-group">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01">Email</label>
+                                                        </div>
+                                                        <input type="email" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="">
+                                                    </div>
+                                                </span>
+
+
+                                                <span class="bmd-form-group">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01">Mobile Number</label>
+                                                        </div>
+                                                        <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="">
+                                                    </div>
+                                                </span>
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                        <div class="text-center"><button class="btn btn-primary" type="submit">Save</button> <button class="btn btn-primary" type="submit">Reset</button></div>
+
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <!-- /.container-fluid -->
+            </div>
+        <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+  
+
+    <!-- Logout Modal-->
+        <!-- Bootstrap core JavaScript-->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+
+
+    <script src='~/js/jquery.dataTables.min.js'></script>
+    <script src='~/js/dataTables.responsive.min.js'></script>
+    <script src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js'></script>
+
+
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="~/js/demo/datatables-demo.js"></script>
+    <script src="~/js/demo/chart-area-demo.js"></script>
+    <script src="~/js/page-js.js"></script>
+</body>
+
+</html>

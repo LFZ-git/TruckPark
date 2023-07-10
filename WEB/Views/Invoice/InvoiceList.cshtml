@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "InvoiceList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Truck Checkout List</h4>
+                    @using (Html.BeginForm("GeneratePdf", "Invoice", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="table-responsive">
+                            <table id="responsive-data-table" class="table  table table-striped table-bordered table-sm tbl-hd" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th scope="col" style="display:none;">ProformaInvoiceId</th>
+                                        <th scope="col" style="width: 100px;">
+                                            <label class="ms-checkbox-wrap">
+                                                <input type="checkbox" value="" id="TruckDetailsId">
+                                                <i class="ms-checkbox-check"></i>
+                                            </label> Action
+                                        </th>
+                                        <th scope="col">InvoiceNo</th>
+                                        <th scope="col">Total Truck Count</th>
+                                        <th scope="col">Total Invoice Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if (ViewBag.InvoiceList != null)
+                                    {
+                                        foreach (var item in ViewBag.InvoiceList)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td data-label="TruckDetailsId" style="display:none;">
+                                                    @item.ProformaInvoiceId
+                                                </td>
+                                                <td data-label="ProformaInvoiceId">
+                                                    <label class="ms-checkbox-wrap">
+                                                        <a href="@Url.Action("DownloadPdf", "Invoice", new { id = item.ProformaInvoiceId })" title="Download PDF"><i class="fas fa-calendar-alt ms-text-primary"></i>Download  </a> |
+                                                    </label>
+
+                                                    <label class="ms-checkbox-wrap">
+                                                        <a href="@Url.Action("ExportInvoice", "Invoice", new { id = item.ProformaInvoiceId })" title="Download Excel"><i class="fas fa-calendar-alt ms-text-primary"></i>Export Details</a>
+                                                    </label>
+
+                                                </td>
+                                                <td data-label="TruckNo">@item.InvoiceNo</td>
+                                                <td data-label="ExpectedArrivalDate">@item.TotalTruckCount</td>
+                                                <td data-label="ExpectedDepatureDate">@item.TotalInvoiceAmount</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

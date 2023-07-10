@@ -1,0 +1,286 @@
+﻿@model Model.Models.DashboardModel
+@using Utility;
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="truck-dash">
+                    <h4 class="font-weight-bold mb-0">Truck Portal Dashboard</h4>
+                </div>
+                <!--<div>
+                    <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+                      <i class="ti-clipboard btn-icon-prepend"></i>Report
+                    </button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <a href="@Url.Action("TruckCheckedInList","Truck")" style="text-decoration:none; color:black;">
+                    <div class="card-body">
+                        <p class="card-title text-md-center text-xl-left new-tex">Checked In</p>
+                        <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">@Html.DisplayFor(m => m.CheckedInCount)</h3>
+
+                            <i class="ti-arrow-left icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                            <i class="ti-truck icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <a href="@Url.Action("TruckCheckedoutList","Truck")" style="text-decoration:none; color:black;">
+                    <div class="card-body">
+                        <p class="card-title text-md-center text-xl-left new-tex">Checked Out</p>
+                        <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">@Html.DisplayFor(m => m.CheckedOutCount)</h3>
+
+                            <i class="ti-arrow-right icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                            <i class="ti-truck icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <a href="@Url.Action("TruckList","Truck")" style="text-decoration:none; color:black;">
+                    <div class="card-body">
+                        <p class="card-title text-md-center text-xl-left new-tex">Forecast</p>
+                        <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">@Html.DisplayFor(m => m.Forecasted)</h3>
+
+                            <i class="ti-exchange-vertical icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                            <i class="ti-truck icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 grid-margin stretch-card">
+
+            <div class="container">
+                <div class="table-responsive">
+                    <h5>Status of Truck</h5>
+                    <table class="table table-bordered   table-striped" style="">
+                        <thead class="table__head">
+                            <tr class="winner__table">
+                                <th><i class="fa fa-map-marker" aria-hidden="true"></i> Company Name</th>
+                                <th><i class="fa fa-user" aria-hidden="true"></i> Total No of Trucks</th>
+
+                                <th><i class="fa fa-calendar-o" aria-hidden="true"></i> Parked For More Than 5 Days</th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i> Trucks Entered Today</th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i>10 </th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i> 15</th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i> 20</th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i> 25</th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i> 30</th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i> 40</th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i> >40T</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var items in Model.StatusOfTruckList)
+                            {
+                                <tr class="winner__table">
+
+                                    <td>@items.OrganizationShortName</td>
+                                    <td>@items.TotalTrucks</td>
+                                    <td>@items.FiveDayParkedTrucks</td>
+                                    <td>@items.TodayTrucks</td>
+                                    <td>@items.Capacity10</td>
+                                    <td>@items.Capacity15</td>
+                                    <td>@items.Capacity20</td>
+                                    <td>@items.Capacity25</td>
+                                    <td>@items.Capacity30</td>
+                                    <td>@items.Capacity40</td>
+                                    <td>@items.Capacity40nMore</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--<div class="card">
+                    <div class="card-body text-center p-5">
+                        <img class="img-fluid mb-5" src="https://themes.startbootstrap.com/sb-admin-pro/assets/img/freepik/data-report-pana.svg">
+                        <h4>Report generation</h4>
+                        <p class="mb-4">Generate My Report</p>
+                        <a class="btn btn-primary btn-sm py-2 px-3" href="#!"> <i class="ti-clipboard btn-icon-prepend"></i> Export</a>
+
+
+
+
+                    </div>
+                </div>-->
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 grid-margin stretch-card">
+
+            <div class="container">
+                <div class="table-responsive">
+                    <h5>Movement of Truck</h5>
+                    <table class="table table-bordered   table-striped" style="">
+                        <thead class="table__head">
+                            <tr class="winner__table">
+
+                                <th><i class="fa fa-user" aria-hidden="true"></i> Time Period</th>
+                                <th><i class="fa fa-map-marker" aria-hidden="true"></i> Company Name</th>
+                                <th><i class="fa fa-calendar-o" aria-hidden="true"></i> Checked In</th>
+                                <th> <i class="fa fa-phone" aria-hidden="true"></i> Checked Out</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var items in Model.MovementOfTruckList)
+                            {
+                                <tr class="winner__table">
+                                    <td>@items.TimePeriod</td>
+                                    <td>@items.OrganizationName</td>
+                                    <td>@items.CheckInCount.ToString()</td>
+                                    <td>@items.CheckOutCount.ToString()</td>
+
+                                </tr>
+                            }
+                            <tr class="winner__table">
+                                <td><b>Time Period Total</b></td>
+                                <td></td>
+                                <td>@Model.MovementOfTruckList.Sum(i => i.CheckInCount)</td>
+                                <td>@Model.MovementOfTruckList.Sum(i => i.CheckOutCount)</td>
+                            </tr>
+                            @*<tr class="winner__table">
+                                    <td><b>Last 12 hours Total</b></td>
+                                    <td></td>
+                                    <td>11</td>
+                                    <td>11</td>
+                                </tr>*@
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--<div class="card">
+                    <div class="card-body text-center p-5">
+                        <img class="img-fluid mb-5" src="https://themes.startbootstrap.com/sb-admin-pro/assets/img/freepik/data-report-pana.svg">
+                        <h4>Report generation</h4>
+                        <p class="mb-4">Generate My Report</p>
+                        <a class="btn btn-primary btn-sm py-2 px-3" href="#!"> <i class="ti-clipboard btn-icon-prepend"></i> Export</a>
+
+
+
+
+                    </div>
+                </div>-->
+
+        </div>
+
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">Trucks v/s Hours</p>
+
+                    <div id="chart_div" style="height:300px;"></div>
+
+                    <!-- <canvas id="barChart"></canvas>-->
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    @*<div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        Enterprise : <select><option value="0" class="form-control">--Select Enterprise--</option></select><br />
+                        <br />
+                        <p class="card-title">Over all Status</p>
+                        <canvas id="locGraph"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>*@
+
+
+
+
+</div>
+<!-- content-wrapper ends -->
+<!-- partial:partials/_footer.html -->
+<footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">LAGOS FREE ZONE</a>. All rights reserved.</span>
+
+    </div>
+</footer>
+<!-- partial -->
+<!-- main-panel ends -->
+<script src='https://www.gstatic.com/charts/loader.js'></script>
+<script>
+
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', { 'packages': ['corechart'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Hours');
+            data.addColumn('number', 'Trucks');
+            data.addRows([
+                ['0 To 4', @ViewBag.Hours0to4],
+                ['4 To 8', @ViewBag.Hours4to8],
+                ['8 To 16', @ViewBag.Hours8to16],
+                ['16 To 24', @ViewBag.Hours16to24],
+                ['24 To 48', @ViewBag.Hours24to48],
+                ['48 To 72', @ViewBag.Hours48to72],
+                ['72 N More', @ViewBag.Hours72More]
+            ]);
+
+            // Set chart options
+            var options = { 'title': '' };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+</script>

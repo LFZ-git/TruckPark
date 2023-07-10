@@ -1,0 +1,20 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+--EXEC M_Country_G
+CREATE Procedure [dbo].[M_Country_G]
+
+as
+
+BEGIN
+
+SELECT CountryId,CountryName FROM M_Country
+END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

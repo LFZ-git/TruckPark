@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f2112b02d1c4b8fae69b12c0e4eba7a" Name="Diagram1">
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.ActivityLog" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.ExceptionLog" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.M_Country" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.M_ListOfValues" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.M_RateSlab" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.M_Role" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.M_TruckCapacity" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.ProformaInvoice" Width="1.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.ProformaInvoiceDet" Width="1.5" PointX="11.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.Truck" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.TruckDetail" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.UserDetail" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.Map_Ent2Ent" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.Map_RoleModule" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.Map_UserRole" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="LFZ_TruckParkModel.FK__Map_RoleM__RoleI__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="LFZ_TruckParkModel.FK__Map_RoleM__RoleI__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="LFZ_TruckParkModel.FK__Map_UserR__RoleI__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="LFZ_TruckParkModel.FK__Map_UserRo__UDID__59063A47" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.M_Modules" Width="1.5" PointX="0.75" PointY="8" />
+        <AssociationConnector Association="LFZ_TruckParkModel.FK__Map_RoleM__Modul__3B75D760" />
+        <AssociationConnector Association="LFZ_TruckParkModel.FK__Map_RoleM__Modul__3C69FB99" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.ProformaInvoiceB4Clean" Width="1.5" PointX="3.375" PointY="13.75" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.ProformaInvoiceDetB4Clean" Width="1.5" PointX="14.375" PointY="4.75" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.TruckDetailsB4Cleanup" Width="1.5" PointX="14.375" PointY="9.75" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.Organization" Width="1.5" PointX="10.375" PointY="14.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

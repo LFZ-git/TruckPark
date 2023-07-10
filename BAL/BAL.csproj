@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{956E6893-CD6A-48F9-9957-6CE4EC94D654}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BAL</RootNamespace>
+    <AssemblyName>BAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BALFactory.cs" />
+    <Compile Include="Concreate\Country\CountryBAL.cs" />
+    <Compile Include="Concreate\Home\HomeBAL.cs" />
+    <Compile Include="Concreate\Invoice\InvoiceBAL.cs" />
+    <Compile Include="Concreate\ListOfValue\ListOfValueBAL.cs" />
+    <Compile Include="Concreate\Master\MasterBAL.cs" />
+    <Compile Include="Concreate\Menu.cs" />
+    <Compile Include="Concreate\Organization\OrganizationBAL.cs" />
+    <Compile Include="Concreate\Role\RoleBAL.cs" />
+    <Compile Include="Concreate\Truck\TruckBAL.cs" />
+    <Compile Include="Concreate\UserCreation\UserCreationBAL.cs" />
+    <Compile Include="Concreate\UsersBAL.cs" />
+    <Compile Include="Concreate\UsersDetail\UsersDetailBAL.cs" />
+    <Compile Include="Concreate\Utility\UtilityBAL.cs" />
+    <Compile Include="Interface\Country\ICountryBAL.cs" />
+    <Compile Include="Interface\Home\IHomeBAL.cs" />
+    <Compile Include="Interface\IMenu.cs" />
+    <Compile Include="Interface\Invoice\IInvoiceBAL.cs" />
+    <Compile Include="Interface\IUsersBAL.cs" />
+    <Compile Include="Interface\ListOfValue\IListOfValueBAL.cs" />
+    <Compile Include="Interface\Master\IMasterBAL.cs" />
+    <Compile Include="Interface\Organization\IOrganizationBAL.cs" />
+    <Compile Include="Interface\Role\IRoleBAL.cs" />
+    <Compile Include="Interface\Truck\ITruckBAL.cs" />
+    <Compile Include="Interface\UserCreation\IUserCreationBAL.cs" />
+    <Compile Include="Interface\UsersDetail\IUsersDetailBAL.cs" />
+    <Compile Include="Interface\Utility\IUtilityBAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{6df7627e-010a-4780-8ad4-7f56edfdb1c4}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{363e62f9-f8cc-4eda-870b-798094fd9b3a}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{201b8076-a519-483e-a670-4ced6ac74dee}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

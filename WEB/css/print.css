@@ -1,0 +1,356 @@
+﻿.main-panel .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e7eaed;
+    border-radius: 0;
+}
+
+    .main-panel .card .card-description {
+        margin-bottom: .875rem;
+        font-weight: 600;
+        color: #76838f;
+        padding-left: 10px;
+        letter-spacing: 2px;
+    }
+
+.main-panel .profile-header {
+    height: 150px;
+    width: 100%;
+    position: relative;
+}
+
+.main-panel .cover-image {
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    padding: 5%;
+}
+
+    .main-panel .cover-image img {
+        height: 100%;
+        width: auto;
+    }
+
+
+
+.main-panel .card-title {
+    margin-bottom: 0.75rem;
+    margin: 0;
+    padding: 10px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    line-height: 1rem;
+}
+
+
+.main-panel .user-image {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    bottom: -50%;
+    left: 50%;
+    /* top: 50%; */
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+    .main-panel .user-image img {
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        top: -40px;
+        border: 5px solid #777;
+    }
+
+.main-panel .profile-card .profile-content {
+    padding: 11px 10px 11px 10px;
+    background: #eee;
+}
+
+
+
+.main-panel .profile-card .profile-name {
+    font-size: 1.2rem;
+    color: #3249b9;
+    font-weight: 600;
+    text-align: center;
+}
+
+.main-panel .profile-card .profile-designation {
+    font-size: 1.2rem;
+    line-height: 3.2rem;
+    color: #777;
+    text-align: center;
+}
+
+.main-panel .profile-card .profile-description {
+    padding: 10px;
+    font-size: 13px;
+    color: #777;
+    margin: 5px 0px;
+    background-color: #F1F2F3;
+    border-radius: 5px;
+}
+
+.main-panel .profile-card ul.profile-info-list {
+    padding: 0;
+    margin: 10px 0;
+    list-style: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #777;
+}
+
+
+
+
+    .main-panel .profile-card ul.profile-info-list a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+
+.main-panel .profile-card a.profile-info-list-item {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #F1F2F3;
+    display: block;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+    .main-panel .profile-card a.profile-info-list-item:hover {
+        background-color: #9E9E9E;
+        color: white;
+        -webkit-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+    }
+
+
+    .main-panel .profile-card a.profile-info-list-item i {
+        padding: 10px;
+    }
+
+.main-panel ul.about {
+    list-style: none;
+    color: black;
+    padding: 0;
+}
+
+.main-panel li.about-items {
+    width: 100%;
+    padding-top: 10px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+
+
+    .main-panel li.about-items i {
+        color: #607d8b;
+    }
+
+.main-panel span.about-item-name {
+    width: 25%;
+    margin-left: 10px;
+    float: left;
+    font-weight: 600;
+}
+
+
+.main-panel span.about-item-detail {
+    width: 70%;
+    float: right;
+}
+
+    .main-panel span.about-item-detail > button {
+        margin-right: 10px;
+    }
+
+.main-panel .btn.btn-icon {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+.main-panel .btn.btn-rounded {
+    border-radius: 50px;
+}
+
+.main-panel a.about-item-edit {
+    float: right;
+}
+
+
+
+
+
+.main-panel ul.about-az {
+    list-style: none;
+    color: black;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    display: table;
+}
+
+.main-panel li.about-az-items {
+    display: inline-table;
+    /*width: 49%;*/
+    padding: 4px;
+    overflow: hidden;
+    font-size: 1rem;
+    background: #eee;
+    /* margin: 5px;*/
+}
+
+
+
+    .main-panel li.about-az-items i {
+        color: #607d8b;
+    }
+
+.main-panel span.about-item-name-az {
+    width: 40%;
+    margin-left: 10px;
+    float: left;
+    font-weight: 600;
+}
+
+
+.main-panel span.about-item-detail-az {
+    width: 55%;
+    float: right;
+}
+
+
+
+.main-panel .about-z {
+    overflow: hidden;
+}
+
+
+.main-panel ul.about-pl {
+}
+
+.main-panel ul.about-pl {
+    counter-increment: step-counter;
+    margin-bottom: 10px;
+    position: relative;
+    /* margin-left: 15px;*/
+    float: left;
+    /*width: 30%;*/
+    background: #eee;
+    padding: 1%;
+}
+
+    .main-panel ul.about-pl li.about-items-az {
+        width: 100%;
+        padding-top: 4px;
+        overflow: hidden;
+        font-size: 1rem;
+        margin-left: 20px;
+        display: table;
+    }
+
+    .main-panel ul.about-pl span.about-item-name-az {
+        width: 25%;
+        margin-left: 10px;
+        float: left;
+    }
+
+    .main-panel ul.about-pl span.about-item-detail-az {
+        width: 70%;
+        float: right;
+    }
+
+
+    .main-panel ul.about-pl::before {
+        position: absolute;
+        left: 8px;
+        content: counter(step-counter);
+        margin-right: 5px;
+        font-size: 80%;
+        background-color: #001F57;
+        color: white;
+        font-weight: bold;
+        padding: 3px 8px;
+        border-radius: 3px;
+    }
+
+
+
+a.anchor-print {
+    cursor: pointer;
+}
+
+    a.anchor-print i {
+        font-size: 35px;
+    }
+
+
+
+ul.about_x {
+    width: 100%;
+    margin: auto;
+}
+
+li.about-items-xz {
+    width: 100%;
+    padding-top: 10px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+
+
+span.abz-name {
+    width: 30%;
+    margin-left: 10px;
+    float: left;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+span.abz-detail {
+    width: 65%;
+    float: right;
+    font-size: 1rem;
+}
+
+
+.about-azx {
+    width: 95%;
+    margin: 35px auto;
+}
+
+    .about-azx ul {
+        width: 99%;
+    }
+
+
+@media screen and (max-width: 700px) 
+{
+ul.about-pl_ax {
+    width: 100%;
+}
+
+    .main-panel ul.about-pl_ax span.about-item-detail-az {
+        width: 50%;
+        float: right;
+        padding-right: 15px;
+       
+    }
+
+}

@@ -1,0 +1,128 @@
+﻿
+@model Model.Login
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Incident Portal</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <style>
+        .auth .brand-logo {
+            text-align: center;
+        }
+
+        .auth form .form-group .form-control {
+            background: #FFF;
+            border-radius: 0;
+            font-size: .9375rem;
+        }
+
+        .text-primary, .list-wrapper .completed .remove {
+            color: #FFF !important;
+        }
+
+        .auth form .form-group label {
+            font-size: .8125rem;
+            color: #FFF;
+        }
+
+        text-primary, .list-wrapper .completed .remove {
+            color: #FFF !important;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg" style="background:#001f57;">
+                <div class="row flex-grow">
+
+                    <div class="col-lg-7 login-half-bg  flex-row">
+                        <div class="logo-com">
+                            <img src="images/lftz-logo-new.png" height="150" />
+                        </div>
+
+
+                        <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2020  All rights reserved. LAGOS FREE ZONE</p>
+                    </div>
+
+
+                    <div class="col-lg-5 d-flex align-items-center justify-content-center">
+                        <div class="auth-form-transparent text-left p-3">
+                            <div class="brand-logo">
+                                <img src="images/truck_parkpng.png" alt="logo">
+                            </div>
+                            <!-- <h4>Welcome back!</h4>
+                             <h6 class="font-weight-light">Happy to see you again!</h6>-->
+                            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CheckLogin" }))
+                            {
+                                <div class="form-group">
+                                    <label for="exampleInputEmail">Username</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                                <i class="ti-user text-primary"></i>
+                                            </span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.UserId, new { @class = "form-control", id = "UserId" })
+                                        @Html.ValidationMessageFor(m => m.UserId, "", new { @style = "color:red" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                                <i class="ti-lock text-primary"></i>
+                                            </span>
+                                        </div>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "Password" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @style = "color:red" })
+                                    </div>
+                                </div>
+
+                                <div class="my-3">
+                                    <button class="btn btn-block  btn-lg font-weight-medium auth-form-btn" type="submit">LOGIN</button>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/js/off-canvas.js"></script>
+    <script src="~/js/hoverable-collapse.js"></script>
+    <script src="~/js/template.js"></script>
+    <script src="~/js/todolist.js"></script>
+    <!-- endinject -->
+</body>
+</html>
+

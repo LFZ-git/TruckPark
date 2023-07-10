@@ -1,0 +1,77 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+<style>
+    body {
+        background-color: #fff;
+    }
+
+    .error-template {
+        padding: 200px 15px;
+        text-align: center;
+    }
+
+    .error-actions {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+        .error-actions .btn {
+            margin-right: 10px;
+        }
+</style>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="col-lg-12 col-xl-12">
+
+
+
+    <div class="right-userde">
+        @*<div class="user-topbar">
+
+                <p><img alt="home" src="~/img/homepng.png">/ Home / Legal Notice </p>
+            </div>*@
+        <div class="user-add-in">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="error-template">
+
+                        <h2>
+                            Your session has expired
+                        </h2>
+                        <div class="error-details">
+                            Your session has expired and you have been logged out for security reason.
+                        </div>
+                        <div class="error-actions">
+                            @*<a href="@Url.Content(System.Configuration.ConfigurationManager.AppSettings["BaseUrl"])" class="btn btn-primary btn-lg">*@
+                                <a href="@Url.Content(System.Configuration.ConfigurationManager.AppSettings["BaseUrl"])" class="btn btn-primary btn-lg">
+                                    <span class="glyphicon glyphicon-home"></span>
+                                    Click Here To Login
+                                </a>
+</div>
+
+                    </div>
+
+                </div>
+            </div>
+            <p style="color:red;font-size: 12px;" align="left">@Session["ErrorDisplay"]</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- end slider -->
+</div>
+<script>
+
+</script>
+
+

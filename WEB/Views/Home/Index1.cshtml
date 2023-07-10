@@ -1,0 +1,399 @@
+﻿@*=============================================
+       Created By:	ismail baroodwale
+       Create date: 26-12-2019
+       Description: index page after login
+    =============================================*@
+@model Model.Models.Home.Dsb_CommonModel
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/Scripts/Chart.min.js")
+<section>
+    @if (TempData["Success"] != null)
+    {
+        <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+
+    }
+
+    @if (TempData["Failure"] != null)
+    {
+        <p class="alert alert-danger" id="failureMessage">@TempData["Failure"]</p>
+    }
+
+    @*<script src="~/js/demo/chart-bar-demo.js"></script>*@
+
+    <style>
+        a {
+            color: #007bff;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+            a:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+        table.dataTable.nowrap th, table.dataTable.nowrap td
+        {
+            white-space:normal;
+        }
+
+        a {
+            color: #001F57;
+        }
+            .btn-primary {
+            background-color: #001F57;
+            border-color: #001F57;
+        }
+
+        .page-item.active .page-link {
+           
+            background-color: #001F57;
+            border-color: #001F57;
+        }
+
+
+
+
+        .dataTables_filter label {
+            width: 100%;
+        }
+
+        div.dataTables_wrapper div.dataTables_filter input {
+            width: 82%;
+        }
+
+        td.td-name
+        {
+            width:25%;
+        }
+
+    </style>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="h2small">Dashboard <small>Statistics & More</small></h2>
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <div class="card count-section-left">
+                        <div class="card-body">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title " style="color:#FFF;">Milestone - Executed and Pending</h4>
+                                <!--  <p class="card-category"> Here is a subtitle for this table</p>-->
+                            </div>
+                            <div height="300">
+                                <canvas id="Zone-chart"  height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title " style="color:#FFF;">Milestone</h4>
+                            <!--  <p class="card-category"> Here is a subtitle for this table</p>-->
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        @{
+                                            foreach (var GetMilestonecount in Model.Milestonecount)
+                                            {
+                                               
+                                                <tr>
+                                                    <td>@GetMilestonecount.Milestone</td>
+
+                                                    <td>
+                                                        @GetMilestonecount.MilestoneCount
+                                                    </td>
+
+                                                </tr>
+
+                                            }
+                                        }
+                                        @*<tr class="clickable" onclick="window.location='in-hand.html';">
+                                                <td>
+                                                    Follow-up
+                                                </td>
+                                                <td>
+                                                    08
+                                                </td>
+
+                                            </tr>*@
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title " style="color:#FFF;">Task</h4>                           
+                            </div>                        
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    @using (Html.BeginForm("SaveTaskExecuted", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "SaveTaskExecuted" }))
+                                    {
+                                        <div style="height:112px; overflow: auto;">
+                                            <table class="table" id="table_id">
+                                                 
+                                                @Html.HiddenFor(m => m.TaskExeList.TaskName, new { @class = "form-control", @required = "required", @id = "TaskName" })
+                                                <tbody>
+                                                    @foreach (var Gettasklist in Model.lstTaskExeList)
+                                                    {
+                                                        <tr>
+                                                            @*<td>@Gettasklist.</td>*@
+                                                            <td>@Gettasklist.TaskName</td>
+                                                            <td>
+                                                                <div class="input-group mb-3 newst">
+                                                                    <div class="input-group-prepend">
+                                                                        <div class="input-group-text newst_a">
+                                                                            <input class="newst_b" type="checkbox" name="Members[]" value="@Gettasklist.TaskId" id="@Gettasklist.TaskId" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="" style="align-content:center;margin-top:5px">
+                                <input class="btn btn-primary rounded float-right" type="submit" title="Executed" value="Execute" id="btnTaskExecution" name="Executed" />
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title " style="color:#FFF;">Investor / Enterprise List</h4>
+                            <!--  <p class="card-category"> Here is a subtitle for this table</p>-->
+                        </div>
+                        <div class="card-body card-bodyz">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12  input-table">
+                                        <table id="example_a" class="table table-hover responsive nowrap" style="width:100%">
+                                            
+                                            <thead>
+                                                <tr>
+                                                    <th>Inquiry</th>
+                                                    <th>Milestone</th>
+                                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                                    <th>Action</th>
+                                                    <th>Last Changed On</th>
+                                                    @*<th>Images</th>*@
+                                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var GetIPlist in Model.IpList)
+                                                {
+                                                    <tr>
+                                                        @*<td >@GetIPlist.ProfileId</td>*@
+                                                        <td class="td-name">
+                                                        <a href="@Url.Action("View", "InvestorProfile" , new { ProfileId = GetIPlist.ProfileId },null)">@GetIPlist.ProfileOrganization</a>
+                                                        </td>
+                                                        <td>@GetIPlist.Milestone</td>
+                                                        <td>                                                          
+                                                            @Html.ActionLink("Change", "Edit", "MileStone", new { ProfileId = GetIPlist.ProfileId }, null)
+                                                        </td>                                                     
+                                                        <td>@GetIPlist.ActionToDo</td>
+                                                        <td>@GetIPlist.UpdatedOn</td>
+                                                        @*<td>
+                                                            @Html.ActionLink("Upload", "Edit", "InvestorProfile", new { ProfileId = GetIPlist.ProfileId }, null)
+                                                        </td>*@
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", "InvestorProfile", new { ProfileId = GetIPlist.ProfileId }, null)
+                                                       </td>                                                                                                        
+                                                    </tr>
+                                                 }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //For Zonewise
+        var data = getData();
+        AutoFollow(data);
+    });
+    // Colors code
+    //#e6194B, #3cb44b, #ffe119, #4363d8, #f58231, #911eb4, #42d4f4, #f032e6, #bfef45, #fabebe, #469990, #e6beff, #9A6324, #fffac8, #800000, #aaffc3, #808000, #ffd8b1, #000075, #a9a9a9, #ffffff, #000000
+
+    function getData() {
+        var PendingValue = [];
+        var ExecutedValue = [];
+        var MilestoneValue = [];
+
+        $.ajax({
+            type: "post",
+            //url: "/Home/GetChartBar/",
+            url: "@Url.Action("GetChartBar", "Home")",
+            dataType: 'json',
+            async: false
+        }).done(function (data) {
+            data.forEach(function (obj) {
+
+                PendingValue.push(obj.Pending);
+                ExecutedValue.push(obj.Executed);
+                MilestoneValue.push(obj.Milestone);
+            });
+        });
+        return {
+            PendingValue: PendingValue,
+            ExecutedValue: ExecutedValue,
+            MilestoneValue: MilestoneValue,
+        };
+    }
+
+    function AutoFollow(data) {
+        console.log(data);
+        new Chart(document.getElementById("Zone-chart"), {
+            type: 'bar',
+            data: {
+                labels: data.MilestoneValue,
+                datasets: [
+                    {
+                        label: "Pending",
+                        //backgroundColor: ["#e6194B", "#3cb44b", "#ffe119", "#4363d8", "#f58231", "#911eb4", "#42d4f4", "#f032e6", "#bfef45", "#fabebe", "#469990", "#e6beff", "#9A6324", "#fffac8", "#800000", "#aaffc3", "#ffd8b1", "#000075", "#a9a9a9", "#ffffff", "#000000"],
+                        backgroundColor: ["#001F57", "#001F57", "#001F57", "#001F57", "#001F57", "#001F57", "#001F57"],                       
+                         data: data.PendingValue,
+                        //data: data.ExecutedValue,
+
+                    },
+                    {
+                        label: "Executed",
+
+                        backgroundColor: ["#F51F00", "#F51F00", "#F51F00", "#F51F00", "#F51F00", "#F51F00", "#F51F00"],
+                        //data: data.PendingValue,
+                        data: data.ExecutedValue,
+
+                    }
+                ]
+            },
+                     
+            options: {
+                legend: { display: true, position: 'bottom'},
+                title: {
+                    display: true,
+                    // text: 'Accident Count'
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Milestone"
+                        },
+                        ticks: {
+                            //fontColor: "white",
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                hover: {
+                    animationDuration: 0
+                },
+                animation: {
+                    duration: 1,
+                    onComplete: function () {
+                        var chartInstance = this.chart,
+                            ctx = chartInstance.ctx;
+                        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'bottom';
+
+                        this.data.datasets.forEach(function (dataset, i) {
+                            var meta = chartInstance.controller.getDatasetMeta(i);
+                            meta.data.forEach(function (bar, index) {
+                                var data = dataset.data[index];
+                                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                            });
+                        });
+                    }
+                }
+            }
+        });
+    }
+</script>
+<script>
+ 
+    $(document).ready(function () {
+
+        EnanleDisableAssessMembers();
+
+        $('#table_id').DataTable({
+            //"aaSorting": []
+        });
+    });
+
+    function EnanleDisableAssessMembers() {
+
+        //alert("EnanleDisableAssessMembers")
+
+        var rowCount = $('#table_id >tbody >tr').length;
+        //alert(rowCount)
+        if (rowCount == 0)
+            $(':input[type="submit"]').prop('disabled', true);
+        else
+            $(':input[type="submit"]').prop('disabled', false);
+    }
+
+    $("#btnTaskExecution").click(function () {
+
+        var MembersArray = new Array();
+
+        $.each($("input[name='Members[]']:checked"), function () {
+            MembersArray.push($(this).val());
+        });
+
+        if (MembersArray == "") {
+            alert("Select at least one task");
+            return false;
+        }
+
+        console.log(MembersArray)
+
+        var MembersString = MembersArray.join(',');
+
+        console.log(MembersString)
+
+        //alert("TaskName")
+        $("#TaskName").val(MembersString)
+
+        //return false;
+        $('#SaveTaskExecuted').submit();
+
+    });
+</script>
+
+
