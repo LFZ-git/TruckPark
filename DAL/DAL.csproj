@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6DF7627E-010A-4780-8AD4-7F56EDFDB1C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityLog.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillableTrucks_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CheckTruckStatus_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concreate\BaseClassDAL.cs" />
+    <Compile Include="Concreate\Country\CountryDAL.cs" />
+    <Compile Include="Concreate\Ext\ExtDAL.cs" />
+    <Compile Include="Concreate\Home\HomeDAL.cs" />
+    <Compile Include="Concreate\Invoice\InvoiceDAL.cs" />
+    <Compile Include="Concreate\ListOfvalue\ListOfValueDAL.cs" />
+    <Compile Include="Concreate\Master\MasterDAL.cs" />
+    <Compile Include="Concreate\MenuDAL.cs" />
+    <Compile Include="Concreate\Organization\OrganizationDAL.cs" />
+    <Compile Include="Concreate\Role\RoleDAL.cs" />
+    <Compile Include="Concreate\Truck\TruckDAL.cs" />
+    <Compile Include="Concreate\UserCreation\UserCreationDAL.cs" />
+    <Compile Include="Concreate\UsersDAL.cs" />
+    <Compile Include="Concreate\UsersDetail\UsersDetailDAL.cs" />
+    <Compile Include="Concreate\Utility\UtilityDAL.cs" />
+    <Compile Include="Dashboard_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExceptionLog.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMappingModulesByRoleId_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMenusBasedRoleById_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Country\ICountryDAL.cs" />
+    <Compile Include="Interface\Ext\IExtDAL.cs" />
+    <Compile Include="Interface\Home\IHomeDAL.cs" />
+    <Compile Include="Interface\IMenuDAL.cs" />
+    <Compile Include="Interface\Invoice\IInvoiceDAL.cs" />
+    <Compile Include="Interface\IUsersDAL.cs" />
+    <Compile Include="Interface\ListOfValue\IListOfValueDAL.cs" />
+    <Compile Include="Interface\Master\IMasterDAL.cs" />
+    <Compile Include="Interface\Organization\IOrganizationDAL.cs" />
+    <Compile Include="Interface\Role\IRoleDAL.cs" />
+    <Compile Include="Interface\Truck\ITruckDAL.cs" />
+    <Compile Include="Interface\UserCreation\IUserCreationDAL.cs" />
+    <Compile Include="Interface\UsersDetail\lUsersDetailDAL.cs" />
+    <Compile Include="Interface\Utility\IUtilityDAL.cs" />
+    <Compile Include="InvoiceDetails_API_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LFTZIPContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LFTZIPContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LFTZIPContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LFTZIPContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LFTZIPContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Map_Ent2Ent.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Map_RoleModule.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Map_UserRole.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_APIKey.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_Country.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_Country_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_ExtAPI_ReceivedLog.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_ExtAPI_SentLog.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_ListOfValues.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_LOV_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_Modules.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_RateSlab.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_Role.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_TruckCapacity.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_UserDetails_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Organization.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationEntToEnt_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationMailId_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Organization_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProformaInvoice.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProformaInvoiceB4Clean.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProformaInvoiceDet.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proformaInvoiceDetails_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProformaInvoiceDetB4Clean.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProformaInvoiceList_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProformaInvoice_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduler_Admin_ISMAIL_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduler_Admin_old_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduler_Admin_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduler_Admin_test_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduler_Enterprise_old_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduler_Enterprise_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlManager.cs" />
+    <Compile Include="Truck.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruckCalledOutList_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruckCapacity_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruckCheckedInList_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruckCheckedOutList_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruckDetail.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruckDetailsB4Cleanup.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruckDetails_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruckList_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Truck_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserCreationList_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserCreation_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDetail.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Userdetails_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_AdminEnterpiseDetails_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ValidateUser_OnePortal_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{363e62f9-f8cc-4eda-870b-798094fd9b3a}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{201b8076-a519-483e-a670-4ced6ac74dee}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WEB\WEB.csproj">
+      <Project>{B7C8D93B-A8CC-411C-9621-4306511E4C3F}</Project>
+      <Name>WEB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="LFTZIPContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LFTZIPContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LFTZIPContext.edmx.diagram">
+      <DependentUpon>LFTZIPContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LFTZIPContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LFTZIPContext.edmx</DependentUpon>
+      <LastGenOutput>LFTZIPContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LFTZIPContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LFTZIPContext.edmx</DependentUpon>
+      <LastGenOutput>LFTZIPContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

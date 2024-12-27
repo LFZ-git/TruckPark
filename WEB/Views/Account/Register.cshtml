@@ -1,0 +1,125 @@
+﻿@model Model.Models.Home.RegistrationModel
+@{
+    ViewBag.Title = "Register";
+}
+@Scripts.Render("~/Scripts/jquery.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+<section class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="login-box col-lg-4 col-md-5 col-sm-8 ">
+                    <div class="logo">
+                        <a href="~/Home/Index"><img src="/images/WEB-logo.png" class="img-responsive" alt="WEB"></a>
+                    </div>
+                    <div class="supporters">
+                        <img src="/images/supporters.png" class="img-responsive" alt="">
+                    </div>
+
+                    <h3>Signup</h3>
+                    @if (TempData["PasswordMismatch"] != null)
+                    {
+                        <p class="alert alert-success" id="successMessage">@TempData["PasswordMismatch"]</p>
+                    }
+                    @if (TempData["AlreadyExists"] != null)
+                    {
+                        <p class="alert alert-success" id="successMessage">@TempData["AlreadyExists"]</p>
+                    }
+
+                    @using (Html.BeginForm("SaveRegistration", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "SaveResitration" }))
+                    {
+                        <form role="form" id="signup">
+                            <div class="form-group col-sm-10 no-padding">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Name" })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group col-sm-10 no-padding">
+                                @Html.TextBoxFor(m => m.email_id, new { @class = "form-control", @required = "required", placeholder = "email id" })
+                                @Html.ValidationMessageFor(model => model.email_id, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group col-sm-10 no-padding">
+                                @Html.TextBoxFor(m => m.UserMobile, new { @class = "form-control", @required = "required", placeholder = "mobile number" })
+                                @Html.ValidationMessageFor(model => model.UserMobile, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group no-padding">
+                                <div class="col-sm-5 pass">
+                                    @Html.PasswordFor(m => m.UserPwd, new { @class = "form-control form-group", @required = "required", placeholder = "password" })
+                                    @Html.ValidationMessageFor(model => model.UserPwd, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-sm-5 no-padding">
+                                    @Html.PasswordFor(m => m.UserConfPwd, new { @class = "form-control form-group", @required = "required", placeholder = "confirm password" })
+                                    @Html.ValidationMessageFor(model => model.UserConfPwd, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+                            <div class="login-btn-wrap">
+                                <input type="submit" title="Save" class="login-btn" value="" onclick="savedata();">
+                            </div>
+                        </form>
+
+                    }
+                    <span class="ext-link"><h3>Already have a account? <a href="Login">Login</a></h3></span>
+                </div>
+            </div>
+            <p class="text-footer col-md-12 mt-15"><a href="~/Account/TermsPolicy">Terms and Privacy Policy </a> &copy; Copyright 2018. All rights reserved.</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    //function savedata() {
+    //    //alert("called");
+
+    //    $("#SaveResitration").validate({
+    //        rules: {
+
+    //            UserName: {
+    //                required: true,
+    //                minlength: 5
+    //            },
+    //            UserPwd: {
+    //                required: true,
+    //                minlength: 5
+    //            },
+    //            UserConfPwd: {
+    //                required: true,
+    //                minlength: 5,
+    //                equalTo: "#UserPwd"
+    //            },
+    //            email_id: {
+    //                required: true,
+    //                email: true
+    //            },
+    //            UserMobile: {
+    //                required: true,
+    //                minlength: 10
+    //            }
+    //        },
+    //        messages: {
+
+    //            UserName: {
+    //                required: "Please enter a username",
+    //                minlength: "Your username must consist of at least 5 characters"
+    //            },
+    //            UserPwd: {
+    //                required: "Please provide a password",
+    //                minlength: "Your password must be at least 5 characters long"
+    //            },
+    //            UserConfPwd: {
+    //                required: "Please provide a password",
+    //                minlength: "Your password must be at least 5 characters long",
+    //                equalTo: "Please enter the same password"
+    //            },
+    //            email_id: "Please enter a valid email address",
+    //            UserMobile: {
+    //                required: "Please provide a Mobile",
+    //                minlength: "Your Mobile must be at least 10 characters long"
+    //            }
+
+    //        }
+    //    });
+    //}
+
+
+
+</script>

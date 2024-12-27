@@ -1,0 +1,161 @@
+﻿@*=============================================
+       Created By:	ismail baroodwale
+       Create date: 24-12-2019
+       Description: admin panel-add User
+    NEW SVN VERSION
+    =============================================*@
+
+@model  Model.Models.UserCreation.UserCreationModel
+
+<style>
+    .validationMark {
+        color: red;
+    }
+</style>
+   
+
+        @if (TempData["Success"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+
+        }
+
+        @if (TempData["Failure"] != null)
+        {
+            <p class="alert alert-danger" id="failureMessage">@TempData["Failure"]</p>
+
+        }
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Add User </h4>
+                       @using (Html.BeginForm("UpdateUser", "UserCreation", FormMethod.Post, new { enctype = "multipart/form-data", @id = "EditUser" }))
+                       {@Html.HiddenFor(m => m.UDID)
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Organization">Organization</label>
+                                        @Html.DropDownListFor(m => m.OrganizationID, (SelectList)ViewBag.Organizations, "-- Select--", new { @class = "form-control", @required = "required", @id = "OrganizationID" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.OrganizationID, "", new { @class = "text-danger", @style = "color:red" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Employee">Employee Name</label>
+                                        @Html.HiddenFor(m => m.UDID)
+
+                                        @Html.EditorFor(m => m.EmployeeName, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "EmployeeName" } })
+
+                                        @Html.ValidationMessageFor(m => m.EmployeeName, "", new { @class = "text-danger", @style = "color:red" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="validationCustom0002">Role</label><span class="validationMark">*</span>
+                                        @Html.DropDownListFor(m => m.RoleId, (SelectList)ViewBag.Roles, "-- Select--", new { @class = "form-control", @required = "required", @id = "Role" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.RoleId, "", new { @class = "text-danger", @style = "color:red" })
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="validationCustom0002">Department</label><span class="validationMark">*</span>
+                                        @Html.DropDownListFor(m => m.DepartmentID, (SelectList)ViewBag.events, "-- Select--", new { @class = "form-control", @required = "required", @id = "DepartmentID" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.DepartmentID, "", new { @class = "text-danger", @style = "color:red" })
+                                </div>
+                            </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="validationCustom0002">Reporting To</label><span class="validationMark">*</span>
+                                            @Html.DropDownListFor(m => m.ReportingToID, (SelectList)ViewBag.userdetail, "-- Select--", new { @class = "form-control", @required = "required", @id = "ReportingToID" })
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.ReportingToID, "", new { @class = "text-danger", @style = "color:red" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="validationCustom0001">Email ID</label><span class="validationMark">*</span>
+                                            @Html.EditorFor(m => m.EmailId, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "EmailID" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.EmailId, "", new { @class = "text-danger", @style = "color:red" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="validationCustom0001">Password</label>@*<span class="validationMark">*</span>*@
+                                            @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control",  @id = "Password" } })
+                                        </div>
+                                        @*@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", @style = "color:red" })*@
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="validationCustom0001">Mobile No</label>
+                                            @Html.EditorFor(m => m.MobileNo, new { htmlAttributes = new { @class = "form-control", @id = "MobileNo" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.MobileNo, "", new { @class = "text-danger", @style = "color:red" })
+                                    </div>
+                                </div>
+
+                                <div class="">
+                                    <button class="btn btn-primary" type="submit">Save</button>
+                                    @*<button class="btn btn-primary" type="reset">Reset</button>*@
+                                </div>
+
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+         
+
+
+        <script src="~/Scripts/select2.js"></script>
+        <link href="~/Content/css/select2.css" rel="stylesheet" />
+
+        <script>
+            // turn the element to select2 select style
+            $('#Role').select2();
+            $('#DepartmentID').select2();
+
+            $('#ReportingToID').select2();
+
+        </script>
+
+
+        <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+        <script src="~/js/sweetalert2.min.js"></script>
+        <script>
+        var message = '@TempData["Message"]';
+        var alertType = '@ViewBag.AlertType';
+        var alertTitle = '@ViewBag.AlertTitle';
+            if (message != '')
+            {
+                sweetAlert(alertTitle, message, alertType);
+            }
+        </script>
+<script>
+           // alert($('#Password').val());
+            document.getElementById("Password").value = "";
+            document.getElementById("OrganizationID").selectedIndex = 1;
+                //$('#Password').val('');
+              //  $('#OrganizationID').val(1);
+            
+</script>

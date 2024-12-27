@@ -1,0 +1,807 @@
+﻿@using Utility;
+@using Model.CommonEnum;
+@using Model.Models.UserDetail
+@{
+    int roleid = 0;
+    int UDID = 0;
+    string userId = null;
+    if (Session["UserDetails"] != null)
+    {
+        UserDetailModel userdetail = (UserDetailModel)Session["UserDetails"];
+        roleid = userdetail.RoleId;
+        userId = userdetail.EmployeeName;
+        UDID = userdetail.UDID;
+
+    }
+
+    else
+    {
+        @Html.Action("LogOut", "Account")
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Truck Park Portal</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+
+
+    <link rel="stylesheet" type="text/css" href="~/da/jquery.datetimepicker.css" />
+    <style>
+        .excelExport {
+            float: right;
+            /*width: 20%;*/
+            background-color: #a3aaa3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="~/images/truck-park-logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="~/images/LFZ LOGO-15.png" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="ti-align-justify"></span>
+                </button>
+
+                <ul class="navbar-nav navbar-nav-right">
+
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            Welcome! <span class="user_span">@userId</span>
+                            @*<img src="images/faces/face28.jpg" alt="profile" />*@
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="@Url.Action("ChangePassword","Account")">
+                                <i class="ti-settings text-primary"></i>
+                                Change Password
+                            </a>
+                            <a class="dropdown-item" href="@Url.Action("LogOut","Account")">
+                                <i class="ti-power-off text-primary"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="ti-align-justify"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Dashboard", "Home")">
+                            <i class="ti-dashboard menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+
+                    @if (roleid == (int)CommonEnum.Role.EnterpriseAdmin || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin || roleid == (int)CommonEnum.Role.LFZSecurity)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Add", "Truck")">
+                                <i class="ti-ink-pen menu-icon"></i>
+                                @if (roleid == (int)CommonEnum.Role.EnterpriseAdmin || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin)
+                                {
+                                    <span class="menu-title">Add Expected Trucks</span>
+                                }
+                                @if (roleid == (int)CommonEnum.Role.LFZSecurity)
+                                {
+                                    <span class="menu-title">Manual Checkin</span>
+                                }
+                            </a>
+                        </li>
+                    }
+                    @if (roleid == (int)CommonEnum.Role.EnterpriseAdmin || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin || roleid == (int)CommonEnum.Role.LFZAdmin || roleid == (int)CommonEnum.Role.LFZSecurity)
+                    {
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="@Url.Action("TruckList", "Truck")">
+                                <i class="ti-list menu-icon"></i>
+                                @if (roleid == (int)CommonEnum.Role.EnterpriseAdmin || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin || roleid == (int)CommonEnum.Role.LFZAdmin)
+                                {
+                                    <span class="menu-title">View Expected Trucks</span>
+                                }
+                                @if (roleid == (int)CommonEnum.Role.LFZSecurity)
+                                {
+                                    <span class="menu-title">Expected Checkin</span>
+                                }
+                            </a>
+                        </li>
+                    }
+                        @if (roleid == (int)CommonEnum.Role.EnterpriseAdmin || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin || roleid == (int)CommonEnum.Role.LFZSecurity || roleid == (int)CommonEnum.Role.LFZAdmin)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("CalledOutVehicles", "Truck")">
+                                    <i class="ti-list menu-icon"></i>
+                                    <span class="menu-title">Called Out vehicles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("TruckCheckedInList", "Truck")">
+                                    <i class="ti-import menu-icon"></i>
+                                    <span class="menu-title">Checked In vehicles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("TruckCheckedoutList", "Truck")">
+                                    <i class="ti-export menu-icon"></i>
+                                    <span class="menu-title">Checked out vehicles</span>
+                                </a>
+                            </li>
+                        }
+                        @if (roleid == (int)CommonEnum.Role.LFZAdmin)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("BillableTrucks", "Truck")">
+                                    <i class="ti-target menu-icon"></i>
+                                    <span class="menu-title">Billable trucks</span>
+                                </a>
+                            </li>
+                        }
+                        @if (roleid == (int)CommonEnum.Role.LFZAdmin || roleid == (int)CommonEnum.Role.EnterpriseAdmin || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("InvoiceList", "Invoice")">
+                                    <i class="ti-receipt menu-icon"></i>
+                                    <span class="menu-title">Invoice List</span>
+                                </a>
+                            </li>
+                        }
+                        @if (roleid == (int)CommonEnum.Role.LFZAdmin)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Generate", "Invoice")">
+                                    <i class="ti-target menu-icon"></i>
+                                    <span class="menu-title">Generate Invoice</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Create", "UserCreation", new { id = UDID })">
+                                    <i class="ti-user menu-icon"></i>
+                                    <span class="menu-title">Create User</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("List", "UserCreation", new { id = UDID })">
+                                    <i class="ti-view-list menu-icon"></i>
+                                    <span class="menu-title">View Users</span>
+                                </a>
+                            </li>
+                        }
+                        @*<li class="nav-item">
+                <a class="nav-link" href="@Url.Action("ChangePassword","Account")">
+                    <i class="ti-settings menu-icon"></i>
+                    <span class="menu-title">Change Password</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("LogOut","Account")">
+                    <i class="ti-power-off menu-icon"></i>
+                    <span class="menu-title">Log Out</span>
+                </a>
+            </li>*@
+                        @if (roleid == 5)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("TruckCheckedInList", "Truck")">
+                                    <i class="ti-import menu-icon"></i>
+                                    <span class="menu-title">Checked In vehicles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("TruckCheckedoutList", "Truck")">
+                                    <i class="ti-export menu-icon"></i>
+                                    <span class="menu-title">Checked out vehicles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("InvoiceList", "Invoice")">
+                                    <i class="ti-receipt menu-icon"></i>
+                                    <span class="menu-title">Invoice List</span>
+                                </a>
+                            </li>
+
+                        }
+
+
+
+
+                    </ul>
+            </nav>
+            <div class="main-panel">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page
+    <script src="vendors/chart.js/Chart.min.js"></script>-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="~/js/off-canvas.js"></script>
+    <script src="~/js/hoverable-collapse.js"></script>
+    <!--<script src="js/template.js"></script>-->
+    <script src="~/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- End custom js for this page-->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js'></script>
+
+    <script>
+
+        var ctx = document.getElementById("locGraph");
+        var testGraph = locgraph = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Western Province', 'Kigali City', 'South Province', 'North Province'],
+                datasets: [{
+                    label: '# of attendance in provinces',
+                    data: [7, 1, 1, 1],
+                    fill: true,
+                    backgroundColor: ['rgb(0, 31, 87)', 'rgb(0, 31, 87)', 'rgb(0, 31, 87)', 'rgb(0, 31, 87)',],
+                    borderColor: ['rgba(2, 132, 239, .89)'],
+                    borderWidth: 1
+                },
+                {
+                    label: '# of citizens in provinces',
+                    data: [10, 2, 1, 1],
+                    backgroundColor: ['rgba(0, 0, 000, .09)', 'rgba(0, 0, 000, .09)', 'rgba(0, 0, 000, .09)', 'rgba(0, 0, 000, .09)',],
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        stacked: false,
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            offsetGridLines: true
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            offsetGridLines: true
+                        },
+                        stacked: true,
+                    }]
+                }
+            }
+        })
+
+    </script>
+    @*<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.24/jquery.autocomplete.min.js'></script>*@
+    <script>
+        /*http://laravel.io/forum/02-08-2014-ajax-autocomplete-input*/
+        var countries = {
+            "AD": "Andorra",
+            "A2": "Andorra Test",
+            "AE": "United Arab Emirates",
+            "AF": "Afghanistan",
+            "AG": "Antigua and Barbuda",
+            "AI": "Anguilla",
+            "AL": "Albania",
+            "AM": "Armenia",
+            "AN": "Netherlands Antilles",
+            "AO": "Angola",
+            "AQ": "Antarctica",
+            "AR": "Argentina",
+            "AS": "American Samoa",
+            "AT": "Austria",
+            "AU": "Australia",
+            "AW": "Aruba",
+            "AX": "\u00c5land Islands",
+            "AZ": "Azerbaijan",
+            "BA": "Bosnia and Herzegovina",
+            "BB": "Barbados",
+            "BD": "Bangladesh",
+            "BE": "Belgium",
+            "BF": "Burkina Faso",
+            "BG": "Bulgaria",
+            "BH": "Bahrain",
+            "BI": "Burundi",
+            "BJ": "Benin",
+            "BL": "Saint Barth\u00e9lemy",
+            "BM": "Bermuda",
+            "BN": "Brunei",
+            "BO": "Bolivia",
+            "BQ": "British Antarctic Territory",
+            "BR": "Brazil",
+            "BS": "Bahamas",
+            "BT": "Bhutan",
+            "BV": "Bouvet Island",
+            "BW": "Botswana",
+            "BY": "Belarus",
+            "BZ": "Belize",
+            "CA": "Canada",
+            "CC": "Cocos [Keeling] Islands",
+            "CD": "Congo - Kinshasa",
+            "CF": "Central African Republic",
+            "CG": "Congo - Brazzaville",
+            "CH": "Switzerland",
+            "CI": "C\u00f4te d\u2019Ivoire",
+            "CK": "Cook Islands",
+            "CL": "Chile",
+            "CM": "Cameroon",
+            "CN": "China",
+            "CO": "Colombia",
+            "CR": "Costa Rica",
+            "CS": "Serbia and Montenegro",
+            "CT": "Canton and Enderbury Islands",
+            "CU": "Cuba",
+            "CV": "Cape Verde",
+            "CX": "Christmas Island",
+            "CY": "Cyprus",
+            "CZ": "Czech Republic",
+            "DD": "East Germany",
+            "DE": "Germany",
+            "DJ": "Djibouti",
+            "DK": "Denmark",
+            "DM": "Dominica",
+            "DO": "Dominican Republic",
+            "DZ": "Algeria",
+            "EC": "Ecuador",
+            "EE": "Estonia",
+            "EG": "Egypt",
+            "EH": "Western Sahara",
+            "ER": "Eritrea",
+            "ES": "Spain",
+            "ET": "Ethiopia",
+            "FI": "Finland",
+            "FJ": "Fiji",
+            "FK": "Falkland Islands",
+            "FM": "Micronesia",
+            "FO": "Faroe Islands",
+            "FQ": "French Southern and Antarctic Territories",
+            "FR": "France",
+            "FX": "Metropolitan France",
+            "GA": "Gabon",
+            "GB": "United Kingdom",
+            "GD": "Grenada",
+            "GE": "Georgia",
+            "GF": "French Guiana",
+            "GG": "Guernsey",
+            "GH": "Ghana",
+            "GI": "Gibraltar",
+            "GL": "Greenland",
+            "GM": "Gambia",
+            "GN": "Guinea",
+            "GP": "Guadeloupe",
+            "GQ": "Equatorial Guinea",
+            "GR": "Greece",
+            "GS": "South Georgia and the South Sandwich Islands",
+            "GT": "Guatemala",
+            "GU": "Guam",
+            "GW": "Guinea-Bissau",
+            "GY": "Guyana",
+            "HK": "Hong Kong SAR China",
+            "HM": "Heard Island and McDonald Islands",
+            "HN": "Honduras",
+            "HR": "Croatia",
+            "HT": "Haiti",
+            "HU": "Hungary",
+            "ID": "Indonesia",
+            "IE": "Ireland",
+            "IL": "Israel",
+            "IM": "Isle of Man",
+            "IN": "India",
+            "IO": "British Indian Ocean Territory",
+            "IQ": "Iraq",
+            "IR": "Iran",
+            "IS": "Iceland",
+            "IT": "Italy",
+            "JE": "Jersey",
+            "JM": "Jamaica",
+            "JO": "Jordan",
+            "JP": "Japan",
+            "JT": "Johnston Island",
+            "KE": "Kenya",
+            "KG": "Kyrgyzstan",
+            "KH": "Cambodia",
+            "KI": "Kiribati",
+            "KM": "Comoros",
+            "KN": "Saint Kitts and Nevis",
+            "KP": "North Korea",
+            "KR": "South Korea",
+            "KW": "Kuwait",
+            "KY": "Cayman Islands",
+            "KZ": "Kazakhstan",
+            "LA": "Laos",
+            "LB": "Lebanon",
+            "LC": "Saint Lucia",
+            "LI": "Liechtenstein",
+            "LK": "Sri Lanka",
+            "LR": "Liberia",
+            "LS": "Lesotho",
+            "LT": "Lithuania",
+            "LU": "Luxembourg",
+            "LV": "Latvia",
+            "LY": "Libya",
+            "MA": "Morocco",
+            "MC": "Monaco",
+            "MD": "Moldova",
+            "ME": "Montenegro",
+            "MF": "Saint Martin",
+            "MG": "Madagascar",
+            "MH": "Marshall Islands",
+            "MI": "Midway Islands",
+            "MK": "Macedonia",
+            "ML": "Mali",
+            "MM": "Myanmar [Burma]",
+            "MN": "Mongolia",
+            "MO": "Macau SAR China",
+            "MP": "Northern Mariana Islands",
+            "MQ": "Martinique",
+            "MR": "Mauritania",
+            "MS": "Montserrat",
+            "MT": "Malta",
+            "MU": "Mauritius",
+            "MV": "Maldives",
+            "MW": "Malawi",
+            "MX": "Mexico",
+            "MY": "Malaysia",
+            "MZ": "Mozambique",
+            "NA": "Namibia",
+            "NC": "New Caledonia",
+            "NE": "Niger",
+            "NF": "Norfolk Island",
+            "NG": "Nigeria",
+            "NI": "Nicaragua",
+            "NL": "Netherlands",
+            "NO": "Norway",
+            "NP": "Nepal",
+            "NQ": "Dronning Maud Land",
+            "NR": "Nauru",
+            "NT": "Neutral Zone",
+            "NU": "Niue",
+            "NZ": "New Zealand",
+            "OM": "Oman",
+            "PA": "Panama",
+            "PC": "Pacific Islands Trust Territory",
+            "PE": "Peru",
+            "PF": "French Polynesia",
+            "PG": "Papua New Guinea",
+            "PH": "Philippines",
+            "PK": "Pakistan",
+            "PL": "Poland",
+            "PM": "Saint Pierre and Miquelon",
+            "PN": "Pitcairn Islands",
+            "PR": "Puerto Rico",
+            "PS": "Palestinian Territories",
+            "PT": "Portugal",
+            "PU": "U.S. Miscellaneous Pacific Islands",
+            "PW": "Palau",
+            "PY": "Paraguay",
+            "PZ": "Panama Canal Zone",
+            "QA": "Qatar",
+            "RE": "R\u00e9union",
+            "RO": "Romania",
+            "RS": "Serbia",
+            "RU": "Russia",
+            "RW": "Rwanda",
+            "SA": "Saudi Arabia",
+            "SB": "Solomon Islands",
+            "SC": "Seychelles",
+            "SD": "Sudan",
+            "SE": "Sweden",
+            "SG": "Singapore",
+            "SH": "Saint Helena",
+            "SI": "Slovenia",
+            "SJ": "Svalbard and Jan Mayen",
+            "SK": "Slovakia",
+            "SL": "Sierra Leone",
+            "SM": "San Marino",
+            "SN": "Senegal",
+            "SO": "Somalia",
+            "SR": "Suriname",
+            "ST": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+            "SU": "Union of Soviet Socialist Republics",
+            "SV": "El Salvador",
+            "SY": "Syria",
+            "SZ": "Swaziland",
+            "TC": "Turks and Caicos Islands",
+            "TD": "Chad",
+            "TF": "French Southern Territories",
+            "TG": "Togo",
+            "TH": "Thailand",
+            "TJ": "Tajikistan",
+            "TK": "Tokelau",
+            "TL": "Timor-Leste",
+            "TM": "Turkmenistan",
+            "TN": "Tunisia",
+            "TO": "Tonga",
+            "TR": "Turkey",
+            "TT": "Trinidad and Tobago",
+            "TV": "Tuvalu",
+            "TW": "Taiwan",
+            "TZ": "Tanzania",
+            "UA": "Ukraine",
+            "UG": "Uganda",
+            "UM": "U.S. Minor Outlying Islands",
+            "US": "United States",
+            "UY": "Uruguay",
+            "UZ": "Uzbekistan",
+            "VA": "Vatican City",
+            "VC": "Saint Vincent and the Grenadines",
+            "VD": "North Vietnam",
+            "VE": "Venezuela",
+            "VG": "British Virgin Islands",
+            "VI": "U.S. Virgin Islands",
+            "VN": "Vietnam",
+            "VU": "Vanuatu",
+            "WF": "Wallis and Futuna",
+            "WK": "Wake Island",
+            "WS": "Samoa",
+            "YD": "People's Democratic Republic of Yemen",
+            "YE": "Yemen",
+            "YT": "Mayotte",
+            "ZA": "South Africa",
+            "ZM": "Zambia",
+            "ZW": "Zimbabwe",
+            "ZZ": "Unknown or Invalid Region"
+        }
+        var countriesString = [
+            "Andorra",
+            "Andorra Test",
+            "United Arab Emirates"
+        ];
+
+        //console.log(typeof trucklist);
+        //var countriesArray = $.map(trucklist, function (value, key) { return { value: value, data: key }; });
+        //console.log(countriesArray);
+        // Initialize ajax autocomplete:
+        //$('#TruckNo').autocomplete({
+        //    // serviceUrl: '/autosuggest/service/url',
+        //    //lookup: countriesString,
+        //    lookup: countriesArray,
+        //    lookupFilter: function (suggestion, originalQuery, queryLowerCase) {
+        //        var re = new RegExp('\\b' + $.Autocomplete.utils.escapeRegExChars(queryLowerCase), 'gi');
+        //        return re.test(suggestion.value);
+        //    },
+        //    onSelect: function (suggestion) {
+        //        $('#selction-ajax').html('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        //    },
+        //    onHint: function (hint) {
+        //        $('#autocomplete-ajax-x').val(hint);
+        //    },
+        //    onInvalidateSelection: function () {
+        //        $('#selction-ajax').html('You selected: none');
+        //    }
+        //});
+    </script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#TruckNo").on("input", function () {
+                $("#TruckId").val(0);
+            });
+            $("#TruckNo").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Truck/GetTrucks",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.TruckNo, value: item.TruckNo };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                },
+                select: function (event, ui) {
+                    DoAction(event);
+
+                }
+            });
+
+            //$("#Addsubmit").click(function (event) {
+            //    DoAction($('#TruckNo').val(), event)
+            //});
+        });
+
+        function DoAction(event) {
+            var name = $('#TruckNo').val();
+            var check = false; 
+            if (name != '') {
+                $.ajax({
+                    url: "/Truck/CheckTruckStatus",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: name },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.IsForecasted) {
+                            console.log(response.IsForecasted);
+                            check = true;
+                            swal({
+                                title: "Found!",
+                                text: "Provided truck is already forecasted!",
+                                type: "error"
+                            }).then(function () {
+                                window.location = "/Home/Dashboard";
+                            });
+                        }
+                        else if (response.IsCheckedIn) {
+                            console.log(response.IsCheckedIn);
+                            check = true;
+                            swal({
+                                title: "Found!",
+                                text: "Provided truck is already checked in!",
+                                type: "error"
+                            }).then(function () {
+                                window.location = "/Home/Dashboard";
+                            });
+                        }
+                        else {
+                            $("#CalledByOrganizationId").val(response.OwnedByOrganizationId);
+                            $("#TruckCapacityId").val(response.TruckCapacityId);
+                            $("#TruckId").val(response.TruckId);
+                        }
+                        //if (check) {
+                        //    event.preventDefault();
+                        //}
+
+                    }
+                })
+            }
+        }
+    </script>
+
+    <link href="~/css/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/js/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+            var message = '@TempData["msg"]';
+            var alertType = '@TempData["alertTitle"]';
+            var alertTitle = '@TempData["type"]';
+
+            if (message != '')
+            {
+                //sweetAlert(alertTitle, message, alertType);
+                swal({
+                    title: alertTitle,
+                    text: message,
+                    type: alertType
+                })
+            }
+    </script>
+
+    <script src="~/da/jquery.datetimepicker.full.js"></script>
+    <script>
+            /*jslint browser:true*/
+            /*global jQuery, document*/
+
+            jQuery(document).ready(function () {
+                'use strict';
+
+                jQuery('#ExpectedArrivalDate').datetimepicker({
+                    //format: 'Y/m/d H:i',
+                    step: 15,
+                    minDate: true, // yesterday is minimum date
+                    yearStart: 1930,
+                    //onShow: function (ct) {
+                    //    this.setOptions({
+                    //        maxDate: jQuery('#ExpectedDepatureDate').val() ? jQuery('#ExpectedDepatureDate').val() : false
+                    //    })
+                    //},
+                    timepicker: true
+                });
+                jQuery('#ExpectedDepatureDate').datetimepicker({
+                    //format: 'Y/m/d H:i',
+                    step: 15,
+                    yearStart: 1930,
+                    onShow: function (ct) {
+                        this.setOptions({
+                            minDate: jQuery('#ExpectedArrivalDate').val() ? jQuery('#ExpectedArrivalDate').val() : false
+                        })
+                    },
+                    onChangeDateTime: function (dp, $input) {
+                        if (jQuery('#ExpectedDepatureDate').val() < jQuery('#ExpectedArrivalDate').val()) {
+                            swal({
+                                title: "Error!",
+                                text: "Departure datetime can not be less than arrival datetime.",
+                                type: "error"
+                            })
+                        }
+                    },
+                    timepicker: true
+                });
+            });
+    </script>
+
+    <script src="~/js/framework.js"></script>
+    <script>
+            $("#TruckDetailsId").click(function () {
+                $('input:checkbox').not(this).prop('checked', this.checked);
+            });
+
+            $("#Excel").click(function () {
+                console.log("Excel");
+                $.ajax({
+                    url: "/Truck/ExportExcel",
+                    type: "POST",
+                    dataType: "json",
+                    success: function (response) {
+                    }
+                });
+
+            });
+    </script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $("#TransportNo").keypress(function (e) {
+                    //if the letter is not digit then display error and don't type anything
+                    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                        //display error message
+                        $("#TransportNoerrmsg").html("Digits Only").show().fadeOut("slow");
+                        return false;
+                    }
+                });
+
+                $("#DriverNo").keypress(function (e) {
+                    //if the letter is not digit then display error and don't type anything
+                    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                        //display error message
+                        $("#DriverNoerrmsg").html("Digits Only").show().fadeOut("slow");
+                        return false;
+                    }
+                });
+            });
+    </script>
+
+
+    <script src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js'></script>
+
+    <script>
+            jQuery(document).ready(function () {
+                jQuery('#responsive-data-table').DataTable({
+                    "aLengthMenu": [[20, 30, 50, 75, -1], [20, 30, 50, 75, "All"]],
+                    "pageLength": 20,
+                    "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
+                });
+            });
+    </script>
+</body>
+
+
+</html>

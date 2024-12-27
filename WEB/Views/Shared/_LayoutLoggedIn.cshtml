@@ -1,0 +1,94 @@
+﻿@using Model.Models.UserDetail;
+
+
+@{
+    UserDetailModel userdetail = (UserDetailModel)Session["UserDetails"];
+
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>LFTZ</title>
+
+    @*<script src="~/Scripts/jquery.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+    @Styles.Render("~/plugins/bootstrap-3.3.7/dist/css/bootstrap.min.css")
+    @Styles.Render("~/plugins/font-awesome/css/font-awesome.min.css")
+    @Styles.Render("~/css/style.css")
+    @Styles.Render("~/css/responsive.css")
+
+    @Scripts.Render("~/Scripts/jquery.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+</head>
+
+<body class="disableEvent">
+    @*<!-- header start -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12 inner-logo">
+                    <a href="~/LoggedIn/ModuleListing"><img src="/images/WEB-logo.png" class="img-responsive" alt="WEB"></a>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12 text-right supporters">
+                    <img src="/images/supporters.png" class="img-responsive" alt="" style="height:auto;width:auto">
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <!-- banner section start-->
+    <section class="banner section-padding">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                    <h4>Welcome</h4>
+                    <h2>@userdetail.UserName</h2>
+                    <h5 style="color:#fff;">@DateTime.Now.ToShortDateString()</h5>
+                    <p style="text-align:left">
+                        The first ever course of its kind for training in psychotherapy with a complete focus of therapy in a clinical setting
+                        with specific attention to application, therapeutic skills and psychotherapeutic demeanor.
+                    </p>
+                    <a href="~/Home/LogOut" class="btn-logout">Logout</a> &nbsp;<a href="~/LoggedIn/ModuleListing" class="btn-logout">Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner section end-->
+    @RenderBody()
+    <!-- footer start -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-sx-12">
+                    <p class="copyright">&copy; Copyright 2018. All rights reserved.</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-sx-12">
+                    <img src="/images/gsdp-logo.png" alt="" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- /container -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    @*<script src="plugins/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    @Scripts.Render("~/plugins/bootstrap-3.3.7/dist/js/bootstrap.min.js")*@
+
+</body>
+
+</html>

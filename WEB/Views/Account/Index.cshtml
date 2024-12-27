@@ -1,0 +1,112 @@
+﻿@*=============================================
+       Created By:	ismail baroodwale
+       Create date: 24-12-2019
+       Description: User login
+    =============================================*@
+@model Model.Login
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="~/vendor/bootstrap/js/bootstrap.js"></script>
+<link href="~/Content/sb-admin.css" rel="stylesheet">
+<link href="~/Content/page-cs.css" rel="stylesheet">
+
+
+<link rel="shortcut icon" href="http://www.lagosftz.com/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="http://www.lagosftz.com/images/favicon.ico" type="image/x-icon">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+<link />
+
+<body>
+    <style>
+        h2.subtitle {
+            font-size: 1rem;
+            margin: 3vh auto;
+            left: 0;
+            right: 0;
+            position: absolute;
+            text-align: left;
+            width: 58%;
+            color: #d7261c;
+        }
+    </style>
+
+    <script>
+        localStorage.clear();
+        window.localStorage.clear();
+        window.localStorage.removeItem("ActiveMenuId");
+    </script>
+    @*@if (TempData["NotValid"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["NotValid"]</p>
+
+        }*@
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CheckLogin" }))
+    {
+        <div class="login-page">
+            <div class="right-bg">
+                <div class="login-wrap">
+                    <div class="logo-sec">
+                        <img src="~/img/lftz-logo.png">
+                    </div>
+
+
+                    <h2 class="subtitle">
+                        Dear LFTZ Users,<br><br>
+                        IT Team is working on urgent maintenance of the Investor Portal.  Hence, the application will be down between 11:30 AM To 02:00 PM (Nigeria Time)<br><br>
+                        Thank you<br><br>
+                        IT Team LFTZ<br>
+                    </h2>
+
+                    <div class="login-box">
+
+                        <div class="card rounded shadow shadow-sm">
+                            <!--<div class="card-header">
+
+                            </div>-->
+                            <br><h3 class="mb-0 text-center">Investor Portal</h3>
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="email">Email ID:</label>
+                                    @Html.TextBoxFor(m => m.UserId, new { @class = "form-control form-control-lg rounded-0", id = "UserId" })
+                                    @Html.ValidationMessageFor(m => m.UserId, "", new { @style = "color:red" })
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password :</label>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg rounded-0", id = "Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @style = "color:red" })
+                                </div>
+                                <button type="" class="button-color btn btn-success btn-lg float-right" disabled>Login</button>
+                            </div>
+                            @if (TempData["NotValid"] != null)
+                            {
+                                <p class="alert alert-success" id="successMessage">@TempData["NotValid"]</p>
+
+                            }
+                        </div>
+                    </div>
+
+                    <div class="bottom-footer">
+                        <p>Lagos Free Trade Zone 2019. All Rights Reserved <input type="button" onclick="@Url.Action("Login","Account")" /></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

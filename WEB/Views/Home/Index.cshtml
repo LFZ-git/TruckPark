@@ -1,0 +1,87 @@
+﻿@*=============================================
+       Created By:	ismail baroodwale
+       Create date: 26-12-2019
+       Description: index page after login
+    =============================================*@
+@*@model Model.Models.Home.Dsb_CommonModel
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+@Scripts.Render("~/Scripts/Chart.min.js")
+<section>
+    @if (TempData["Success"] != null)
+    {
+        <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+
+    }
+
+    @if (TempData["Failure"] != null)
+    {
+        <p class="alert alert-danger" id="failureMessage">@TempData["Failure"]</p>
+    }
+
+    @*<script src="~/js/demo/chart-bar-demo.js"></script>*@
+
+    <style>
+        a {
+            color: #007bff;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+            a:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+
+        table.dataTable.nowrap th, table.dataTable.nowrap td {
+            white-space: normal;
+        }
+
+        a {
+            color: #001F57;
+        }
+
+        .btn-primary {
+            background-color: #001F57;
+            border-color: #001F57;
+        }
+
+        .page-item.active .page-link {
+            background-color: #001F57;
+            border-color: #001F57;
+        }
+
+
+
+
+        .dataTables_filter label {
+            width: 100%;
+        }
+
+        div.dataTables_wrapper div.dataTables_filter input {
+            width: 82%;
+        }
+
+        td.td-name {
+            width: 25%;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-md-12">
+           
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+
+            </div>
+        </div>
+
+       
+    </div>
+</section>
+
+

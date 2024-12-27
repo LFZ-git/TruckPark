@@ -1,0 +1,3 @@
+# Ignore config as it is different for each environment
+/App.Config
+

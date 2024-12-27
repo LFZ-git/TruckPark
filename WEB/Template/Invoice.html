@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Truck Portal - Proforma PDF format</title>
+
+    <link rel="stylesheet" href="http://localhost:63830/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="http://localhost:63830/images/favicon.png" />
+
+
+
+    <style>
+    </style>
+</head>
+<body>
+    <div class="main-panel" style="width:100%">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- <h4 class="card-title">WHAT IMMEDIATE ACTION WAS TAKEN? <br />RECOMMENDATION TO PREVENT RECURRENCE </h4>-->
+                            <form class="form-sample">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="" width="120" alt="logo" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <center><h4>FREE ZONE UTILITIES LFTZ ENTERPRISE</h4></center>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h2 style="color:#1da72e; font-style:italic;font-weight:800">FZU</h2>
+                                    </div>
+                                    <br /><br />
+                                    <div class="col-md-12">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br /><br />
+                                        <label style="font-weight:bold">Site Address</label>
+                                        <br />
+                                        Lagos Free Zone,  Ibeju-Lekki Area <br />
+                                        Lagos, Nigeria
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br /><br />
+                                        <label style="font-weight:bold">Head Office</label>
+                                        <br />
+                                        6th Floor, BlockA, Nipost Office Tower,<br />
+                                        23 Adeola Odeku Street, VI<br />
+                                        Lagos, Nigeria
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <br /><br />
+                                        <hr />
+                                        <center>
+                                            <label style="font-weight:bold;text-align:center;align-items:center;">
+                                                TRUCK PARK FEE INVOICE
+                                            </label>
+                                        </center>
+                                        <hr />
+                                        <br />
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            Cust Code : [ORGANIZATION_SHORTNAME]<br />
+                                            Cust Name : [ORGANIZATION_NAME]
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            Invoice No   : [INVOICE_NO]<br />
+                                            Invoice Date : [INVOICE_DATE]
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label style="font-weight:bold">Invoice To:</label>
+                                        <div class="input-group">
+
+                                            [ORGANIZATION_NAME]<br />
+                                            [ORGANIZATION_ADDRESS] <br />
+                                            <!--IBEJU LEKKI AREA<br />
+            LAGOS, NIEGRIA-->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label style="font-weight:bold">Deliver To :</label>
+                                        <div class="input-group">
+
+                                            [ORGANIZATION_NAME]<br />
+                                            [ORGANIZATION_ADDRESS] <br />
+                                            <!--IBEJU LEKKI AREA<br />
+            LAGOS, NIEGRIA-->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <br /><br />
+                                        <table width="100%" border="1" cellspacing="4" cellpadding="8">
+                                            <tr>
+                                                <th>SL. No</th>
+                                                <th>item CD</th>
+                                                <th>Item Description</th>
+                                                <th>UOM</th>
+                                                <th>Qty</th>
+                                                <th>Amount</th>
+                                                <th>Discount</th>
+                                                <th>Net Amount</th>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>TP Fees</td>
+                                                <td>TRUCK PARKING LOT FEE</td>
+                                                <td>NOS</td>
+                                                <td>[TOTAL_TRUCK]</td>
+                                                <td>[AMOUNT]</td>
+                                                <td>[DISCOUNT]</td>
+                                                <td>[NET_AMOUNT]</td>
+                                            </tr>
+
+                                        </table>
+                                        <br /><br />
+                                        <span style="float:left">
+                                            Amt in words: <label style="font-weight:bold"> Naira  [AMOUNT_WORDS] </label>
+                                        </span>
+                                        <span style="float:right">Net Total: <label style="font-weight:bold"> NGN [NET_AMOUNT]/-</label></span>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr />
+                                        <span style="float:left">
+                                            Remarks:  <label style="font-weight:bold">Invoice generated from [FROMDATE] to [TODATE] for [TOTAL_TRUCK] number of vehicles</label>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr />
+                                        <br />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label style="font-weight:bold">TERM OF PAYMENT:</label>
+                                        <br />Via Telegraphic transfer within 7 days after receipt of this Invoice to:
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br /><br />
+                                        <label style="font-weight:bold">For Naira Invoice to BASF and INSIGNIA</label><br />
+                                        <div class="input-group">
+
+                                            Bank: Stanbic IBTC Bank <br />
+                                            For Final Credit: Free Zone Utilities LFTZ Enterprise<br />
+                                            Account Number: 0035366855<br />
+                                            <!--Sort Code: 102150010<br />-->
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <br /><br />
+                                                  <label style="font-weight:bold">For Naira Invoice  to other Enterprises </label><br />
+                                            <div class="input-group">
+
+                                                Bank: First Bank of Nigeria <br />
+                                                For Final Credit: Free Zone Utilities LFTZ Enterprise<br />
+                                                Account Number: 2034967568<br />
+                                                <!--Sort Code: 102150010<br />-->
+
+                                            </div>
+                                        </div>
+                                             <div class="col-md-6">
+                                            <br /><br />
+                                            <label style="font-weight:bold">For Dollar Invoice</label><br />
+                                            <div class="input-group">
+                                                Final Credit:  Free Zone Utilities LFTZ Enterprise<br />
+                                                Beneficiary Account No.: 0035367096<br />
+                                                Swift Code: SBICNGLX<br />
+                                                Bank Name: Stanbic IBTC Bank<br />
+                                                Bank Address: Idejo Street, off Adeola Odeku Victoria Island,Lagos<br />
+                                                ABA No: 021000089<br />
+                                                Correspondent Bank: Citibank N.A. 111 Wall Street New York <br />
+                                                Correspondent SWIFT Code: CITIUS33<br />
+                                                Correspondent Bank account number: 36127476<br />
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="col-md-6">
+                                            <br /><br />
+                                            <label style="font-weight:bold">For Dollar Invoice</label><br />
+                                            <div class="input-group">
+                                                Final Credit: Free Zone Utilities LFTZ Enterprise<br />
+                                                Beneficiary Account No.: 0000046984<br />
+                                                Swift Code: TTRUNGLA<br />
+                                                Bank Name: Titan Trust Bank<br />
+                                                ABA No: 026000110<br />
+                                                Correspondent Bank’s Name: UBA New York<br />
+                                                Correspondent SWIFT Code: UNAFUS33<br />
+                                            </div>
+                                        </div>-->
+
+                                        <div class="col-md-3">
+                                            <br /><br />
+                                            <hr />
+                                            <div class="form-group">
+                                                Prepared By:<br />
+                                                SYSTEM
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <br /><br /><hr />
+                                            <div class="form-group">
+                                                Checked By:<br />
+                                                &nbsp;
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <br /><br />
+                                            <hr />
+                                            <div class="form-group">
+                                                Approved By:<br />
+                                                Madhav Banka
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <br /><br />
+                                            <hr />
+                                            <div class="form-group">
+                                                Customer:<br />
+                                                &nbsp;
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div class="col-md-12">
+                                            <center> Note :All payments should be on receipt basis i.e. all bank charges is to be borne by the sender</center>
+                                        </div>
+
+
+
+                                    </div>
+                                <br />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

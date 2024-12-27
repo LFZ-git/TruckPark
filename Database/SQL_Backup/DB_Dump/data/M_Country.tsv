@@ -1,0 +1,101 @@
+1	Austria	2	1	2018-07-09 17:22:19.873	--SchemaZenNull--	--SchemaZenNull--	True
+2	Belgium	2	1	2018-07-09 17:22:20.14	--SchemaZenNull--	--SchemaZenNull--	True
+3	Bulgaria	2	1	2018-07-09 17:22:20.333	--SchemaZenNull--	--SchemaZenNull--	True
+4	Czech Republic	2	1	2018-07-09 17:22:20.72	--SchemaZenNull--	--SchemaZenNull--	True
+5	Denmark	2	1	2018-07-09 17:22:20.88	--SchemaZenNull--	--SchemaZenNull--	True
+6	Estonia	2	1	2018-07-09 17:22:21.06	--SchemaZenNull--	--SchemaZenNull--	True
+7	Finland	2	1	2018-07-09 17:22:21.107	--SchemaZenNull--	--SchemaZenNull--	True
+8	France	2	1	2018-07-09 17:22:21.14	--SchemaZenNull--	--SchemaZenNull--	True
+9	Germany	2	1	2018-07-09 17:22:21.397	--SchemaZenNull--	--SchemaZenNull--	True
+10	Georgia	2	1	2018-07-09 17:22:21.417	--SchemaZenNull--	--SchemaZenNull--	True
+11	Greece	2	1	2018-07-09 17:22:21.43	--SchemaZenNull--	--SchemaZenNull--	True
+12	Hungary	2	1	2018-07-09 17:22:21.433	--SchemaZenNull--	--SchemaZenNull--	True
+13	Ireland	2	1	2018-07-09 17:22:21.44	--SchemaZenNull--	--SchemaZenNull--	True
+14	Italy	2	1	2018-07-09 17:22:21.44	--SchemaZenNull--	--SchemaZenNull--	True
+15	Latvia	2	1	2018-07-09 17:22:21.44	--SchemaZenNull--	--SchemaZenNull--	True
+16	Lithuania	2	1	2018-07-09 17:22:21.44	--SchemaZenNull--	--SchemaZenNull--	True
+17	Netherlands	2	1	2018-07-09 17:22:21.443	--SchemaZenNull--	--SchemaZenNull--	True
+18	Norway	2	1	2018-07-09 17:22:21.443	--SchemaZenNull--	--SchemaZenNull--	True
+19	Poland	2	1	2018-07-09 17:22:21.477	--SchemaZenNull--	--SchemaZenNull--	True
+20	Portugal	2	1	2018-07-09 17:22:21.48	--SchemaZenNull--	--SchemaZenNull--	True
+21	Romania	2	1	2018-07-09 17:22:21.48	--SchemaZenNull--	--SchemaZenNull--	True
+22	Russia	2	1	2018-07-09 17:22:21.48	--SchemaZenNull--	--SchemaZenNull--	True
+23	Slovakia	2	1	2018-07-09 17:22:21.483	--SchemaZenNull--	--SchemaZenNull--	True
+24	Spain	2	1	2018-07-09 17:22:21.487	--SchemaZenNull--	--SchemaZenNull--	True
+25	Sweden	2	1	2018-07-09 17:22:21.49	--SchemaZenNull--	--SchemaZenNull--	True
+26	Switzerland	2	1	2018-07-09 17:22:21.493	--SchemaZenNull--	--SchemaZenNull--	True
+27	Turkey	2	1	2018-07-09 17:22:21.503	--SchemaZenNull--	--SchemaZenNull--	True
+28	Ukraine	2	1	2018-07-09 17:22:21.557	--SchemaZenNull--	--SchemaZenNull--	True
+29	United Kingdom	2	1	2018-07-09 17:22:21.657	--SchemaZenNull--	--SchemaZenNull--	True
+30	Canada	3	1	2018-07-09 17:25:36.053	--SchemaZenNull--	--SchemaZenNull--	True
+31	United States of America	3	1	2018-07-09 17:25:36.153	--SchemaZenNull--	--SchemaZenNull--	True
+32	Argentina	4	1	2018-07-09 17:27:02.683	--SchemaZenNull--	--SchemaZenNull--	True
+33	Brazil	4	1	2018-07-09 17:27:02.69	--SchemaZenNull--	--SchemaZenNull--	True
+34	Chile	4	1	2018-07-09 17:27:02.707	--SchemaZenNull--	--SchemaZenNull--	True
+35	Colombia	4	1	2018-07-09 17:27:02.707	--SchemaZenNull--	--SchemaZenNull--	True
+36	Dominican Republic	4	1	2018-07-09 17:27:02.707	--SchemaZenNull--	--SchemaZenNull--	True
+37	Ecuador	4	1	2018-07-09 17:27:02.707	--SchemaZenNull--	--SchemaZenNull--	True
+38	Guatemala	4	1	2018-07-09 17:27:02.707	--SchemaZenNull--	--SchemaZenNull--	True
+39	Mexico	4	1	2018-07-09 17:27:02.707	--SchemaZenNull--	--SchemaZenNull--	True
+40	Panama	4	1	2018-07-09 17:27:02.707	--SchemaZenNull--	--SchemaZenNull--	True
+41	Peru	4	1	2018-07-09 17:27:02.707	--SchemaZenNull--	--SchemaZenNull--	True
+42	Uruguay	4	1	2018-07-09 17:27:02.71	--SchemaZenNull--	--SchemaZenNull--	True
+43	Venezuela	4	1	2018-07-09 17:27:02.71	--SchemaZenNull--	--SchemaZenNull--	True
+44	Australia	5	1	2018-07-09 17:28:20.09	--SchemaZenNull--	--SchemaZenNull--	True
+45	Bangladesh	5	1	2018-07-09 17:28:20.093	--SchemaZenNull--	--SchemaZenNull--	True
+46	China	5	1	2018-07-09 17:28:20.097	--SchemaZenNull--	--SchemaZenNull--	True
+47	Hong Kong	5	1	2018-07-09 17:28:20.1	--SchemaZenNull--	--SchemaZenNull--	True
+48	India	5	1	2018-07-09 17:28:20.1	--SchemaZenNull--	--SchemaZenNull--	True
+50	Indonesia	5	1	2018-07-09 17:28:20.13	--SchemaZenNull--	--SchemaZenNull--	True
+51	Japan	5	1	2018-07-09 17:28:20.137	--SchemaZenNull--	--SchemaZenNull--	True
+52	South Korea	5	1	2018-07-09 17:28:20.15	--SchemaZenNull--	--SchemaZenNull--	True
+53	Malaysia	5	1	2018-07-09 17:28:20.193	--SchemaZenNull--	--SchemaZenNull--	True
+54	New Zealand	5	1	2018-07-09 17:28:20.3	--SchemaZenNull--	--SchemaZenNull--	True
+55	Pakistan	5	1	2018-07-09 17:28:20.34	--SchemaZenNull--	--SchemaZenNull--	True
+56	Philippines	5	1	2018-07-09 17:28:20.34	--SchemaZenNull--	--SchemaZenNull--	True
+57	Singapore	5	1	2018-07-09 17:28:20.38	--SchemaZenNull--	--SchemaZenNull--	True
+58	Taiwan	5	1	2018-07-09 17:28:20.42	--SchemaZenNull--	--SchemaZenNull--	True
+59	Thailand	5	1	2018-07-09 17:28:20.47	--SchemaZenNull--	--SchemaZenNull--	True
+60	Vietnam	5	1	2018-07-09 17:28:20.48	--SchemaZenNull--	--SchemaZenNull--	True
+61	Algeria	6	1	2018-07-09 17:29:26.09	--SchemaZenNull--	--SchemaZenNull--	True
+62	Azerbaijan	6	1	2018-07-09 17:29:26.12	--SchemaZenNull--	--SchemaZenNull--	True
+63	Bahrain	6	1	2018-07-09 17:29:26.153	--SchemaZenNull--	--SchemaZenNull--	True
+64	Cameroon	6	1	2018-07-09 17:29:26.3	--SchemaZenNull--	--SchemaZenNull--	True
+65	Egypt	6	1	2018-07-09 17:29:26.303	--SchemaZenNull--	--SchemaZenNull--	True
+66	Israel	6	1	2018-07-09 17:29:26.307	--SchemaZenNull--	--SchemaZenNull--	True
+67	Jordan	6	1	2018-07-09 17:29:26.307	--SchemaZenNull--	--SchemaZenNull--	True
+68	Kazakhstan	6	1	2018-07-09 17:29:26.32	--SchemaZenNull--	--SchemaZenNull--	True
+69	Kuwait	6	1	2018-07-09 17:29:26.45	--SchemaZenNull--	--SchemaZenNull--	True
+70	Lebanon	6	1	2018-07-09 17:29:26.457	--SchemaZenNull--	--SchemaZenNull--	True
+71	Morocco	6	1	2018-07-09 17:29:26.473	--SchemaZenNull--	--SchemaZenNull--	True
+72	Oman	6	1	2018-07-09 17:29:26.49	--SchemaZenNull--	--SchemaZenNull--	True
+73	Qatar	6	1	2018-07-09 17:29:26.51	--SchemaZenNull--	--SchemaZenNull--	True
+74	Saudi Arabia	6	1	2018-07-09 17:29:26.563	--SchemaZenNull--	--SchemaZenNull--	True
+75	Senegal	6	1	2018-07-09 17:29:26.617	--SchemaZenNull--	--SchemaZenNull--	True
+76	South Africa	6	1	2018-07-09 17:29:26.753	--SchemaZenNull--	--SchemaZenNull--	True
+77	Syria	6	1	2018-07-09 17:29:26.923	--SchemaZenNull--	--SchemaZenNull--	True
+78	Tunisia	6	1	2018-07-09 17:29:27.043	--SchemaZenNull--	--SchemaZenNull--	True
+79	United Arab Emirates	6	1	2018-07-09 17:29:27.16	--SchemaZenNull--	--SchemaZenNull--	True
+80	Uzbekistan	6	1	2018-07-09 17:29:27.217	--SchemaZenNull--	--SchemaZenNull--	True
+81	Yemen	6	1	2018-07-09 17:29:27.363	--SchemaZenNull--	--SchemaZenNull--	True
+82	Algeria	6	1	2018-07-09 17:29:27.527	--SchemaZenNull--	--SchemaZenNull--	True
+83	Azerbaijan	6	1	2018-07-09 17:29:27.687	--SchemaZenNull--	--SchemaZenNull--	True
+84	Bahrain	6	1	2018-07-09 17:29:27.813	--SchemaZenNull--	--SchemaZenNull--	True
+85	Cameroon	6	1	2018-07-09 17:29:27.933	--SchemaZenNull--	--SchemaZenNull--	True
+86	Egypt	6	1	2018-07-09 17:29:28.047	--SchemaZenNull--	--SchemaZenNull--	True
+87	Israel	6	1	2018-07-09 17:29:28.083	--SchemaZenNull--	--SchemaZenNull--	True
+88	Jordan	6	1	2018-07-09 17:29:28.087	--SchemaZenNull--	--SchemaZenNull--	True
+89	Kazakhstan	6	1	2018-07-09 17:29:28.087	--SchemaZenNull--	--SchemaZenNull--	True
+90	Kuwait	6	1	2018-07-09 17:29:28.09	--SchemaZenNull--	--SchemaZenNull--	True
+91	Lebanon	6	1	2018-07-09 17:29:28.09	--SchemaZenNull--	--SchemaZenNull--	True
+92	Morocco	6	1	2018-07-09 17:29:28.09	--SchemaZenNull--	--SchemaZenNull--	True
+93	Oman	6	1	2018-07-09 17:29:28.09	--SchemaZenNull--	--SchemaZenNull--	True
+94	Qatar	6	1	2018-07-09 17:29:28.09	--SchemaZenNull--	--SchemaZenNull--	True
+95	Saudi Arabia	6	1	2018-07-09 17:29:28.09	--SchemaZenNull--	--SchemaZenNull--	True
+96	Senegal	6	1	2018-07-09 17:29:28.093	--SchemaZenNull--	--SchemaZenNull--	True
+97	South Africa	6	1	2018-07-09 17:29:28.093	--SchemaZenNull--	--SchemaZenNull--	True
+98	Syria	6	1	2018-07-09 17:29:28.093	--SchemaZenNull--	--SchemaZenNull--	True
+99	Tunisia	6	1	2018-07-09 17:29:28.093	--SchemaZenNull--	--SchemaZenNull--	True
+100	United Arab Emirates	6	1	2018-07-09 17:29:28.11	--SchemaZenNull--	--SchemaZenNull--	True
+101	Uzbekistan	6	1	2018-07-09 17:29:28.127	--SchemaZenNull--	--SchemaZenNull--	True
+102	Yemen	6	1	2018-07-09 17:29:28.133	--SchemaZenNull--	--SchemaZenNull--	True

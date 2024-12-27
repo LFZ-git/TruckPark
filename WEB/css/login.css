@@ -1,0 +1,425 @@
+﻿body {
+   font-family: 'Roboto';
+}
+    .login-page {
+   font-family: 'Roboto';
+    float: left;
+    width: 100%;
+    background: url(../img/login-back.jpg) no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
+.right-bg {
+    float: left;
+    width: 100%;
+    background: url(../img/back-w.png) no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
+.login-wrap {
+    width: 40%;
+    float: right;
+    height: 100vh;
+}
+
+.login-box {
+    margin-top: 295px;
+    margin-left: 140px;
+}
+
+.logo-sec {
+    clear: both;
+    width: 50%;
+    float: right;
+    padding: 63px;
+}
+
+    .logo-sec img {
+        width: auto;
+    }
+
+.bottom-footer {
+    position: absolute;
+    width: 29%;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+}
+
+.login-box h3 {
+    margin-top: 0px;
+}
+
+.bottom-footer p {
+    position: relative;
+    text-transform: uppercase;
+    color: #0538b8;
+    font-weight: 800;
+}
+
+.login-box div.card {
+    width: 60%;
+    border-radius: 0px !important;
+}
+
+.button-color {
+    background: #0538b8;
+    font-size: 18px;
+    padding: 5px 15px 5px 15px;
+    line-height: 1;
+}
+
+
+@media (max-width: 1370px) {
+    .login-box {
+        margin-top: 5px;
+        margin-left: 50px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .login-box div.card {
+        width: 86%;
+    }
+}
+
+
+
+@media (max-width: 890px) {
+
+    .login-wrap {
+        width: 50%;
+    }
+
+    .logo-sec {
+        clear: both;
+        width: auto;
+    }
+
+    .login-box div.card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .login-page {
+        float: none;
+    }
+
+    .login-wrap {
+        margin: auto;
+        width: 100%;
+        float: none;
+        height: 100vh;
+    }
+
+
+
+    .logo-sec {
+        clear: both;
+        margin: auto;
+        width: 50%;
+        text-align: center;
+        float: none;
+        padding: 0px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    .login-box {
+        margin-top: 40px;
+        margin-left: 0;
+    }
+
+        .login-box div.card {
+            margin: auto;
+            width: 75%;
+            border-radius: 0px !important;
+        }
+
+    .bottom-footer {
+        width: 100%;
+        background: rgba(255,255,255,.5);
+    }
+
+        .bottom-footer p {
+            margin: 0 0 0px !important;
+            line-height: 21px;
+            font-size: 0.7rem;
+        }
+
+    .form-control-lg {
+        height: 30px;
+        font-size: 0.8rem;
+    }
+
+    .button-color {
+        font-size: 0.8rem;
+    }
+}
+
+/*body
+{
+	background:url(img/dash-back.png);
+
+}*/
+
+
+.input-table {
+    padding: 5px;
+}
+
+.card-bodyz {
+    padding: 5px;
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+
+h2.h2small small {
+    font-size: 58%;
+}
+
+
+
+.chart {
+    width: 100%;
+    min-height: 450px;
+    /*margin-top:60px;*/
+}
+
+
+.newst {
+    margin-bottom: 0rem !important;
+}
+
+.newst_a {
+    background: none;
+    border: 0px;
+}
+
+.newst_b {
+    width: 20px;
+    height: 20px;
+}
+
+
+h2.h2-card {
+    float: left;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.input-table .input-group-text {
+    font-size: 0.9rem;
+    /*padding:0px;*/
+}
+
+.invest-input .input-group-text {
+    font-size: 0.9rem;
+}
+
+/*label{margin-left: 20px;}
+#datepicker{width:180px; margin: 0 20px 20px 20px;}*/
+#datepicker > span:hover {
+    cursor: pointer;
+}
+
+
+.bmd-form-group {
+    flex: auto;
+}
+
+#datepicker_a > span:hover {
+    cursor: pointer;
+}
+
+div.card .card-header {
+    border-radius: 0px;
+    padding: 0.6rem 13px;
+    overflow: hidden;
+}
+
+
+.nav-tabs .nav-item .nav-link {
+    padding: 7px 14px;
+    line-height: 18px;
+}
+
+.card-title {
+    margin-bottom: 0px;
+    padding-left: 10px;
+    font-size: 1rem;
+}
+
+.card-nav-tabs .card-header {
+    margin-top: -15px !important;
+}
+
+.footer-page {
+    width: 100%;
+    background: #000;
+    text-align: center;
+}
+
+    .footer-page p {
+        color: #FFF;
+        line-height: 3rem;
+        font-size: 1rem;
+    }
+
+
+a.accord_a {
+    text-decoration: none;
+    padding-bottom: 10px;
+}
+
+.mat_acc {
+    float: right;
+}
+
+
+a.accord_a:hover {
+    background: #ccc;
+}
+
+.header-sec {
+    margin: 5px auto;
+    width: 85%;
+}
+<style >
+.login-page {
+   font-family: 'Roboto';
+    float: left;
+    width: 100%;
+    background: url(img/login-back.jpg) no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
+.right-bg {
+    float: right;
+    width: 35%;
+    background: url(img/back-ww.png) no-repeat right;
+    background-size: 100% 100%;
+    height: 100vh;
+}
+
+
+
+
+.login-wrap {
+    width: 100%;
+    float: left;
+    text-align: center;
+    height: 100vh;
+    position: relative;
+}
+
+
+
+
+.login-box {
+    display: block;
+    float: left;
+    margin-top: 15vh;
+    width: 100%;
+    text-align: left;
+}
+
+    .login-box div.card {
+        width: 70%;
+        border-radius: 0px !important;
+        padding: 25px;
+    }
+
+        .login-box div.card h3.mb0 {
+            padding-bottom: 25px;
+        }
+
+
+.bottom-footer {
+    float: left;
+    text-align: center;
+    width: 100%;
+    margin-top: 10vh;
+}
+
+    .bottom-footer p {
+        color: #0538b8;
+        font-weight: 800;
+        bottom: 0;
+    }
+
+
+.login-page .button-color {
+    background: #0538b8;
+    font-size: 18px;
+    padding: 5px 15px 5px 15px;
+    line-height: 1;
+}
+
+
+@media (max-width: 80em) {
+
+    .login-box div.card {
+        width: 89%;
+        border-radius: 0px !important;
+        padding: 25px;
+        margin-left: -10%;
+    }
+}
+
+
+@media (max-width: 60em) {
+
+    .login-box div.card {
+        width: 100%;
+        border-radius: 0px !important;
+        padding: 25px;
+        margin-left: -30%;
+    }
+}
+
+
+@media (max-width: 45em) {
+
+    .right-bg {
+        width: 100%;
+        background: none;
+    }
+
+    .login-box div.card {
+        margin: 0 auto;
+        width: 85%;
+        border-radius: 0px !important;
+        padding: 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+h2.subtitle {
+    font-size: 1rem;
+    margin: 3vh auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    text-align: left;
+    width: 58%;
+    color: #d7261c;
+}
+
+</style >
