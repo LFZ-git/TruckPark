@@ -52,8 +52,8 @@ namespace API.Controllers
                 if (eventName == "AddTruckPark")
                 {
                     model.StatusesHistory = JsonConvert.SerializeObject(model.Statuses);
-                    var saveData = _iExtBAL.AddTruckData(model);
-                    return Content( System.Net.HttpStatusCode.OK, new { mssg = "" });
+                    var saveData = _iExtBAL.AddTruckParkData(model);
+                    return Content( System.Net.HttpStatusCode.OK, new { mssg = "Successfully Added." });
                 }
                 else
                     return Content(System.Net.HttpStatusCode.BadRequest, new { mssg = "The request could not be understood by the server due to malformed syntax or missing required parameters." });

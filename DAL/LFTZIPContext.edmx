@@ -205,6 +205,7 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.Map_UserRole' does not have a pr
             <PropertyRef Name="OrganizationID" />
           </Key>
           <Property Name="OrganizationID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="varchar" MaxLength="50" />
           <Property Name="CompanyName" Type="varchar" MaxLength="2000" />
           <Property Name="CompanyShortName" Type="varchar" MaxLength="500" />
           <Property Name="OrganizationCreatedDate" Type="datetime" />
@@ -314,11 +315,16 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.ProformaInvoiceDetB4Clean' does 
             <PropertyRef Name="TruckId" />
           </Key>
           <Property Name="TruckId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="varchar" MaxLength="50" />
           <Property Name="TruckNo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="OwnedByOrganizationId" Type="int" Nullable="false" />
-          <Property Name="TruckCapacityId" Type="int" Nullable="false" />
-          <Property Name="Createdby" Type="int" Nullable="false" />
+          <Property Name="OwnedByOrganizationId" Type="int" />
+          <Property Name="OwnedByOrgGUID" Type="varchar" MaxLength="50" />
+          <Property Name="TruckCapacityId" Type="int" />
+          <Property Name="TruckCapacityGUID" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedByGUID" Type="varchar" MaxLength="50" />
+          <Property Name="Createdby" Type="int" />
           <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByGUID" Type="varchar" MaxLength="50" />
           <Property Name="Modifiedby" Type="int" />
           <Property Name="Modifieddate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -328,25 +334,31 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.ProformaInvoiceDetB4Clean' does 
             <PropertyRef Name="TruckDetailsId" />
           </Key>
           <Property Name="TruckDetailsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TruckId" Type="bigint" Nullable="false" />
-          <Property Name="CalledByOrganizationId" Type="int" Nullable="false" />
-          <Property Name="TruckCapacityId" Type="int" Nullable="false" />
+          <Property Name="GUID" Type="varchar" MaxLength="50" />
+          <Property Name="TruckId" Type="bigint" />
+          <Property Name="TruckGUID" Type="varchar" MaxLength="50" />
+          <Property Name="CalledByOrganizationId" Type="int" />
+          <Property Name="CalledByOrgGUID" Type="varchar" MaxLength="50" />
+          <Property Name="TruckCapacityId" Type="int" />
+          <Property Name="TruckCapacity" Type="varchar" MaxLength="20" />
           <Property Name="ExpectedArrivalDate" Type="datetime" />
           <Property Name="ExpectedDepatureDate" Type="datetime" />
-          <Property Name="LocalTransferTypeId" Type="int" Nullable="false" />
+          <Property Name="LocalTransferTypeId" Type="int" />
+          <Property Name="TransferType" Type="varchar" MaxLength="50" />
           <Property Name="TransportName" Type="varchar" MaxLength="200" />
           <Property Name="TransportNo" Type="varchar" MaxLength="50" />
           <Property Name="DriverName" Type="varchar" MaxLength="200" />
           <Property Name="DriverNo" Type="varchar" MaxLength="50" />
           <Property Name="MaterialTypeId" Type="int" />
+          <Property Name="MaterialType" Type="varchar" MaxLength="50" />
           <Property Name="MaterialGoods" Type="varchar" MaxLength="200" />
           <Property Name="ActualArrivalDate" Type="datetime" />
           <Property Name="ActualDepatureDate" Type="datetime" />
-          <Property Name="IsForecasted" Type="bit" Nullable="false" />
-          <Property Name="IsCheckedIn" Type="bit" Nullable="false" />
-          <Property Name="IsCalledOut" Type="bit" Nullable="false" />
+          <Property Name="IsForecasted" Type="bit" />
+          <Property Name="IsCheckedIn" Type="bit" />
+          <Property Name="IsCalledOut" Type="bit" />
           <Property Name="IsBilled" Type="bit" />
-          <Property Name="Createdby" Type="int" Nullable="false" />
+          <Property Name="Createdby" Type="int" />
           <Property Name="Createddate" Type="datetime" Nullable="false" />
           <Property Name="Modifiedby" Type="int" />
           <Property Name="Modifieddate" Type="datetime" />
@@ -570,6 +582,14 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
         <Function Name="InvoiceDetails_API_G" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProformaInvoiceId" Type="int" Mode="In" />
         </Function>
+        <Function Name="IsTruckExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TruckNo" Type="varchar" Mode="In" />
+          <Parameter Name="GUID" Type="varchar" Mode="In" />
+          <Parameter Name="OwnedByOrgGUID" Type="varchar" Mode="In" />
+          <Parameter Name="TruckCapacityGUID" Type="varchar" Mode="In" />
+          <Parameter Name="ChangedByGUID" Type="varchar" Mode="In" />
+          <Parameter Name="OutMssg" Type="varchar" Mode="InOut" />
+        </Function>
         <Function Name="M_Country_G" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="M_LOV_G" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LOVId" Type="int" Mode="In" />
@@ -660,6 +680,24 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <Parameter Name="OutId" Type="int" Mode="InOut" />
           <Parameter Name="TruckDetailsId" Type="int" Mode="In" />
           <Parameter Name="Flag" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Truck_CRUD_API" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GUID" Type="varchar" Mode="In" />
+          <Parameter Name="TruckGUID" Type="varchar" Mode="In" />
+          <Parameter Name="TruckNo" Type="varchar" Mode="In" />
+          <Parameter Name="CalledByOrgGUID" Type="varchar" Mode="In" />
+          <Parameter Name="TruckCapacity" Type="varchar" Mode="In" />
+          <Parameter Name="ExpectedArrivalDate" Type="datetime" Mode="In" />
+          <Parameter Name="ExpectedDepatureDate" Type="datetime" Mode="In" />
+          <Parameter Name="TransferType" Type="varchar" Mode="In" />
+          <Parameter Name="TransportName" Type="varchar" Mode="In" />
+          <Parameter Name="TransportNo" Type="varchar" Mode="In" />
+          <Parameter Name="DriverName" Type="varchar" Mode="In" />
+          <Parameter Name="DriverNo" Type="varchar" Mode="In" />
+          <Parameter Name="MaterialType" Type="varchar" Mode="In" />
+          <Parameter Name="UDID" Type="varchar" Mode="In" />
+          <Parameter Name="OutMssg" Type="varchar" Mode="InOut" />
+          <Parameter Name="OutIsSuccess" Type="bit" Mode="InOut" />
         </Function>
         <Function Name="Truck_G" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TruckNo" Type="varchar" Mode="In" />
@@ -1018,6 +1056,7 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="OrganizationTypeId" Type="Int16" Nullable="false" />
           <Property Name="CompanyAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="GUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ProformaInvoice">
           <Key>
@@ -1063,25 +1102,30 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           </Key>
           <Property Name="TruckId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TruckNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OwnedByOrganizationId" Type="Int32" Nullable="false" />
-          <Property Name="TruckCapacityId" Type="Int32" Nullable="false" />
-          <Property Name="Createdby" Type="Int32" Nullable="false" />
+          <Property Name="OwnedByOrganizationId" Type="Int32" />
+          <Property Name="TruckCapacityId" Type="Int32" />
+          <Property Name="Createdby" Type="Int32" />
           <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modifiedby" Type="Int32" />
           <Property Name="Modifieddate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="GUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OwnedByOrgGUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TruckCapacityGUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedByGUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedByGUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TruckDetail">
           <Key>
             <PropertyRef Name="TruckDetailsId" />
           </Key>
           <Property Name="TruckDetailsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TruckId" Type="Int64" Nullable="false" />
-          <Property Name="CalledByOrganizationId" Type="Int32" Nullable="false" />
-          <Property Name="TruckCapacityId" Type="Int32" Nullable="false" />
+          <Property Name="TruckId" Type="Int64" />
+          <Property Name="CalledByOrganizationId" Type="Int32" />
+          <Property Name="TruckCapacityId" Type="Int32" />
           <Property Name="ExpectedArrivalDate" Type="DateTime" Precision="3" />
           <Property Name="ExpectedDepatureDate" Type="DateTime" Precision="3" />
-          <Property Name="LocalTransferTypeId" Type="Int32" Nullable="false" />
+          <Property Name="LocalTransferTypeId" Type="Int32" />
           <Property Name="TransportName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TransportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DriverName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -1090,15 +1134,21 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <Property Name="MaterialGoods" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="ActualArrivalDate" Type="DateTime" Precision="3" />
           <Property Name="ActualDepatureDate" Type="DateTime" Precision="3" />
-          <Property Name="IsForecasted" Type="Boolean" Nullable="false" />
-          <Property Name="IsCheckedIn" Type="Boolean" Nullable="false" />
-          <Property Name="IsCalledOut" Type="Boolean" Nullable="false" />
+          <Property Name="IsForecasted" Type="Boolean" />
+          <Property Name="IsCheckedIn" Type="Boolean" />
+          <Property Name="IsCalledOut" Type="Boolean" />
           <Property Name="IsBilled" Type="Boolean" />
-          <Property Name="Createdby" Type="Int32" Nullable="false" />
+          <Property Name="Createdby" Type="Int32" />
           <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modifiedby" Type="Int32" />
           <Property Name="Modifieddate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="GUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TruckGUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CalledByOrgGUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TruckCapacity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TransferType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaterialType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
@@ -1613,6 +1663,32 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
             <Parameter Name="UpdatedAt" Mode="In" Type="DateTime" />
             <Parameter Name="OutIsSuccess" Mode="InOut" Type="Boolean" />
             <Parameter Name="OutMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="IsTruckExists">
+            <Parameter Name="TruckNo" Mode="In" Type="String" />
+            <Parameter Name="GUID" Mode="In" Type="String" />
+            <Parameter Name="OwnedByOrgGUID" Mode="In" Type="String" />
+            <Parameter Name="TruckCapacityGUID" Mode="In" Type="String" />
+            <Parameter Name="ChangedByGUID" Mode="In" Type="String" />
+            <Parameter Name="OutMssg" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Truck_CRUD_API">
+            <Parameter Name="GUID" Mode="In" Type="String" />
+            <Parameter Name="TruckGUID" Mode="In" Type="String" />
+            <Parameter Name="TruckNo" Mode="In" Type="String" />
+            <Parameter Name="CalledByOrgGUID" Mode="In" Type="String" />
+            <Parameter Name="TruckCapacity" Mode="In" Type="String" />
+            <Parameter Name="ExpectedArrivalDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ExpectedDepatureDate" Mode="In" Type="DateTime" />
+            <Parameter Name="TransferType" Mode="In" Type="String" />
+            <Parameter Name="TransportName" Mode="In" Type="String" />
+            <Parameter Name="TransportNo" Mode="In" Type="String" />
+            <Parameter Name="DriverName" Mode="In" Type="String" />
+            <Parameter Name="DriverNo" Mode="In" Type="String" />
+            <Parameter Name="MaterialType" Mode="In" Type="String" />
+            <Parameter Name="UDID" Mode="In" Type="String" />
+            <Parameter Name="OutMssg" Mode="InOut" Type="String" />
+            <Parameter Name="OutIsSuccess" Mode="InOut" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="BillableTrucks_G_Result">
@@ -2200,6 +2276,7 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <EntitySetMapping Name="Organizations">
             <EntityTypeMapping TypeName="LFZ_TruckParkModel.Organization">
               <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CompanyShortName" ColumnName="CompanyShortName" />
@@ -2253,6 +2330,11 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <EntitySetMapping Name="Trucks">
             <EntityTypeMapping TypeName="LFZ_TruckParkModel.Truck">
               <MappingFragment StoreEntitySet="Truck">
+                <ScalarProperty Name="ModifiedByGUID" ColumnName="ModifiedByGUID" />
+                <ScalarProperty Name="CreatedByGUID" ColumnName="CreatedByGUID" />
+                <ScalarProperty Name="TruckCapacityGUID" ColumnName="TruckCapacityGUID" />
+                <ScalarProperty Name="OwnedByOrgGUID" ColumnName="OwnedByOrgGUID" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="TruckId" ColumnName="TruckId" />
                 <ScalarProperty Name="TruckNo" ColumnName="TruckNo" />
                 <ScalarProperty Name="OwnedByOrganizationId" ColumnName="OwnedByOrganizationId" />
@@ -2268,6 +2350,12 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <EntitySetMapping Name="TruckDetails">
             <EntityTypeMapping TypeName="LFZ_TruckParkModel.TruckDetail">
               <MappingFragment StoreEntitySet="TruckDetails">
+                <ScalarProperty Name="MaterialType" ColumnName="MaterialType" />
+                <ScalarProperty Name="TransferType" ColumnName="TransferType" />
+                <ScalarProperty Name="TruckCapacity" ColumnName="TruckCapacity" />
+                <ScalarProperty Name="CalledByOrgGUID" ColumnName="CalledByOrgGUID" />
+                <ScalarProperty Name="TruckGUID" ColumnName="TruckGUID" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="TruckDetailsId" ColumnName="TruckDetailsId" />
                 <ScalarProperty Name="TruckId" ColumnName="TruckId" />
                 <ScalarProperty Name="CalledByOrganizationId" ColumnName="CalledByOrganizationId" />
@@ -3025,6 +3113,8 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <FunctionImportMapping FunctionImportName="API_ReceivedLog" FunctionName="LFZ_TruckParkModel.Store.API_ReceivedLog" />
           <FunctionImportMapping FunctionImportName="API_SentLog" FunctionName="LFZ_TruckParkModel.Store.API_SentLog" />
           <FunctionImportMapping FunctionImportName="EcallUp_CU" FunctionName="LFZ_TruckParkModel.Store.EcallUp_CU" />
+          <FunctionImportMapping FunctionImportName="IsTruckExists" FunctionName="LFZ_TruckParkModel.Store.IsTruckExists" />
+          <FunctionImportMapping FunctionImportName="Truck_CRUD_API" FunctionName="LFZ_TruckParkModel.Store.Truck_CRUD_API" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

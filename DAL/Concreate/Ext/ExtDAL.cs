@@ -34,20 +34,28 @@ namespace DAL.Concreate.Ext
             entities.API_SentLog(model.PayLoad, model.SourceIP);
         }
 
-        public ResponseInfo AddTruckData(EcMainModel model)
+        public ResponseInfo AddTruckParkData(EcMainModel model)
         {
             ObjectParameter outIsSuccess = new ObjectParameter("OutIsSuccess", typeof(bool));
-            ObjectParameter outMssg = new ObjectParameter("OutMessage", typeof(string));
+            ObjectParameter outMssg = new ObjectParameter("OutMssg", typeof(string));
 
             model.EstimatedArrivalDate = model.EstimatedArrivalDate.Value.Add(model.EstimatedArrivalTime.TimeOfDay);
 
-            entities.EcallUp_CU(model.Id, model.Company.Id, model.Company.Name, model.User.Id, model.Truck.Id, model.Driver.Id, model.Pregate.Id
-                               , model.Pregate.Name, model.Park.Id, model.Park.Name, model.Park.Type, model.Terminal.Id, model.Terminal.Name
-                               , model.Category.Id, model.Category.Name, model.Port.Id, model.Port.Name, model.Port.Type, model.StatusesHistory
-                               , model.MaterialType, model.TransferType, model.Status, model.EstimatedArrivalDate, model.DepartureDate
-                               , model.CreatedAt, model.UpdatedAt, outIsSuccess, outMssg);
+            IsTruckExists(model);
+
+            entities.Truck_CRUD_API(model.Id, model.Truck.Id, model.Truck.PlateNumber, model.Company.Id, model.Truck.Capacity, model.EstimatedArrivalDate
+                                    , model.DepartureDate, model.TransferType, model.User.FullName, model.User.Phone, model.Driver.FirstName + " " + model.Driver.LastName
+                                    ,  model.Driver.Phone, model.MaterialType, model.User.Id, outMssg, outIsSuccess);
 
             return new ResponseInfo() { IsSuccess = (bool)outIsSuccess.Value, Msg = outMssg.Value.ToString() };
+        }
+
+        ResponseInfo IsTruckExists(EcMainModel model)
+        {
+            ObjectParameter outMssg = new ObjectParameter("OutMssg", typeof(string));
+            entities.IsTruckExists(model.Truck.PlateNumber, model.Truck.Id, model.Company.Id, model.Truck.Capacity, model.User.Id, outMssg);
+
+            return new ResponseInfo() { Msg = outMssg.Value.ToString() };
         }
     }
 }

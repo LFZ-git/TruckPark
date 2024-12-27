@@ -806,5 +806,91 @@ namespace DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EcallUp_CU", gUIDParameter, companyGUIDParameter, companyNameParameter, userGUIDParameter, truckGUIDParameter, driverGUIDParameter, preGateGUIDParameter, preGateNameParameter, parkGUIDParameter, parkNameParameter, parkTypeParameter, terminalGUIDParameter, terminalNameParameter, categoryGUIDParameter, categoryNameParameter, portGUIDParameter, portNameParameter, portTypeParameter, statusesParameter, materialTypeParameter, transferTypeParameter, statusParameter, estArrivalDateTimeParameter, departureDateParameter, createdAtParameter, updatedAtParameter, outIsSuccess, outMessage);
         }
+    
+        public virtual int IsTruckExists(string truckNo, string gUID, string ownedByOrgGUID, string truckCapacityGUID, string changedByGUID, ObjectParameter outMssg)
+        {
+            var truckNoParameter = truckNo != null ?
+                new ObjectParameter("TruckNo", truckNo) :
+                new ObjectParameter("TruckNo", typeof(string));
+    
+            var gUIDParameter = gUID != null ?
+                new ObjectParameter("GUID", gUID) :
+                new ObjectParameter("GUID", typeof(string));
+    
+            var ownedByOrgGUIDParameter = ownedByOrgGUID != null ?
+                new ObjectParameter("OwnedByOrgGUID", ownedByOrgGUID) :
+                new ObjectParameter("OwnedByOrgGUID", typeof(string));
+    
+            var truckCapacityGUIDParameter = truckCapacityGUID != null ?
+                new ObjectParameter("TruckCapacityGUID", truckCapacityGUID) :
+                new ObjectParameter("TruckCapacityGUID", typeof(string));
+    
+            var changedByGUIDParameter = changedByGUID != null ?
+                new ObjectParameter("ChangedByGUID", changedByGUID) :
+                new ObjectParameter("ChangedByGUID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IsTruckExists", truckNoParameter, gUIDParameter, ownedByOrgGUIDParameter, truckCapacityGUIDParameter, changedByGUIDParameter, outMssg);
+        }
+    
+        public virtual int Truck_CRUD_API(string gUID, string truckGUID, string truckNo, string calledByOrgGUID, string truckCapacity, Nullable<System.DateTime> expectedArrivalDate, Nullable<System.DateTime> expectedDepatureDate, string transferType, string transportName, string transportNo, string driverName, string driverNo, string materialType, string uDID, ObjectParameter outMssg, ObjectParameter outIsSuccess)
+        {
+            var gUIDParameter = gUID != null ?
+                new ObjectParameter("GUID", gUID) :
+                new ObjectParameter("GUID", typeof(string));
+    
+            var truckGUIDParameter = truckGUID != null ?
+                new ObjectParameter("TruckGUID", truckGUID) :
+                new ObjectParameter("TruckGUID", typeof(string));
+    
+            var truckNoParameter = truckNo != null ?
+                new ObjectParameter("TruckNo", truckNo) :
+                new ObjectParameter("TruckNo", typeof(string));
+    
+            var calledByOrgGUIDParameter = calledByOrgGUID != null ?
+                new ObjectParameter("CalledByOrgGUID", calledByOrgGUID) :
+                new ObjectParameter("CalledByOrgGUID", typeof(string));
+    
+            var truckCapacityParameter = truckCapacity != null ?
+                new ObjectParameter("TruckCapacity", truckCapacity) :
+                new ObjectParameter("TruckCapacity", typeof(string));
+    
+            var expectedArrivalDateParameter = expectedArrivalDate.HasValue ?
+                new ObjectParameter("ExpectedArrivalDate", expectedArrivalDate) :
+                new ObjectParameter("ExpectedArrivalDate", typeof(System.DateTime));
+    
+            var expectedDepatureDateParameter = expectedDepatureDate.HasValue ?
+                new ObjectParameter("ExpectedDepatureDate", expectedDepatureDate) :
+                new ObjectParameter("ExpectedDepatureDate", typeof(System.DateTime));
+    
+            var transferTypeParameter = transferType != null ?
+                new ObjectParameter("TransferType", transferType) :
+                new ObjectParameter("TransferType", typeof(string));
+    
+            var transportNameParameter = transportName != null ?
+                new ObjectParameter("TransportName", transportName) :
+                new ObjectParameter("TransportName", typeof(string));
+    
+            var transportNoParameter = transportNo != null ?
+                new ObjectParameter("TransportNo", transportNo) :
+                new ObjectParameter("TransportNo", typeof(string));
+    
+            var driverNameParameter = driverName != null ?
+                new ObjectParameter("DriverName", driverName) :
+                new ObjectParameter("DriverName", typeof(string));
+    
+            var driverNoParameter = driverNo != null ?
+                new ObjectParameter("DriverNo", driverNo) :
+                new ObjectParameter("DriverNo", typeof(string));
+    
+            var materialTypeParameter = materialType != null ?
+                new ObjectParameter("MaterialType", materialType) :
+                new ObjectParameter("MaterialType", typeof(string));
+    
+            var uDIDParameter = uDID != null ?
+                new ObjectParameter("UDID", uDID) :
+                new ObjectParameter("UDID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Truck_CRUD_API", gUIDParameter, truckGUIDParameter, truckNoParameter, calledByOrgGUIDParameter, truckCapacityParameter, expectedArrivalDateParameter, expectedDepatureDateParameter, transferTypeParameter, transportNameParameter, transportNoParameter, driverNameParameter, driverNoParameter, materialTypeParameter, uDIDParameter, outMssg, outIsSuccess);
+        }
     }
 }

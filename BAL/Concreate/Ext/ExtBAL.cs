@@ -31,9 +31,9 @@ namespace BAL.Concreate.Ext
         {
             _iExtDAL.SendLog(model);
         }
-        public ResponseInfo AddTruckData(EcMainModel model)
+        public ResponseInfo AddTruckParkData(EcMainModel model)
         {
-            return _iExtDAL.AddTruckData(model);
+            return _iExtDAL.AddTruckParkData(model);
         }
     }
 }
