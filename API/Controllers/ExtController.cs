@@ -1,6 +1,8 @@
 ﻿using BAL.Interface.Ext;
 using Model.Models;
 using Model.Models.Ext;
+using Model.Models.Ext.Response;
+using Model.Models.Ext.Response.Truck;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -30,37 +32,39 @@ namespace API.Controllers
 
             if (apikey == null)
             {
-                return Content(System.Net.HttpStatusCode.Unauthorized, new { mssg = "API Key is Null" });
+                return Content(System.Net.HttpStatusCode.BadRequest, new ExtAPIBaseRespModel(false, "Invalid EXT_API_KEY Header"));
             }
 
             var resp = _iExtBAL.CheckApiKey(apikey);
             if (resp == null || !resp.IsActive)
             {
-                return Content(System.Net.HttpStatusCode.Unauthorized, new { mssg = "Invaild API Key" });
+                return Content(System.Net.HttpStatusCode.Unauthorized, new ExtAPIBaseRespModel(false, "Invalid EXT_API_KEY"));
+            }
+
+            var reLog = new ResponseInfoAPI()
+            {
+                APIKeyId = resp.APIKeyId
+                 ,
+                PayLoad = JsonConvert.SerializeObject(model)
+                 ,
+                SourceIP = Request.RequestUri.ToString()
+            };
+
+            _iExtBAL.ReceivedLog(reLog);
+
+            var eventName = Request.Headers.GetValues("EVENT_TYPE").FirstOrDefault();
+
+            if (eventName == "AddTruckPark")
+            {
+                model.StatusesHistory = JsonConvert.SerializeObject(model.Statuses);
+                var saveData = _iExtBAL.AddTruckParkData(model);
+
+                TruckDetailAPI truckDetails = _iExtBAL.GetTruckDetails(saveData.LongID.Value);
+
+                return Content(System.Net.HttpStatusCode.OK, new ExtAPITruckDetailsRespModel(truckDetails));
             }
             else
-            {
-                var reLog = new ResponseInfoAPI()
-                {
-                   APIKeyId = resp.APIKeyId
-                 , PayLoad = JsonConvert.SerializeObject(model)
-                 , SourceIP = Request.RequestUri.ToString()
-                };
-                _iExtBAL.ReceivedLog(reLog);
-                var eventName = Request.Headers.GetValues("event-type").FirstOrDefault();
-
-                if (eventName == "AddTruckPark")
-                {
-                    model.StatusesHistory = JsonConvert.SerializeObject(model.Statuses);
-                    var saveData = _iExtBAL.AddTruckParkData(model);
-                    return Content( System.Net.HttpStatusCode.OK, new { mssg = "Successfully Added." });
-                }
-                else
-                    return Content(System.Net.HttpStatusCode.BadRequest, new { mssg = "The request could not be understood by the server due to malformed syntax or missing required parameters." });
-
-            }
-
-           
+                return Content(System.Net.HttpStatusCode.BadRequest, new ExtAPIBaseRespModel(false, "Invalid EVENT_TYPE Header"));
         }
 
     }

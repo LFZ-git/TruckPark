@@ -696,6 +696,7 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <Parameter Name="DriverNo" Type="varchar" Mode="In" />
           <Parameter Name="MaterialType" Type="varchar" Mode="In" />
           <Parameter Name="UDID" Type="varchar" Mode="In" />
+          <Parameter Name="OutId" Type="bigint" Mode="InOut" />
           <Parameter Name="OutMssg" Type="varchar" Mode="InOut" />
           <Parameter Name="OutIsSuccess" Type="bit" Mode="InOut" />
         </Function>
@@ -1687,6 +1688,7 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
             <Parameter Name="DriverNo" Mode="In" Type="String" />
             <Parameter Name="MaterialType" Mode="In" Type="String" />
             <Parameter Name="UDID" Mode="In" Type="String" />
+            <Parameter Name="OutId" Mode="InOut" Type="Int64" />
             <Parameter Name="OutMssg" Mode="InOut" Type="String" />
             <Parameter Name="OutIsSuccess" Mode="InOut" Type="Boolean" />
           </FunctionImport>

@@ -64,6 +64,9 @@
     <Compile Include="Models\Admin\OrganizationModel.cs" />
     <Compile Include="Models\Country\M_CountryModel.cs" />
     <Compile Include="Models\Ext\EcMainModel.cs" />
+    <Compile Include="Models\Ext\Request\ExtAPIRequestModel.cs" />
+    <Compile Include="Models\Ext\Response\ExtAPIRespModel.cs" />
+    <Compile Include="Models\Ext\Response\Truck\ExtAPITruckDetailsRespModel.cs" />
     <Compile Include="Models\Home\DashboardInput.cs" />
     <Compile Include="Models\Home\DashboardModel.cs" />
     <Compile Include="Models\Invoice\AddProformaInvoice.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="Models\Truck\EditTruckDetails.cs" />
     <Compile Include="Models\Truck\SendMailModel.cs" />
     <Compile Include="Models\Truck\Truck.cs" />
+    <Compile Include="Models\Truck\TruckDetailAPI.cs" />
     <Compile Include="Models\Truck\TruckDetails.cs" />
     <Compile Include="Models\Truck\UpdateTruckStatus.cs" />
     <Compile Include="Models\UserCreation\GetUserCreationModel.cs" />

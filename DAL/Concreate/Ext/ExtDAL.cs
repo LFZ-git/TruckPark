@@ -38,6 +38,7 @@ namespace DAL.Concreate.Ext
         {
             ObjectParameter outIsSuccess = new ObjectParameter("OutIsSuccess", typeof(bool));
             ObjectParameter outMssg = new ObjectParameter("OutMssg", typeof(string));
+            ObjectParameter outId = new ObjectParameter("OutId", typeof(long));
 
             model.EstimatedArrivalDate = model.EstimatedArrivalDate.Value.Add(model.EstimatedArrivalTime.TimeOfDay);
 
@@ -45,9 +46,14 @@ namespace DAL.Concreate.Ext
 
             entities.Truck_CRUD_API(model.Id, model.Truck.Id, model.Truck.PlateNumber, model.Company.Id, model.Truck.Capacity, model.EstimatedArrivalDate
                                     , model.DepartureDate, model.TransferType, model.User.FullName, model.User.Phone, model.Driver.FirstName + " " + model.Driver.LastName
-                                    ,  model.Driver.Phone, model.MaterialType, model.User.Id, outMssg, outIsSuccess);
+                                    ,  model.Driver.Phone, model.MaterialType, model.User.Id, outId, outMssg, outIsSuccess);
 
-            return new ResponseInfo() { IsSuccess = (bool)outIsSuccess.Value, Msg = outMssg.Value.ToString() };
+
+            return new ResponseInfo() 
+            { 
+                IsSuccess = (bool)outIsSuccess.Value
+                , Msg = outMssg.Value.ToString()
+                , LongID = (long)outId.Value };
         }
 
         ResponseInfo IsTruckExists(EcMainModel model)
@@ -56,6 +62,29 @@ namespace DAL.Concreate.Ext
             entities.IsTruckExists(model.Truck.PlateNumber, model.Truck.Id, model.Company.Id, model.Truck.Capacity, model.User.Id, outMssg);
 
             return new ResponseInfo() { Msg = outMssg.Value.ToString() };
+        }
+
+        public TruckDetailAPI GetTruckDetails(long truckDetailId)
+        {
+            var result = (from t in entities.TruckDetails where t.TruckDetailsId == truckDetailId 
+                          select new {
+                              TruckDetailsId = t.TruckDetailsId
+                            , TruckGUID = t.TruckGUID
+                            , GUID  = t.GUID
+                            , CalledByOrgGUID = t.CalledByOrgGUID
+                            , TruckCapacity = t.TruckCapacityId
+                            , TransferType = t.TransferType
+                            , MaterialType = t.MaterialType
+                            , TransportName = t.TransportName
+                            , TransportNo = t.TransportNo
+                            , DriverName = t.DriverName
+                            , DriverNo = t.DriverNo
+                            , ExpectedArrivalDate = t.ExpectedArrivalDate
+                            , ExpectedDepatureDate = t.ExpectedDepatureDate
+                            
+                          }).FirstOrDefault();
+
+            return Mapping<TruckDetailAPI>(result);
         }
     }
 }

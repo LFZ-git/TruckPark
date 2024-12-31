@@ -1,4 +1,5 @@
-﻿using Model.Models;
+﻿using DAL;
+using Model.Models;
 using Model.Models.Ext;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace BAL.Interface.Ext
         void ReceivedLog(ResponseInfoAPI model);
         void SendLog(ResponseInfoAPI model);
         ResponseInfo AddTruckParkData(EcMainModel model);
+        TruckDetailAPI GetTruckDetails(long truckDetailId);
     }
 }

@@ -14,5 +14,7 @@ namespace DAL.Interface.Ext
         void ReceivedLog(ResponseInfoAPI model);
         void SendLog(ResponseInfoAPI model);
         ResponseInfo AddTruckParkData(EcMainModel model);
+        TruckDetailAPI GetTruckDetails(long truckDetailId);
+
     }
 }

@@ -832,7 +832,7 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IsTruckExists", truckNoParameter, gUIDParameter, ownedByOrgGUIDParameter, truckCapacityGUIDParameter, changedByGUIDParameter, outMssg);
         }
     
-        public virtual int Truck_CRUD_API(string gUID, string truckGUID, string truckNo, string calledByOrgGUID, string truckCapacity, Nullable<System.DateTime> expectedArrivalDate, Nullable<System.DateTime> expectedDepatureDate, string transferType, string transportName, string transportNo, string driverName, string driverNo, string materialType, string uDID, ObjectParameter outMssg, ObjectParameter outIsSuccess)
+        public virtual int Truck_CRUD_API(string gUID, string truckGUID, string truckNo, string calledByOrgGUID, string truckCapacity, Nullable<System.DateTime> expectedArrivalDate, Nullable<System.DateTime> expectedDepatureDate, string transferType, string transportName, string transportNo, string driverName, string driverNo, string materialType, string uDID, ObjectParameter outId, ObjectParameter outMssg, ObjectParameter outIsSuccess)
         {
             var gUIDParameter = gUID != null ?
                 new ObjectParameter("GUID", gUID) :
@@ -890,7 +890,7 @@ namespace DAL
                 new ObjectParameter("UDID", uDID) :
                 new ObjectParameter("UDID", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Truck_CRUD_API", gUIDParameter, truckGUIDParameter, truckNoParameter, calledByOrgGUIDParameter, truckCapacityParameter, expectedArrivalDateParameter, expectedDepatureDateParameter, transferTypeParameter, transportNameParameter, transportNoParameter, driverNameParameter, driverNoParameter, materialTypeParameter, uDIDParameter, outMssg, outIsSuccess);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Truck_CRUD_API", gUIDParameter, truckGUIDParameter, truckNoParameter, calledByOrgGUIDParameter, truckCapacityParameter, expectedArrivalDateParameter, expectedDepatureDateParameter, transferTypeParameter, transportNameParameter, transportNoParameter, driverNameParameter, driverNoParameter, materialTypeParameter, uDIDParameter, outId, outMssg, outIsSuccess);
         }
     }
 }
