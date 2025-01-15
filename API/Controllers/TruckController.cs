@@ -101,5 +101,10 @@ namespace API.Controllers
         {
             return Ok(_iTruckBal.GetTruckCalledOutList(RoleID, UserID, Id));
         }
+        [HttpGet]
+        public IHttpActionResult ViewTruckExtList()
+        {
+            return Ok(_iTruckBal.ViewTruckExtListBAL());
+        }
     }
 }

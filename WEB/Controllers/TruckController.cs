@@ -583,5 +583,12 @@ namespace WEB.Controllers
 
             return RedirectToAction(page);
         }
+
+        public ActionResult ViewExpectedTrucksEXT()
+        {
+
+            List<ViewTrucksEXT> lst = WebAPIHelper.CallApi<List<ViewTrucksEXT>>(HttpMethods.Get, "ViewTruckExtList", "Truck");
+            return View("ViewTrucksEXT", lst);
+        }
     }
 }

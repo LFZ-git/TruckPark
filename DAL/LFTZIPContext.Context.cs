@@ -427,15 +427,6 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Truck_CRUD", truckIdParameter, truckNoParameter, ownedByOrganizationIdParameter, truckCapacityIdParameter, uDIDParameter, calledByOrganizationIdParameter, expectedArrivalDateParameter, expectedDepatureDateParameter, localTransferTypeIdParameter, transportNameParameter, transportNoParameter, driverNameParameter, driverNoParameter, materialTypeIdParameter, materialGoodsParameter, actualArrivalDateParameter, actualDepatureDateParameter, isForecastedParameter, isCheckedInParameter, isCalledOutParameter, outId, truckDetailsIdParameter, flagParameter);
         }
     
-        public virtual ObjectResult<Truck_G_Result> Truck_G(string truckNo)
-        {
-            var truckNoParameter = truckNo != null ?
-                new ObjectParameter("TruckNo", truckNo) :
-                new ObjectParameter("TruckNo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Truck_G_Result>("Truck_G", truckNoParameter);
-        }
-    
         public virtual ObjectResult<TruckCalledOutList_G_Result> TruckCalledOutList_G(Nullable<int> roleId, Nullable<int> uDID, Nullable<int> organizationId)
         {
             var roleIdParameter = roleId.HasValue ?
@@ -891,6 +882,20 @@ namespace DAL
                 new ObjectParameter("UDID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Truck_CRUD_API", gUIDParameter, truckGUIDParameter, truckNoParameter, calledByOrgGUIDParameter, truckCapacityParameter, expectedArrivalDateParameter, expectedDepatureDateParameter, transferTypeParameter, transportNameParameter, transportNoParameter, driverNameParameter, driverNoParameter, materialTypeParameter, uDIDParameter, outId, outMssg, outIsSuccess);
+        }
+    
+        public virtual ObjectResult<Truck_G_Result> Truck_G(string truckNo)
+        {
+            var truckNoParameter = truckNo != null ?
+                new ObjectParameter("TruckNo", truckNo) :
+                new ObjectParameter("TruckNo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Truck_G_Result>("Truck_G", truckNoParameter);
+        }
+    
+        public virtual ObjectResult<TruckDetailsAPI_List_G_Result> TruckDetailsAPI_List_G()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TruckDetailsAPI_List_G_Result>("TruckDetailsAPI_List_G");
         }
     }
 }

@@ -89,6 +89,7 @@
     <Compile Include="Models\Truck\TruckDetailAPI.cs" />
     <Compile Include="Models\Truck\TruckDetails.cs" />
     <Compile Include="Models\Truck\UpdateTruckStatus.cs" />
+    <Compile Include="Models\Truck\ViewTrucksEXT.cs" />
     <Compile Include="Models\UserCreation\GetUserCreationModel.cs" />
     <Compile Include="Models\UserCreation\GetUserEditDetailsModel.cs" />
     <Compile Include="Models\UserCreation\UserCreationModel.cs" />
