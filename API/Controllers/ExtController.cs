@@ -38,11 +38,11 @@ namespace API.Controllers
 
                 if (apikey == null)
                 {
-
                     return Content(System.Net.HttpStatusCode.BadRequest, new ExtAPIBaseRespModel(false, "Invalid API_KEY Header"));
                 }
 
                 var resp = _iExtBAL.CheckApiKey(apikey);
+
                 if (resp == null || !resp.IsActive)
                 {
                     return Content(System.Net.HttpStatusCode.Unauthorized, new ExtAPIBaseRespModel(false, "Invalid API_KEY"));
