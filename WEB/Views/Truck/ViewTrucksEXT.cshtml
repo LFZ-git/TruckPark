@@ -1,0 +1,60 @@
+﻿@model List<Model.Models.ViewTrucksEXT>
+@{
+    ViewBag.Title = "ViewTrucksEXT";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Truck List</h4>
+
+
+                    <div class="table-responsive">
+                        <table id="responsive-data-table" class="table  table table-striped table-bordered table-sm tbl-hd" style="width:100%">
+                            <thead>
+                                <tr role="row">
+                                    <th scope="col">Truck No</th>
+                                    <th scope="col">Organization Name</th>
+                                    <th scope="col"> Expected Arrival Date</th>
+                                    <th scope="col"> Expected Departure Date</th>
+                                    <th scope="col"> Truck Capacity </th>
+                                    <th scope="col">Transporter Name</th>
+                                    <th scope="col">Transporter Number</th>
+                                    <th scope="col">Driver Name</th>
+                                    <th scope="col">Driver Number</th>
+                                    <th scope="col">Material Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var m in Model)
+                                {
+                                    <tr>
+                                        <td>@m.TruckNo</td>
+                                        <td>@m.OwnedByOrganization</td>
+                                        <td>@m.ExpectedArrivalDate</td>
+                                        <td>@m.ExpectedDepatureDate</td>
+                                        <td>@m.TruckCapacity</td>
+                                        <td>@m.TransportName</td>
+                                        <td>@m.TransportNo</td>
+                                        <td>@m.DriverName</td>
+                                        <td>@m.DriverNo</td>
+                                        <td>@m.MaterialType</td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

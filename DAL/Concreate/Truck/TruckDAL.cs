@@ -122,5 +122,11 @@ namespace DAL.Concreate
             List<TruckDetails> list = Mapping<List<TruckDetails>>(result);
             return list;
         }
+
+        public List<ViewTrucksEXT> ViewTruckExtListDAL()
+        {
+            var result = entities.TruckDetailsAPI_List_G().ToList();
+            return Mapping<List<ViewTrucksEXT>>(result);
+        }
     }
 }

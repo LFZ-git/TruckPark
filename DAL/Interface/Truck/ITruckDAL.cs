@@ -35,5 +35,6 @@ namespace DAL.Interface
         TruckStatus GetTruckDetails(string truckNo);
 
         List<TruckDetails> GetTruckCalledOutList(int? RoleId, int? UserId, int? Id);
+        List<ViewTrucksEXT> ViewTruckExtListDAL();
     }
 }

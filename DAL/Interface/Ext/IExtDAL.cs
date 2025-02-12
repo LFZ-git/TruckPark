@@ -13,6 +13,9 @@ namespace DAL.Interface.Ext
         ResponseInfoAPI CheckApiKey(string apiKey);
         void ReceivedLog(ResponseInfoAPI model);
         void SendLog(ResponseInfoAPI model);
-        ResponseInfo AddTruckData(EcMainModel model);
+        ResponseInfo AddTruckParkData(EcMainModel model);
+        TruckDetailAPI GetTruckDetails(long truckDetailId);
+        //EcCheckOutModel GetDataForCheckoutAPI(long truckDetailId);
+
     }
 }

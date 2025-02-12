@@ -254,6 +254,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ExtAPIHelper.cs" />
     <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Helper\helperClass.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
@@ -2857,6 +2858,7 @@
     <Content Include="Views\Sweet\Alert.cshtml" />
     <Content Include="Views\Truck\BillableTrucks.cshtml" />
     <Content Include="Views\Truck\Edit.cshtml" />
+    <Content Include="Views\Truck\ViewTrucksEXT.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

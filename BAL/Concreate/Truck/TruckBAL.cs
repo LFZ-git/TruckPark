@@ -82,5 +82,10 @@ namespace BAL.Concreate
         {
             return _iTruckDal.GetTruckCalledOutList(RoleId, UserId, Id);
         }
+
+        public List<ViewTrucksEXT> ViewTruckExtListBAL()
+        {
+            return _iTruckDal.ViewTruckExtListDAL();
+        }
     }
 }

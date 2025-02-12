@@ -15,25 +15,35 @@ namespace DAL
     public partial class TruckDetail
     {
         public long TruckDetailsId { get; set; }
-        public long TruckId { get; set; }
-        public int CalledByOrganizationId { get; set; }
-        public int TruckCapacityId { get; set; }
+        public string GUID { get; set; }
+        public Nullable<long> TruckId { get; set; }
+        public string TruckGUID { get; set; }
+        public Nullable<int> CalledByOrganizationId { get; set; }
+        public string CalledByOrgGUID { get; set; }
+        public Nullable<int> TruckCapacityId { get; set; }
+        public string TruckCapacityGUID { get; set; }
+        public string TruckCapacity { get; set; }
         public Nullable<System.DateTime> ExpectedArrivalDate { get; set; }
         public Nullable<System.DateTime> ExpectedDepatureDate { get; set; }
-        public int LocalTransferTypeId { get; set; }
+        public Nullable<int> LocalTransferTypeId { get; set; }
+        public string TransferTypeGUID { get; set; }
+        public string TransferType { get; set; }
         public string TransportName { get; set; }
         public string TransportNo { get; set; }
         public string DriverName { get; set; }
         public string DriverNo { get; set; }
         public Nullable<int> MaterialTypeId { get; set; }
+        public string MaterialTypeGUID { get; set; }
+        public string MaterialType { get; set; }
         public string MaterialGoods { get; set; }
+        public string TerminalGUID { get; set; }
         public Nullable<System.DateTime> ActualArrivalDate { get; set; }
         public Nullable<System.DateTime> ActualDepatureDate { get; set; }
-        public bool IsForecasted { get; set; }
-        public bool IsCheckedIn { get; set; }
-        public bool IsCalledOut { get; set; }
+        public Nullable<bool> IsForecasted { get; set; }
+        public Nullable<bool> IsCheckedIn { get; set; }
+        public Nullable<bool> IsCalledOut { get; set; }
         public Nullable<bool> IsBilled { get; set; }
-        public int Createdby { get; set; }
+        public Nullable<int> Createdby { get; set; }
         public System.DateTime Createddate { get; set; }
         public Nullable<int> Modifiedby { get; set; }
         public Nullable<System.DateTime> Modifieddate { get; set; }

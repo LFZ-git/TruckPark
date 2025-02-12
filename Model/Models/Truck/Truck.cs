@@ -10,8 +10,8 @@ namespace Model.Models
     {
         public long TruckId { get; set; }
         public string TruckNo { get; set; }
-        public int OwnedByOrganizationId { get; set; }
-        public int TruckCapacityId { get; set; }
+        public int? OwnedByOrganizationId { get; set; }
+        public int? TruckCapacityId { get; set; }
         public bool IsActive { get; set; }
     }
 

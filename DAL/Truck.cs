@@ -16,12 +16,17 @@ namespace DAL
     {
         public long TruckId { get; set; }
         public string TruckNo { get; set; }
-        public int OwnedByOrganizationId { get; set; }
-        public int TruckCapacityId { get; set; }
-        public int Createdby { get; set; }
+        public Nullable<int> OwnedByOrganizationId { get; set; }
+        public Nullable<int> TruckCapacityId { get; set; }
+        public Nullable<int> Createdby { get; set; }
         public System.DateTime Createddate { get; set; }
         public Nullable<int> Modifiedby { get; set; }
         public Nullable<System.DateTime> Modifieddate { get; set; }
         public bool IsActive { get; set; }
+        public string GUID { get; set; }
+        public string OwnedByOrgGUID { get; set; }
+        public string TruckCapacityGUID { get; set; }
+        public string CreatedByGUID { get; set; }
+        public string ModifiedByGUID { get; set; }
     }
 }

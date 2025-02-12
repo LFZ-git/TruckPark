@@ -11,16 +11,22 @@ namespace DAL
 {
     using System;
     
-    public partial class TruckCheckedOutList_G_Result
+    public partial class TruckDetailsAPI_List_G_Result
     {
         public long TruckDetailsId { get; set; }
+        public string GUID { get; set; }
         public Nullable<long> TruckId { get; set; }
+        public string TruckGUID { get; set; }
+        public string TruckNo { get; set; }
         public Nullable<int> CalledByOrganizationId { get; set; }
+        public string CalledByOrgGUID { get; set; }
+        public string OwnedByOrganization { get; set; }
         public Nullable<int> TruckCapacityId { get; set; }
+        public string TruckCapacity { get; set; }
         public Nullable<System.DateTime> ExpectedArrivalDate { get; set; }
         public Nullable<System.DateTime> ExpectedDepatureDate { get; set; }
         public Nullable<int> LocalTransferTypeId { get; set; }
-        public string LocalTransferType { get; set; }
+        public string TransferType { get; set; }
         public string TransportName { get; set; }
         public string TransportNo { get; set; }
         public string DriverName { get; set; }
@@ -33,11 +39,6 @@ namespace DAL
         public Nullable<bool> IsForecasted { get; set; }
         public Nullable<bool> IsCheckedIn { get; set; }
         public Nullable<bool> IsCalledOut { get; set; }
-        public Nullable<int> Createdby { get; set; }
-        public bool IsActive { get; set; }
-        public string TruckNo { get; set; }
-        public string TruckCapacity { get; set; }
-        public string OwnedByOrganization { get; set; }
         public Nullable<bool> IsBilled { get; set; }
     }
 }

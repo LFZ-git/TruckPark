@@ -11,13 +11,20 @@ namespace DAL
     public class SqlManager
     {
         
-        public static SqlConnection OpenConnection()
+     /*   public static SqlConnection OpenConnection()
         {
             //SqlConnection sqlConnection = new SqlConnection(@"Server=DESKTOP-HMO05CP\SQLEXPRESS;Database=LFZ_TruckPark_W;user id=sa;pwd=sa123");
             //SqlConnection sqlConnection = new SqlConnection(@"Server=172.106.164.4,1087;Database=ictp;user id=ictp;pwd=Ictp_zk@007");
-            SqlConnection sqlConnection = new SqlConnection(@"Server=S148-66-129-50\SQLEXPRESS;Database=LFZ_TruckPark;user id=sa;pwd=Zaksof@123;");
+            //SqlConnection sqlConnection = new SqlConnection(@"Server=S148-66-129-50\SQLEXPRESS;Database=LFZ_TruckPark;user id=sa;pwd=Zaksof@123;");
            // SqlConnection sqlConnection = new SqlConnection(@"Server=IP-208-109-15-4\SQLEXPRESS;Database=LFZ_TruckPark;user id=zaksof;pwd=lfzprodnew@1234;");
             // SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["AppConnectionString"].ConnectionString);
+            sqlConnection.Open();
+            return sqlConnection;
+        }*/
+
+        public static SqlConnection OpenConnection()
+        {
+            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["AppConnectionString"].ConnectionString);
             sqlConnection.Open();
             return sqlConnection;
         }

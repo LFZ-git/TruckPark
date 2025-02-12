@@ -63,7 +63,12 @@
     <Compile Include="Models\Account\ValididateUser_OnePortal.cs" />
     <Compile Include="Models\Admin\OrganizationModel.cs" />
     <Compile Include="Models\Country\M_CountryModel.cs" />
+    <Compile Include="Models\ECallUp\Request\ECallupTruckStatusUpdateReqModel.cs" />
+    <Compile Include="Models\ECallUp\Response\ECallUpBaseRespModel.cs" />
     <Compile Include="Models\Ext\EcMainModel.cs" />
+    <Compile Include="Models\Ext\Request\ExtAPIRequestModel.cs" />
+    <Compile Include="Models\Ext\Response\ExtAPIRespModel.cs" />
+    <Compile Include="Models\Ext\Response\Truck\ExtAPITruckDetailsRespModel.cs" />
     <Compile Include="Models\Home\DashboardInput.cs" />
     <Compile Include="Models\Home\DashboardModel.cs" />
     <Compile Include="Models\Invoice\AddProformaInvoice.cs" />
@@ -83,8 +88,10 @@
     <Compile Include="Models\Truck\EditTruckDetails.cs" />
     <Compile Include="Models\Truck\SendMailModel.cs" />
     <Compile Include="Models\Truck\Truck.cs" />
+    <Compile Include="Models\Truck\TruckDetailAPI.cs" />
     <Compile Include="Models\Truck\TruckDetails.cs" />
     <Compile Include="Models\Truck\UpdateTruckStatus.cs" />
+    <Compile Include="Models\Truck\ViewTrucksEXT.cs" />
     <Compile Include="Models\UserCreation\GetUserCreationModel.cs" />
     <Compile Include="Models\UserCreation\GetUserEditDetailsModel.cs" />
     <Compile Include="Models\UserCreation\UserCreationModel.cs" />
@@ -106,8 +113,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\ECallUp\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

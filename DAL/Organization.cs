@@ -21,5 +21,6 @@ namespace DAL
         public Nullable<bool> IsActive { get; set; }
         public short OrganizationTypeId { get; set; }
         public string CompanyAddress { get; set; }
+        public string GUID { get; set; }
     }
 }

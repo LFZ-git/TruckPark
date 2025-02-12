@@ -10,6 +10,8 @@ namespace Model.Models
     {
         public int? ID { get; set; }
 
+        public long? LongID { get; set; }
+
         public string Status { get; set; }
 
         public string Msg { get; set; }

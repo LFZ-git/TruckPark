@@ -15,8 +15,8 @@ namespace DAL
     {
         public long TruckId { get; set; }
         public string TruckNo { get; set; }
-        public int OwnedByOrganizationId { get; set; }
-        public int TruckCapacityId { get; set; }
+        public Nullable<int> OwnedByOrganizationId { get; set; }
+        public Nullable<int> TruckCapacityId { get; set; }
         public bool IsActive { get; set; }
     }
 }

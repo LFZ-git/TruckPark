@@ -1,4 +1,5 @@
 ﻿using BAL.Interface.Ext;
+using DAL;
 using DAL.Interface.Ext;
 using Model.Models;
 using Model.Models.Ext;
@@ -31,9 +32,17 @@ namespace BAL.Concreate.Ext
         {
             _iExtDAL.SendLog(model);
         }
-        public ResponseInfo AddTruckData(EcMainModel model)
+        public ResponseInfo AddTruckParkData(EcMainModel model)
         {
-            return _iExtDAL.AddTruckData(model);
+            return _iExtDAL.AddTruckParkData(model);
         }
+        public TruckDetailAPI GetTruckDetails(long truckDetailId)
+        {
+            return _iExtDAL.GetTruckDetails(truckDetailId);
+        }
+       /* public EcCheckOutModel GetDataForCheckoutAPI(long truckDetailId)
+        {
+            return _iExtDAL.GetDataForCheckoutAPI(truckDetailId);
+        }*/
     }
 }

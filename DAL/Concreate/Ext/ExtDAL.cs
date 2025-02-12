@@ -34,20 +34,62 @@ namespace DAL.Concreate.Ext
             entities.API_SentLog(model.PayLoad, model.SourceIP);
         }
 
-        public ResponseInfo AddTruckData(EcMainModel model)
+        public ResponseInfo AddTruckParkData(EcMainModel model)
         {
             ObjectParameter outIsSuccess = new ObjectParameter("OutIsSuccess", typeof(bool));
-            ObjectParameter outMssg = new ObjectParameter("OutMessage", typeof(string));
+            ObjectParameter outMssg = new ObjectParameter("OutMssg", typeof(string));
+            ObjectParameter outId = new ObjectParameter("OutId", typeof(long));
 
             model.EstimatedArrivalDate = model.EstimatedArrivalDate.Value.Add(model.EstimatedArrivalTime.TimeOfDay);
 
-            entities.EcallUp_CU(model.Id, model.Company.Id, model.Company.Name, model.User.Id, model.Truck.Id, model.Driver.Id, model.Pregate.Id
-                               , model.Pregate.Name, model.Park.Id, model.Park.Name, model.Park.Type, model.Terminal.Id, model.Terminal.Name
-                               , model.Category.Id, model.Category.Name, model.Port.Id, model.Port.Name, model.Port.Type, model.StatusesHistory
-                               , model.MaterialType, model.TransferType, model.Status, model.EstimatedArrivalDate, model.DepartureDate
-                               , model.CreatedAt, model.UpdatedAt, outIsSuccess, outMssg);
+            IsTruckExists(model);
 
-            return new ResponseInfo() { IsSuccess = (bool)outIsSuccess.Value, Msg = outMssg.Value.ToString() };
+            entities.Truck_CRUD_API(model.Id, model.Truck.Id, model.Truck.PlateNumber, model.Company.Id, model.Truck.Capacity.Id, model.EstimatedArrivalDate
+                                    , null, model.Category.Id, model.User.FullName, model.User.Phone, model.Driver.FirstName + " " + model.Driver.LastName
+                                    , model.Driver.Phone, model.Material.Id, model.User.Id, model.Terminal.Id, outId, outMssg, outIsSuccess);
+
+
+            return new ResponseInfo() 
+            { 
+                IsSuccess = (bool)outIsSuccess.Value
+                , Msg = outMssg.Value.ToString()
+                , LongID = (long)outId.Value };
         }
+
+        ResponseInfo IsTruckExists(EcMainModel model)
+        {
+            ObjectParameter outMssg = new ObjectParameter("OutMssg", typeof(string));
+            entities.IsTruckExists(model.Truck.PlateNumber, model.Truck.Id, model.Company.Id, model.Truck.Capacity.Id, model.User.Id, outMssg);
+
+            return new ResponseInfo() { Msg = outMssg.Value.ToString() };
+        }
+
+        public TruckDetailAPI GetTruckDetails(long truckDetailId)
+        {
+            var result = (from t in entities.TruckDetails where t.TruckDetailsId == truckDetailId 
+                          select new {
+                              TruckDetailsId = t.TruckDetailsId
+                            , TruckGUID = t.TruckGUID
+                            , GUID  = t.GUID
+                            , CalledByOrgGUID = t.CalledByOrgGUID
+                            , TruckCapacity = t.TruckCapacityId
+                            , TransferType = t.TransferType
+                            , MaterialType = t.MaterialType
+                            , TransportName = t.TransportName
+                            , TransportNo = t.TransportNo
+                            , DriverName = t.DriverName
+                            , DriverNo = t.DriverNo
+                            , ExpectedArrivalDate = t.ExpectedArrivalDate
+                            
+                          }).FirstOrDefault();
+
+            return Mapping<TruckDetailAPI>(result);
+        }
+        /*public EcCheckOutModel GetDataForCheckoutAPI(long truckDetailId)
+        {
+            var result = entities.API_CheckOut_TruckDetail_G(truckDetailId).FirstOrDefault();
+
+            return Mapping<EcCheckOutModel>(result);
+        }*/
     }
 }

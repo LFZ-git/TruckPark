@@ -36,6 +36,7 @@ namespace DAL
         public Nullable<bool> IsActive { get; set; }
         public string saltKey { get; set; }
         public Nullable<bool> isHOD { get; set; }
+        public string GUID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Map_UserRole> Map_UserRole { get; set; }

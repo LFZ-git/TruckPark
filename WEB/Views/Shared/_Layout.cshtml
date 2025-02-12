@@ -98,7 +98,12 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("ViewExpectedTrucksEXT", "Truck")">
+                            <i class="ti-dashboard menu-icon"></i>
+                            <span class="menu-title">View Expected Trucks [EXT]</span>
+                        </a>
+                    </li>
                     @if (roleid == (int)CommonEnum.Role.EnterpriseAdmin || roleid == (int)CommonEnum.Role.EnterpriseGroupAdmin || roleid == (int)CommonEnum.Role.LFZSecurity)
                     {
                         <li class="nav-item">

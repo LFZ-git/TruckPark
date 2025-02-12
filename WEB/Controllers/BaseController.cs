@@ -17,7 +17,7 @@ using System.Configuration;
 namespace WEB.Controllers
 {
 
-    [WEBException]
+    //[WEBException]
     [ActivityLoging]
     public class BaseController : Controller
     {
