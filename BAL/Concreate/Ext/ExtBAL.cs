@@ -40,5 +40,9 @@ namespace BAL.Concreate.Ext
         {
             return _iExtDAL.GetTruckDetails(truckDetailId);
         }
+       /* public EcCheckOutModel GetDataForCheckoutAPI(long truckDetailId)
+        {
+            return _iExtDAL.GetDataForCheckoutAPI(truckDetailId);
+        }*/
     }
 }

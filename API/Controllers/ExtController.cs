@@ -77,5 +77,11 @@ namespace API.Controllers
             }
         }
 
+        /*[HttpGet]
+       public IHttpActionResult GetDataForCheckoutAPI(int id)
+        {
+            return Ok(_iExtBAL.GetDataForCheckoutAPI(Convert.ToInt64(id)));
+        }*/
+
     }
 }

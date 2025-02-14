@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="91e6def7d28f4c41b2134c2cff233e94" Name="Diagram1">
+      <Diagram DiagramId="91e6def7d28f4c41b2134c2cff233e94" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="LFZ_TruckParkModel.ActivityLog" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.ExceptionLog" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.M_APIKey" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="LFZ_TruckParkModel.ProformaInvoice" Width="1.5" PointX="7.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.ProformaInvoiceDet" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.Truck" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LFZ_TruckParkModel.TruckDetail" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.UserDetail" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.Map_Ent2Ent" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.Map_RoleModule" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
@@ -34,6 +33,7 @@
         <AssociationConnector Association="LFZ_TruckParkModel.FK__Map_UserRo__UDID__693CA210" ManuallyRouted="false" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.M_ExtAPI_ReceivedLog" Width="1.5" PointX="12.375" PointY="14.75" />
         <EntityTypeShape EntityType="LFZ_TruckParkModel.M_ExtAPI_SentLog" Width="1.5" PointX="14.375" PointY="14.75" />
+        <EntityTypeShape EntityType="LFZ_TruckParkModel.TruckDetail" Width="1.5" PointX="16.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

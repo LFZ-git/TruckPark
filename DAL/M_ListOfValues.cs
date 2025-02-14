@@ -24,5 +24,6 @@ namespace DAL
         public Nullable<System.DateTime> Modifieddate { get; set; }
         public bool IsActive { get; set; }
         public int OrganizationId { get; set; }
+        public string GUID { get; set; }
     }
 }

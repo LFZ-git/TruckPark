@@ -44,10 +44,10 @@ namespace DAL.Concreate.Ext
 
             IsTruckExists(model);
 
-            /*entities.Truck_CRUD_API(model.Id, model.Truck.Id, model.Truck.PlateNumber, model.Company.Id, model.Truck.Capacity, model.EstimatedArrivalDate
-                                    , model.DepartureDate, model.Category.Name, model.User.FullName, model.User.Phone, model.Driver.FirstName + " " + model.Driver.LastName
-                                    ,  model.Driver.Phone, model.MaterialType, model.User.Id, outId, outMssg, outIsSuccess);
-*/
+            entities.Truck_CRUD_API(model.Id, model.Truck.Id, model.Truck.PlateNumber, model.Company.Id, model.Truck.Capacity.Id, model.EstimatedArrivalDate
+                                    , null, model.Category.Id, model.User.FullName, model.User.Phone, model.Driver.FirstName + " " + model.Driver.LastName
+                                    , model.Driver.Phone, model.Material.Id, model.User.Id, model.Terminal.Id, outId, outMssg, outIsSuccess);
+
 
             return new ResponseInfo() 
             { 
@@ -59,7 +59,7 @@ namespace DAL.Concreate.Ext
         ResponseInfo IsTruckExists(EcMainModel model)
         {
             ObjectParameter outMssg = new ObjectParameter("OutMssg", typeof(string));
-            /*entities.IsTruckExists(model.Truck.PlateNumber, model.Truck.Id, model.Company.Id, model.Truck.Capacity, model.User.Id, outMssg);*/
+            entities.IsTruckExists(model.Truck.PlateNumber, model.Truck.Id, model.Company.Id, model.Truck.Capacity.Id, model.User.Id, outMssg);
 
             return new ResponseInfo() { Msg = outMssg.Value.ToString() };
         }
@@ -80,11 +80,16 @@ namespace DAL.Concreate.Ext
                             , DriverName = t.DriverName
                             , DriverNo = t.DriverNo
                             , ExpectedArrivalDate = t.ExpectedArrivalDate
-                            , ExpectedDepatureDate = t.ExpectedDepatureDate
                             
                           }).FirstOrDefault();
 
             return Mapping<TruckDetailAPI>(result);
         }
+        /*public EcCheckOutModel GetDataForCheckoutAPI(long truckDetailId)
+        {
+            var result = entities.API_CheckOut_TruckDetail_G(truckDetailId).FirstOrDefault();
+
+            return Mapping<EcCheckOutModel>(result);
+        }*/
     }
 }

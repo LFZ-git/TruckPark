@@ -21,5 +21,6 @@ namespace DAL
         public Nullable<int> Modifiedby { get; set; }
         public Nullable<System.DateTime> Modifieddate { get; set; }
         public bool IsActive { get; set; }
+        public string GUID { get; set; }
     }
 }

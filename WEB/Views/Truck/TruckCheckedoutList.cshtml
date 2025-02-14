@@ -34,7 +34,7 @@
 
                     <div class="excelExport">
                         <a href="@Url.Action("ExportExcel", "Truck", new { page= "TruckCheckedoutList" })" class="ms-text-primary btn btn-success_a btn-sm"><i class="flaticon-list mr-2"></i> Export Excel </a>
-                        @*<a href="@Url.Action("ExportExcel1", "Truck", new {  page= "TruckCheckedoutList" })" class="ms-text-primary btn btn-success_a btn-sm"><i class="flaticon-list mr-2"></i> Export Full Data </a>*@
+                        <a href="@Url.Action("ExportExcel1", "Truck", new {  page= "TruckCheckedoutList" })" class="ms-text-primary btn btn-success_a btn-sm"><i class="flaticon-list mr-2"></i> Export Full Data </a>
                     </div>
                     @using (Html.BeginForm("UpdateStatus", "Truck", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {

@@ -254,6 +254,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ExtAPIHelper.cs" />
     <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Helper\helperClass.cs" />
     <Compile Include="Helper\ImageHelper.cs" />

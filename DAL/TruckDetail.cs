@@ -15,18 +15,28 @@ namespace DAL
     public partial class TruckDetail
     {
         public long TruckDetailsId { get; set; }
+        public string GUID { get; set; }
         public Nullable<long> TruckId { get; set; }
+        public string TruckGUID { get; set; }
         public Nullable<int> CalledByOrganizationId { get; set; }
+        public string CalledByOrgGUID { get; set; }
         public Nullable<int> TruckCapacityId { get; set; }
+        public string TruckCapacityGUID { get; set; }
+        public string TruckCapacity { get; set; }
         public Nullable<System.DateTime> ExpectedArrivalDate { get; set; }
         public Nullable<System.DateTime> ExpectedDepatureDate { get; set; }
         public Nullable<int> LocalTransferTypeId { get; set; }
+        public string TransferTypeGUID { get; set; }
+        public string TransferType { get; set; }
         public string TransportName { get; set; }
         public string TransportNo { get; set; }
         public string DriverName { get; set; }
         public string DriverNo { get; set; }
         public Nullable<int> MaterialTypeId { get; set; }
+        public string MaterialTypeGUID { get; set; }
+        public string MaterialType { get; set; }
         public string MaterialGoods { get; set; }
+        public string TerminalGUID { get; set; }
         public Nullable<System.DateTime> ActualArrivalDate { get; set; }
         public Nullable<System.DateTime> ActualDepatureDate { get; set; }
         public Nullable<bool> IsForecasted { get; set; }
@@ -38,11 +48,5 @@ namespace DAL
         public Nullable<int> Modifiedby { get; set; }
         public Nullable<System.DateTime> Modifieddate { get; set; }
         public bool IsActive { get; set; }
-        public string GUID { get; set; }
-        public string TruckGUID { get; set; }
-        public string CalledByOrgGUID { get; set; }
-        public string TruckCapacity { get; set; }
-        public string TransferType { get; set; }
-        public string MaterialType { get; set; }
     }
 }

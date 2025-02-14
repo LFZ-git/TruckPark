@@ -10,14 +10,12 @@
 namespace DAL
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class M_ExtAPI_SentLog
+    public partial class API_CheckOut_TruckDetail_G_Result
     {
-        public int SentLogId { get; set; }
-        public string PayLoad { get; set; }
-        public string SourceIP { get; set; }
-        public System.DateTime SentAt { get; set; }
-        public string ExtRefGUID { get; set; }
+        public string PlateNumber { get; set; }
+        public string BookingCategoryGUID { get; set; }
+        public string TerminalGUID { get; set; }
+        public string MaterialTypeGUID { get; set; }
     }
 }

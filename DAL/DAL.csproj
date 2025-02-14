@@ -59,6 +59,9 @@
     <Compile Include="ActivityLog.cs">
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="API_CheckOut_TruckDetail_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="BillableTrucks_G_Result.cs">
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
@@ -120,6 +123,11 @@
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
     <Compile Include="LFTZIPContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LFTZIPContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="LFTZIPContext1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LFTZIPContext.edmx</DependentUpon>
@@ -297,7 +305,7 @@
     </None>
     <EntityDeploy Include="LFTZIPContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LFTZIPContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>LFTZIPContext1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="LFTZIPContext.edmx.diagram">
       <DependentUpon>LFTZIPContext.edmx</DependentUpon>

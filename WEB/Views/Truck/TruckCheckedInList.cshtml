@@ -82,7 +82,7 @@
                                                 @item.TruckDetailsId
                                             </td>
                                             <td data-label="TruckDetailsId">
-                                                @if (roleid == (int)CommonEnum.Role.LFZAdmin || roleid == (int)CommonEnum.Role.LFZSecurity)
+                                                @if (roleid == (int)CommonEnum.Role.LFZAdmin || roleid == (int)CommonEnum.Role.LFZSecurity || roleid == (int)CommonEnum.Role.EnterpriseAdmin)
                                                 {
                                                     <label class="ms-checkbox-wrap">
                                                         <input type="checkbox" id="TruckDetailsId" name="TruckDetailsId" value="@item.TruckDetailsId" class="custom-checkbox chkCheckBoxId">

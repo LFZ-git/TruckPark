@@ -16,5 +16,6 @@ namespace BAL.Interface.Ext
         void SendLog(ResponseInfoAPI model);
         ResponseInfo AddTruckParkData(EcMainModel model);
         TruckDetailAPI GetTruckDetails(long truckDetailId);
+        //EcCheckOutModel GetDataForCheckoutAPI(long truckDetailId);
     }
 }

@@ -53,6 +53,8 @@
     <Compile Include="CommonEnum.cs" />
     <Compile Include="CommonUtilities.cs" />
     <Compile Include="Email.cs" />
+    <Compile Include="ExceptionUtility.cs" />
+    <Compile Include="FileLogger.cs" />
     <Compile Include="JsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

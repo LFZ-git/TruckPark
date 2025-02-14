@@ -13,6 +13,8 @@ using WEB.Helper;
 using System.Data;
 using ClosedXML.Excel;
 using System.IO;
+using Model.Models.ECallUp.Request;
+using Model.Models.ECallUp.Response;
 
 namespace WEB.Controllers
 {
@@ -266,6 +268,7 @@ namespace WEB.Controllers
                 if (Command == "checkout")
                 {
                     model.status = (int)Model.CommonEnum.LOV.TruckOperations.CHECKOUT;
+
                 }
                 if (Command == "checkin")
                 {
@@ -281,20 +284,37 @@ namespace WEB.Controllers
 
                 if (response.IsSuccess)
                 {
-                    string ccEmail = ConfigurationManager.AppSettings["ccEmailNikhil"];
+                    /*string ccEmail = ConfigurationManager.AppSettings["ccEmailNikhil"];
 
                     string emailSubject = string.Empty;
                     string emailBody = string.Empty;
-                    Email email = new Email();
-
+                    Email email = new Email();*/
                     List<SendMailModel> detailsList = WebAPIHelper.CallApi<List<SendMailModel>>(HttpMethods.Post, "SendMailDetails", "Truck", model);
+
+                    string eCallupUrl = ConfigurationManager.AppSettings["EXT_CallUp_StatusUpdateURL"];
+                    string entryDeviceId = ConfigurationManager.AppSettings["CheckInDeviceId"];
+                    string exitDeviceId = ConfigurationManager.AppSettings["CheckOutDeviceId"];
+
                     if (Command == "checkout")
                     {
+
                         foreach (var item in detailsList)
                         {
-                            emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckOut, item.TruckNo, item.CompanyShortName, item.ActualDepartureDate.ToString("dd-MMM-yyyy hh:mm::ss"));
+                            /*emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckOut, item.TruckNo, item.CompanyShortName, item.ActualDepartureDate.ToString("dd-MMM-yyyy hh:mm::ss"));
                             emailBody = UpdatedText(Model.CommonEnum.EmailBody.CheckOut, item.TruckNo, item.CompanyShortName, item.ActualDepartureDate.ToString("dd-MMM-yyyy hh:mm::ss"));
-                            var result=email.SendMail(item.EmailId, emailSubject, emailBody,ccEmail);
+                            var result = email.SendMail(item.EmailId, emailSubject, emailBody, ccEmail);*/
+
+                            var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, new ECallupTruckStatusUpdateReqModel()
+                            {
+                                PlateNumber = item.TruckNo,
+                                DeviceId = exitDeviceId
+                            });
+
+                            if (statusCode != System.Net.HttpStatusCode.OK || !extResp.Success)
+                            {
+                                FileLogger.Log(statusCode + " : " + extResp.Message);
+                            }
+
                         }
 
 
@@ -305,11 +325,24 @@ namespace WEB.Controllers
                     }
                     else if (Command == "checkin")
                     {
+
                         foreach (var item in detailsList)
                         {
-                            emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
+                           /* emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
                             emailBody = UpdatedText(Model.CommonEnum.EmailBody.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
-                            var result = email.SendMail(item.EmailId, emailSubject, emailBody,ccEmail);
+                            var result = email.SendMail(item.EmailId, emailSubject, emailBody, ccEmail);
+*/
+                            var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, new ECallupTruckStatusUpdateReqModel()
+                            {
+                                PlateNumber = item.TruckNo,
+                                DeviceId = entryDeviceId
+                            });
+
+                            if (statusCode != System.Net.HttpStatusCode.OK || !extResp.Success)
+                            {
+                                FileLogger.Log(statusCode + " : " + extResp.Message);
+                            }
+
                         }
 
 
@@ -340,6 +373,8 @@ namespace WEB.Controllers
             }
             catch (Exception ex)
             {
+                FileLogger.LogException(ex);
+
                 TempData["msg"] = "Something went wrong.";
                 TempData["alertTitle"] = "Error";
                 TempData["type"] = "error";
@@ -539,7 +574,7 @@ namespace WEB.Controllers
                 int OrganizationID = -1;
                 UserDetailModel userdetail = (UserDetailModel)Session["UserDetails"];
 
-                List<TruckDetails> list = WebAPIHelper.CallApi<List<TruckDetails>>(HttpMethods.Get, "GetTruckCheckedOutList", "Truck", null, OrganizationID, userdetail.UDID, userdetail.RoleId);
+                List<TruckDetails> list = WebAPIHelper.CallApi<List<TruckDetails>>(HttpMethods.Get, "GetFullDumpCheckoutList", "Truck", null, OrganizationID, userdetail.UDID, userdetail.RoleId);
                 ViewBag.TruckList = list;
 
                 if (list.Count > 0)
@@ -586,9 +621,10 @@ namespace WEB.Controllers
 
         public ActionResult ViewExpectedTrucksEXT()
         {
-
             List<ViewTrucksEXT> lst = WebAPIHelper.CallApi<List<ViewTrucksEXT>>(HttpMethods.Get, "ViewTruckExtList", "Truck");
             return View("ViewTrucksEXT", lst);
         }
+
+
     }
 }

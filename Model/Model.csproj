@@ -63,6 +63,8 @@
     <Compile Include="Models\Account\ValididateUser_OnePortal.cs" />
     <Compile Include="Models\Admin\OrganizationModel.cs" />
     <Compile Include="Models\Country\M_CountryModel.cs" />
+    <Compile Include="Models\ECallUp\Request\ECallupTruckStatusUpdateReqModel.cs" />
+    <Compile Include="Models\ECallUp\Response\ECallUpBaseRespModel.cs" />
     <Compile Include="Models\Ext\EcMainModel.cs" />
     <Compile Include="Models\Ext\Request\ExtAPIRequestModel.cs" />
     <Compile Include="Models\Ext\Response\ExtAPIRespModel.cs" />
@@ -111,8 +113,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\ECallUp\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
