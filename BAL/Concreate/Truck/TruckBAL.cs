@@ -87,5 +87,9 @@ namespace BAL.Concreate
         {
             return _iTruckDal.ViewTruckExtListDAL();
         }
+        public List<TruckDetails> GetFullDumpCheckoutListBAL()
+        {
+            return _iTruckDal.GetFullDumpCheckoutListDAL();
+        }
     }
 }

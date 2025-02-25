@@ -128,5 +128,10 @@ namespace DAL.Concreate
             var result = entities.TruckDetailsAPI_List_G().ToList();
             return Mapping<List<ViewTrucksEXT>>(result);
         }
+        public List<TruckDetails> GetFullDumpCheckoutListDAL()
+        {
+            var result = entities.TruckCheckedOutList_G(-1, -1, -1).ToList();
+            return Mapping<List<TruckDetails>>(result);
+        }
     }
 }
