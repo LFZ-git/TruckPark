@@ -303,16 +303,19 @@ namespace WEB.Controllers
                             /*emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckOut, item.TruckNo, item.CompanyShortName, item.ActualDepartureDate.ToString("dd-MMM-yyyy hh:mm::ss"));
                             emailBody = UpdatedText(Model.CommonEnum.EmailBody.CheckOut, item.TruckNo, item.CompanyShortName, item.ActualDepartureDate.ToString("dd-MMM-yyyy hh:mm::ss"));
                             var result = email.SendMail(item.EmailId, emailSubject, emailBody, ccEmail);*/
-
-                            var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, new ECallupTruckStatusUpdateReqModel()
+                            if (item.GUID != null && item.GUID.Length > 0)
                             {
-                                PlateNumber = item.TruckNo,
-                                DeviceId = exitDeviceId
-                            });
+                                var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, new ECallupTruckStatusUpdateReqModel()
+                                {
+                                    PlateNumber = item.TruckNo,
+                                    DeviceId = exitDeviceId
+                                });
 
-                            if (statusCode != System.Net.HttpStatusCode.OK || !extResp.Success)
-                            {
-                                FileLogger.Log(statusCode + " : " + extResp.Message);
+                                if (statusCode != System.Net.HttpStatusCode.OK || !extResp.Success)
+                                {
+                                    FileLogger.Log(statusCode + " : " + extResp.Message);
+                                }
+
                             }
 
                         }
@@ -328,19 +331,22 @@ namespace WEB.Controllers
 
                         foreach (var item in detailsList)
                         {
-                           /* emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
-                            emailBody = UpdatedText(Model.CommonEnum.EmailBody.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
-                            var result = email.SendMail(item.EmailId, emailSubject, emailBody, ccEmail);
-*/
-                            var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, new ECallupTruckStatusUpdateReqModel()
+                            /* emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
+                             emailBody = UpdatedText(Model.CommonEnum.EmailBody.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
+                             var result = email.SendMail(item.EmailId, emailSubject, emailBody, ccEmail);
+ */
+                            if (item.GUID != null && item.GUID.Length > 0)
                             {
-                                PlateNumber = item.TruckNo,
-                                DeviceId = entryDeviceId
-                            });
+                                var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, new ECallupTruckStatusUpdateReqModel()
+                                {
+                                    PlateNumber = item.TruckNo,
+                                    DeviceId = entryDeviceId
+                                });
 
-                            if (statusCode != System.Net.HttpStatusCode.OK || !extResp.Success)
-                            {
-                                FileLogger.Log(statusCode + " : " + extResp.Message);
+                                if (statusCode != System.Net.HttpStatusCode.OK || !extResp.Success)
+                                {
+                                    FileLogger.Log(statusCode + " : " + extResp.Message);
+                                }
                             }
 
                         }
@@ -380,6 +386,7 @@ namespace WEB.Controllers
                 TempData["type"] = "error";
                 return RedirectToAction("TruckList");
             }
+
         }
 
         [HttpGet]
