@@ -85,7 +85,7 @@ namespace WEB.Controllers
 
                     //----------------Invoice orion genetartion starts CALL METHOD
 
-                    //model1 = CallAPIData(model1.CustomerCode, model1.InvoiceAmount, model1.InvoiceReference);
+                    model1 = CallAPIData(model1.CustomerCode, model1.InvoiceAmount, model1.InvoiceReference);
                     //----------------Invoice orion genetartion  CALL METHOD ENDS
                 }
                 TempData["msg"] = "Invoice Generated Successfully.";
@@ -106,43 +106,43 @@ namespace WEB.Controllers
 
 
         //----------------Invoice orion genetartion starts
-        //public InvoiceDetailsAPIModel CallAPIData(string CustomerCode, string InvoiceAmount, string InvoiceReference)
-        //{
-        //    InvoiceDetailsAPIModel model = new InvoiceDetailsAPIModel();
-        //    try
-        //    {
+        public InvoiceDetailsAPIModel CallAPIData(string CustomerCode, string InvoiceAmount, string InvoiceReference)
+        {
+            InvoiceDetailsAPIModel model = new InvoiceDetailsAPIModel();
+            try
+            {
 
 
 
-        //        var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://197.149.93.70:10053/LFTZ_APIS/orderDetailsv2.php?apiKey=MTgzOTMyVFVFU0RBWSAg&companyID=LFTZ");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://197.149.93.70:10053/LFTZ_APIS/orderDetailsv2.php?apiKey=MTgzOTMyVFVFU0RBWSAg&companyID=LFTZ");
 
-        //        httpWebRequest.Method = "POST";
+                httpWebRequest.Method = "POST";
 
-        //        httpWebRequest.Headers.Add("apikey:MTgzOTMyVFVFU0RBWSAg");
-        //        httpWebRequest.Headers.Add("compid:LFTZ");
-        //        httpWebRequest.ContentType = "application/json";
-        //        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-        //        {
-        //            string param = "{" + "\"CustomerCode\":\"" + CustomerCode + "\"," + "\"InvoiceAmount\":\"" + InvoiceAmount + "\"," + "\"InvoiceReference\":\"" + InvoiceReference + "\"}";
-        //            dynamic json = JsonConvert.DeserializeObject(param);
-        //            streamWriter.Write(json);
-        //            streamWriter.Flush();
-        //            streamWriter.Close();
-        //            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        //            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-        //            {
-        //                var result = streamReader.ReadToEnd();
-        //            }
-        //        }
-        //        return model;
-        //    }
-        //    catch (Exception ex)
-        //    {
+                httpWebRequest.Headers.Add("apikey:MTgzOTMyVFVFU0RBWSAg");
+                httpWebRequest.Headers.Add("compid:LFTZ");
+                httpWebRequest.ContentType = "application/json";
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string param = "{" + "\"CustomerCode\":\"" + CustomerCode + "\"," + "\"InvoiceAmount\":\"" + InvoiceAmount + "\"," + "\"InvoiceReference\":\"" + InvoiceReference + "\"}";
+                    dynamic json = JsonConvert.DeserializeObject(param);
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                    }
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
 
-        //    }
-        //    return model;
+            }
+            return model;
 
-        //}
+        }
 
         //----------------Invoice orion genetartion ENDs
         public string GenerateInvoicePdf(int invoiceId)
