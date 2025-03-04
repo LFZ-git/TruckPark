@@ -106,5 +106,10 @@ namespace API.Controllers
         {
             return Ok(_iTruckBal.ViewTruckExtListBAL());
         }
+        [HttpGet]
+        public IHttpActionResult GetFullDumpCheckoutList()
+        {
+            return Ok(_iTruckBal.GetFullDumpCheckoutListBAL());
+        }
     }
 }

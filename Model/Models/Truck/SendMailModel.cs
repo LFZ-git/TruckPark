@@ -13,5 +13,6 @@ namespace Model.Models
         public string CompanyShortName { get; set; }
         public DateTime ActualArrivalDate { get; set; }
         public DateTime ActualDepartureDate { get; set; }
+        public string GUID { get; set; }
     }
 }

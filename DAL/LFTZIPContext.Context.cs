@@ -203,15 +203,6 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationEntToEnt_G_Result>("OrganizationEntToEnt_G", uDIDParameter);
         }
     
-        public virtual ObjectResult<OrganizationMailId_G_Result> OrganizationMailId_G(string truckDetailsIdList)
-        {
-            var truckDetailsIdListParameter = truckDetailsIdList != null ?
-                new ObjectParameter("TruckDetailsIdList", truckDetailsIdList) :
-                new ObjectParameter("TruckDetailsIdList", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationMailId_G_Result>("OrganizationMailId_G", truckDetailsIdListParameter);
-        }
-    
         public virtual int ProfomaInvoice_U(Nullable<int> invoiceId, string path)
         {
             var invoiceIdParameter = invoiceId.HasValue ?
@@ -909,6 +900,15 @@ namespace DAL
                 new ObjectParameter("OrganizationId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TruckCheckedOutList_G_Result>("TruckCheckedOutList_G", roleIdParameter, uDIDParameter, organizationIdParameter);
+        }
+    
+        public virtual ObjectResult<OrganizationMailId_G_Result> OrganizationMailId_G(string truckDetailsIdList)
+        {
+            var truckDetailsIdListParameter = truckDetailsIdList != null ?
+                new ObjectParameter("TruckDetailsIdList", truckDetailsIdList) :
+                new ObjectParameter("TruckDetailsIdList", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationMailId_G_Result>("OrganizationMailId_G", truckDetailsIdListParameter);
         }
     }
 }

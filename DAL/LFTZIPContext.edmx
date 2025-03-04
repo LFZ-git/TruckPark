@@ -1465,9 +1465,6 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <FunctionImport Name="OrganizationEntToEnt_G" ReturnType="Collection(LFZ_TruckParkModel.OrganizationEntToEnt_G_Result)">
           <Parameter Name="UDID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="OrganizationMailId_G" ReturnType="Collection(LFZ_TruckParkModel.OrganizationMailId_G_Result)">
-          <Parameter Name="TruckDetailsIdList" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="ProfomaInvoice_U">
             <Parameter Name="InvoiceId" Mode="In" Type="Int32" />
             <Parameter Name="path" Mode="In" Type="String" />
@@ -1678,6 +1675,9 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
             <Parameter Name="UDID" Mode="In" Type="Int32" />
             <Parameter Name="OrganizationId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="OrganizationMailId_G" ReturnType="Collection(LFZ_TruckParkModel.OrganizationMailId_G_Result)">
+            <Parameter Name="TruckDetailsIdList" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="BillableTrucks_G_Result">
           <Property Type="Int64" Name="TruckDetailsId" Nullable="false" />
@@ -1782,13 +1782,6 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
           <Property Type="Int16" Name="OrganizationTypeId" Nullable="false" />
           <Property Type="String" Name="OrganizationType" Nullable="false" MaxLength="1" />
-        </ComplexType>
-        <ComplexType Name="OrganizationMailId_G_Result">
-          <Property Type="String" Name="EmailId" Nullable="true" MaxLength="1000" />
-          <Property Type="String" Name="TruckNo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="CompanyShortName" Nullable="true" MaxLength="500" />
-          <Property Type="DateTime" Name="ActualArrivalDate" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="ActualDepartureDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="ProformaInvoice_G_Result">
           <Property Type="Int64" Name="ProformaInvoiceId" Nullable="false" />
@@ -2198,6 +2191,14 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <Property Type="String" Name="TruckCapacity" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="OwnedByOrganization" Nullable="true" MaxLength="500" />
           <Property Type="Boolean" Name="IsBilled" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="OrganizationMailId_G_Result">
+          <Property Type="String" Name="EmailId" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="TruckNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CompanyShortName" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="ActualArrivalDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ActualDepartureDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="GUID" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2693,17 +2694,6 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="OrganizationTypeId" ColumnName="OrganizationTypeId" />
                 <ScalarProperty Name="OrganizationType" ColumnName="OrganizationType" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="OrganizationMailId_G" FunctionName="LFZ_TruckParkModel.Store.OrganizationMailId_G">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LFZ_TruckParkModel.OrganizationMailId_G_Result">
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="TruckNo" ColumnName="TruckNo" />
-                <ScalarProperty Name="CompanyShortName" ColumnName="CompanyShortName" />
-                <ScalarProperty Name="ActualArrivalDate" ColumnName="ActualArrivalDate" />
-                <ScalarProperty Name="ActualDepartureDate" ColumnName="ActualDepartureDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3226,6 +3216,18 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
                 <ScalarProperty Name="TruckCapacity" ColumnName="TruckCapacity" />
                 <ScalarProperty Name="OwnedByOrganization" ColumnName="OwnedByOrganization" />
                 <ScalarProperty Name="IsBilled" ColumnName="IsBilled" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrganizationMailId_G" FunctionName="LFZ_TruckParkModel.Store.OrganizationMailId_G">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LFZ_TruckParkModel.OrganizationMailId_G_Result">
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="TruckNo" ColumnName="TruckNo" />
+                <ScalarProperty Name="CompanyShortName" ColumnName="CompanyShortName" />
+                <ScalarProperty Name="ActualArrivalDate" ColumnName="ActualArrivalDate" />
+                <ScalarProperty Name="ActualDepartureDate" ColumnName="ActualDepartureDate" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

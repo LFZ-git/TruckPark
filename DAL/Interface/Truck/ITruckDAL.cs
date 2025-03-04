@@ -36,5 +36,6 @@ namespace DAL.Interface
 
         List<TruckDetails> GetTruckCalledOutList(int? RoleId, int? UserId, int? Id);
         List<ViewTrucksEXT> ViewTruckExtListDAL();
+        List<TruckDetails> GetFullDumpCheckoutListDAL();
     }
 }

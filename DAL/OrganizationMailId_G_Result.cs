@@ -18,5 +18,6 @@ namespace DAL
         public string CompanyShortName { get; set; }
         public Nullable<System.DateTime> ActualArrivalDate { get; set; }
         public Nullable<System.DateTime> ActualDepartureDate { get; set; }
+        public string GUID { get; set; }
     }
 }
