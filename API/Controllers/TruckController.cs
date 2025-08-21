@@ -111,5 +111,13 @@ namespace API.Controllers
         {
             return Ok(_iTruckBal.GetFullDumpCheckoutListBAL());
         }
+
+        #region
+        [HttpPost]
+        public IHttpActionResult SaveAPISentLog(ResponseInfoAPI model)
+        {
+            return Ok(_iTruckBal.SaveAPISentLog(model));
+        }
+        #endregion
     }
 }

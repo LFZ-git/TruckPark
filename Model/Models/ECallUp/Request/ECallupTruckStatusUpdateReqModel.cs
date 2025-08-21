@@ -11,7 +11,8 @@ namespace Model.Models.ECallUp.Request
     {
         [JsonProperty("plate_number")]
         public string PlateNumber { get; set; }
-        [JsonProperty("device_id")]
-        public string DeviceId { get; set; }
+    
+        [JsonProperty("status")]
+        public string Status { get; set; }  
     }
 }

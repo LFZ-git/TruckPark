@@ -91,5 +91,12 @@ namespace BAL.Concreate
         {
             return _iTruckDal.GetFullDumpCheckoutListDAL();
         }
+
+        #region API
+        public ResponseInfo SaveAPISentLog(ResponseInfoAPI model)
+        {
+            return _iTruckDal.SaveAPISentLog(model);
+        }
+        #endregion
     }
 }

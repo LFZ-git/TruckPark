@@ -133,5 +133,14 @@ namespace DAL.Concreate
             var result = entities.TruckCheckedOutList_G(-1, -1, -1).ToList();
             return Mapping<List<TruckDetails>>(result);
         }
+
+
+        #region API
+        public ResponseInfo SaveAPISentLog(ResponseInfoAPI model)
+        {
+            entities.API_SentLog(model.PayLoad, model.SourceIP);
+            return new ResponseInfo() { IsSuccess = true };
+        }
+        #endregion
     }
 }

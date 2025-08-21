@@ -15,6 +15,7 @@ using ClosedXML.Excel;
 using System.IO;
 using Model.Models.ECallUp.Request;
 using Model.Models.ECallUp.Response;
+using Newtonsoft.Json;
 
 namespace WEB.Controllers
 {
@@ -284,32 +285,42 @@ namespace WEB.Controllers
 
                 if (response.IsSuccess)
                 {
-                    /*string ccEmail = ConfigurationManager.AppSettings["ccEmailNikhil"];
-
                     string emailSubject = string.Empty;
                     string emailBody = string.Empty;
-                    Email email = new Email();*/
+                    Email email = new Email();
+
                     List<SendMailModel> detailsList = WebAPIHelper.CallApi<List<SendMailModel>>(HttpMethods.Post, "SendMailDetails", "Truck", model);
 
                     string eCallupUrl = ConfigurationManager.AppSettings["EXT_CallUp_StatusUpdateURL"];
-                    string entryDeviceId = ConfigurationManager.AppSettings["CheckInDeviceId"];
-                    string exitDeviceId = ConfigurationManager.AppSettings["CheckOutDeviceId"];
-
+                   
                     if (Command == "checkout")
                     {
 
                         foreach (var item in detailsList)
                         {
-                            /*emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckOut, item.TruckNo, item.CompanyShortName, item.ActualDepartureDate.ToString("dd-MMM-yyyy hh:mm::ss"));
+                            emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckOut, item.TruckNo, item.CompanyShortName, item.ActualDepartureDate.ToString("dd-MMM-yyyy hh:mm::ss"));
                             emailBody = UpdatedText(Model.CommonEnum.EmailBody.CheckOut, item.TruckNo, item.CompanyShortName, item.ActualDepartureDate.ToString("dd-MMM-yyyy hh:mm::ss"));
-                            var result = email.SendMail(item.EmailId, emailSubject, emailBody, ccEmail);*/
+                            var result = email.SendMail(item.EmailId, emailSubject, emailBody);
+
                             if (item.GUID != null && item.GUID.Length > 0)
                             {
-                                var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, new ECallupTruckStatusUpdateReqModel()
+                                var eUpdateReqModel = new ECallupTruckStatusUpdateReqModel()
                                 {
                                     PlateNumber = item.TruckNo,
-                                    DeviceId = exitDeviceId
-                                });
+                                    Status = "left_terminal"
+                                };
+
+                                ResponseInfoAPI saveLog = new ResponseInfoAPI()
+                                {
+                                    SourceIP = eCallupUrl,
+                                    PayLoad = JsonConvert.SerializeObject(eUpdateReqModel)
+                                };
+                                FileLogger.Log("check_Out : " + saveLog.PayLoad);
+
+                                _ = WebAPIHelper.CallApi<ResponseInfo>(HttpMethods.Post, "SaveAPISentLog", "Truck", obj: saveLog);
+
+                                var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, eUpdateReqModel);
+
 
                                 if (statusCode != System.Net.HttpStatusCode.OK || !extResp.Success)
                                 {
@@ -331,17 +342,27 @@ namespace WEB.Controllers
 
                         foreach (var item in detailsList)
                         {
-                            /* emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
-                             emailBody = UpdatedText(Model.CommonEnum.EmailBody.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
-                             var result = email.SendMail(item.EmailId, emailSubject, emailBody, ccEmail);
- */
+                            emailSubject = UpdatedText(Model.CommonEnum.EmailSubject.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
+                            emailBody = UpdatedText(Model.CommonEnum.EmailBody.CheckIn, item.TruckNo, item.CompanyShortName, item.ActualArrivalDate.ToString("dd-MMM-yyyy hh:mm::ss"));
+                            var result = email.SendMail(item.EmailId, emailSubject, emailBody);
+
                             if (item.GUID != null && item.GUID.Length > 0)
                             {
-                                var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, new ECallupTruckStatusUpdateReqModel()
+                                ECallupTruckStatusUpdateReqModel eUpdateReqModel = new ECallupTruckStatusUpdateReqModel()
                                 {
                                     PlateNumber = item.TruckNo,
-                                    DeviceId = entryDeviceId
-                                });
+                                    Status = "in_terminal"
+                                };
+
+                                ResponseInfoAPI saveLog = new ResponseInfoAPI() 
+                                {
+                                    SourceIP = eCallupUrl,
+                                    PayLoad = JsonConvert.SerializeObject(eUpdateReqModel)
+                                };
+                                FileLogger.Log("check_Out : " + saveLog.PayLoad);
+                                _ = WebAPIHelper.CallApi<ResponseInfo>(HttpMethods.Post, "SaveAPISentLog", "Truck", obj: saveLog);
+
+                                var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, eUpdateReqModel);
 
                                 if (statusCode != System.Net.HttpStatusCode.OK || !extResp.Success)
                                 {

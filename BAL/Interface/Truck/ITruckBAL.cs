@@ -36,8 +36,11 @@ namespace BAL.Interface
 
         List<TruckDetails> GetTruckCalledOutList(int? RoleId, int? UserId, int? Id);
         List<ViewTrucksEXT> ViewTruckExtListBAL();
-
         List<TruckDetails> GetFullDumpCheckoutListBAL();
+
+        #region API
+        ResponseInfo SaveAPISentLog(ResponseInfoAPI model);
+        #endregion
 
     }
 }

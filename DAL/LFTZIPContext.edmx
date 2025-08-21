@@ -667,6 +667,9 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="Truck_API_G" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TruckDetailsId" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="Truck_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TruckId" Type="int" Mode="In" />
           <Parameter Name="TruckNo" Type="varchar" Mode="In" />
@@ -1676,7 +1679,10 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
             <Parameter Name="OrganizationId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="OrganizationMailId_G" ReturnType="Collection(LFZ_TruckParkModel.OrganizationMailId_G_Result)">
-            <Parameter Name="TruckDetailsIdList" Mode="In" Type="String" />
+          <Parameter Name="TruckDetailsIdList" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Truck_API_G" ReturnType="Collection(LFZ_TruckParkModel.Truck_API_G_Result)">
+            <Parameter Name="TruckDetailsId" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="BillableTrucks_G_Result">
@@ -2199,6 +2205,19 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
           <Property Type="DateTime" Name="ActualArrivalDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="ActualDepartureDate" Nullable="true" Precision="23" />
           <Property Type="String" Name="GUID" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Truck_API_G_Result">
+          <Property Type="String" Name="GUID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TruckGUID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CalledByOrgGUID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TruckCapacity" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TransferType" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="MaterialType" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="TransportName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TransportNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DriverName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DriverNo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ExpectedArrivalDate" Nullable="true" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3228,6 +3247,23 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.TruckDetailsB4Cleanup' does not 
                 <ScalarProperty Name="ActualArrivalDate" ColumnName="ActualArrivalDate" />
                 <ScalarProperty Name="ActualDepartureDate" ColumnName="ActualDepartureDate" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Truck_API_G" FunctionName="LFZ_TruckParkModel.Store.Truck_API_G">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LFZ_TruckParkModel.Truck_API_G_Result">
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="TruckGUID" ColumnName="TruckGUID" />
+                <ScalarProperty Name="CalledByOrgGUID" ColumnName="CalledByOrgGUID" />
+                <ScalarProperty Name="TruckCapacity" ColumnName="TruckCapacity" />
+                <ScalarProperty Name="TransferType" ColumnName="TransferType" />
+                <ScalarProperty Name="MaterialType" ColumnName="MaterialType" />
+                <ScalarProperty Name="TransportName" ColumnName="TransportName" />
+                <ScalarProperty Name="TransportNo" ColumnName="TransportNo" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="DriverNo" ColumnName="DriverNo" />
+                <ScalarProperty Name="ExpectedArrivalDate" ColumnName="ExpectedArrivalDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

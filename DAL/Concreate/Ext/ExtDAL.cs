@@ -66,22 +66,7 @@ namespace DAL.Concreate.Ext
 
         public TruckDetailAPI GetTruckDetails(long truckDetailId)
         {
-            var result = (from t in entities.TruckDetails where t.TruckDetailsId == truckDetailId 
-                          select new {
-                              TruckDetailsId = t.TruckDetailsId
-                            , TruckGUID = t.TruckGUID
-                            , GUID  = t.GUID
-                            , CalledByOrgGUID = t.CalledByOrgGUID
-                            , TruckCapacity = t.TruckCapacityId
-                            , TransferType = t.TransferType
-                            , MaterialType = t.MaterialType
-                            , TransportName = t.TransportName
-                            , TransportNo = t.TransportNo
-                            , DriverName = t.DriverName
-                            , DriverNo = t.DriverNo
-                            , ExpectedArrivalDate = t.ExpectedArrivalDate
-                            
-                          }).FirstOrDefault();
+            var result = entities.Truck_API_G(truckDetailId).FirstOrDefault();
 
             return Mapping<TruckDetailAPI>(result);
         }

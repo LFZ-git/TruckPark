@@ -910,5 +910,14 @@ namespace DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationMailId_G_Result>("OrganizationMailId_G", truckDetailsIdListParameter);
         }
+    
+        public virtual ObjectResult<Truck_API_G_Result> Truck_API_G(Nullable<long> truckDetailsId)
+        {
+            var truckDetailsIdParameter = truckDetailsId.HasValue ?
+                new ObjectParameter("TruckDetailsId", truckDetailsId) :
+                new ObjectParameter("TruckDetailsId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Truck_API_G_Result>("Truck_API_G", truckDetailsIdParameter);
+        }
     }
 }

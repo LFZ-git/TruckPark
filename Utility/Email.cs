@@ -133,7 +133,7 @@ namespace Utility
                 smtp.EnableSsl = true;
 
                 
-               // smtp.Send(mail);
+                smtp.Send(mail);
 
                 f = true;
 

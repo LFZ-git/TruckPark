@@ -263,6 +263,9 @@
     <Compile Include="TruckList_G_Result.cs">
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Truck_API_G_Result.cs">
+      <DependentUpon>LFTZIPContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Truck_G_Result.cs">
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
