@@ -1,6 +1,3 @@
-# Ignore config as it is different for each environment
-/Web.config
-
 # Ignore Uploads folder as it could be different for each environment
 /Uploads/
 
