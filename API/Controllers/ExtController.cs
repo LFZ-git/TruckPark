@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using Utility;
 
 namespace API.Controllers
 {
@@ -26,10 +27,16 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult EcallUpExt([FromBody] EcMainModel model)
+        public IHttpActionResult EcallUpExt()
         {
             try
             {
+                string rawJson = Request.Content.ReadAsStringAsync().Result;
+
+                FileLogger.Log(rawJson);
+
+                EcMainModel model = JsonConvert.DeserializeObject<EcMainModel>(rawJson);
+
                 IEnumerable<string> apiKeys;
 
                 bool found = Request.Headers.TryGetValues("API_KEY", out apiKeys);
@@ -57,12 +64,26 @@ namespace API.Controllers
 
                 _iExtBAL.ReceivedLog(reLog);
 
-                var eventName = Request.Headers.GetValues("EVENT_TYPE").FirstOrDefault();
+                IEnumerable<string> eventTypes;
+
+                found = Request.Headers.TryGetValues("EVENT_TYPE", out eventTypes);
+
+                string eventName = found ? eventTypes.FirstOrDefault() : null;
+
+                if (eventName == null)
+                {
+                    return Content(System.Net.HttpStatusCode.BadRequest, new ExtAPIBaseRespModel(false, "Invalid EVENT_TYPE Header"));
+                }
 
                 if (eventName == "ADD_TRUCK")
                 {
                     model.StatusesHistory = JsonConvert.SerializeObject(model.Statuses);
                     var saveData = _iExtBAL.AddTruckParkData(model);
+
+                    if(saveData == null || !saveData.IsSuccess)
+                    {
+                        return Content(System.Net.HttpStatusCode.BadRequest, new ExtAPIBaseRespModel(false, saveData.Msg));
+                    }
 
                     TruckDetailAPI truckDetails = _iExtBAL.GetTruckDetails(saveData.LongID.Value);
 
@@ -73,7 +94,9 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return Content(System.Net.HttpStatusCode.InternalServerError, new ExtAPIBaseRespModel(false, ex.ToString()));
+                FileLogger.LogException(ex);
+
+                return Content(System.Net.HttpStatusCode.InternalServerError, new ExtAPIBaseRespModel(false, ExceptionUtility.ToJson(ex)));
             }
         }
 

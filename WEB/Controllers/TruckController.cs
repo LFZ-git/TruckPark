@@ -315,7 +315,7 @@ namespace WEB.Controllers
                                     SourceIP = eCallupUrl,
                                     PayLoad = JsonConvert.SerializeObject(eUpdateReqModel)
                                 };
-                                FileLogger.Log("check_Out : " + saveLog.PayLoad);
+                                FileLogger.Log("Check Out: " + saveLog.PayLoad);
 
                                 _ = WebAPIHelper.CallApi<ResponseInfo>(HttpMethods.Post, "SaveAPISentLog", "Truck", obj: saveLog);
 
@@ -359,7 +359,7 @@ namespace WEB.Controllers
                                     SourceIP = eCallupUrl,
                                     PayLoad = JsonConvert.SerializeObject(eUpdateReqModel)
                                 };
-                                FileLogger.Log("check_Out : " + saveLog.PayLoad);
+                                FileLogger.Log("Check In: " + saveLog.PayLoad);
                                 _ = WebAPIHelper.CallApi<ResponseInfo>(HttpMethods.Post, "SaveAPISentLog", "Truck", obj: saveLog);
 
                                 var (statusCode, extResp) = ExtAPIHelper.Post<ECallupTruckStatusUpdateReqModel, ECallUpBaseRespModel>(eCallupUrl, eUpdateReqModel);

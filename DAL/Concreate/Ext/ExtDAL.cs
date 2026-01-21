@@ -40,9 +40,22 @@ namespace DAL.Concreate.Ext
             ObjectParameter outMssg = new ObjectParameter("OutMssg", typeof(string));
             ObjectParameter outId = new ObjectParameter("OutId", typeof(long));
 
+            if(model.Driver == null)
+            {
+                model.Driver = new EcDriver()
+                {
+                    Phone = "",
+                    FirstName = "",
+                    LastName = ""
+                };
+            }
+
+
             model.EstimatedArrivalDate = model.EstimatedArrivalDate.Value.Add(model.EstimatedArrivalTime.TimeOfDay);
 
-            IsTruckExists(model);
+            var resp = IsTruckExists(model);
+
+            if (!resp.IsSuccess) return resp;
 
             entities.Truck_CRUD_API(model.Id, model.Truck.Id, model.Truck.PlateNumber, model.Company.Id, model.Truck.Capacity.Id, model.EstimatedArrivalDate
                                     , null, model.Category.Id, model.User.FullName, model.User.Phone, model.Driver.FirstName + " " + model.Driver.LastName
@@ -61,7 +74,9 @@ namespace DAL.Concreate.Ext
             ObjectParameter outMssg = new ObjectParameter("OutMssg", typeof(string));
             entities.IsTruckExists(model.Truck.PlateNumber, model.Truck.Id, model.Company.Id, model.Truck.Capacity.Id, model.User.Id, outMssg);
 
-            return new ResponseInfo() { Msg = outMssg.Value.ToString() };
+            string msg = outMssg.Value.ToString();
+
+            return new ResponseInfo() { IsSuccess = msg.Contains("Success"), Msg = msg };
         }
 
         public TruckDetailAPI GetTruckDetails(long truckDetailId)
