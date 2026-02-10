@@ -14,13 +14,13 @@ namespace DAL.Concreate
 {
     public class UsersDAL : BaseClassDAL, IUsersDAL
     {
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
 
         public UserInfo GetUserRole(string userId)
         {
             string role = string.Empty;
             UserInfo user = new UserInfo();
-            using (LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities())
+            using (LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities())
             {
                 dynamic result = (from ud in entities.UserDetails
                                   join rm in entities.Map_UserRole on ud.UDID equals rm.UDID
@@ -44,7 +44,7 @@ namespace DAL.Concreate
         public UserDetailModel GetUserDetails(int id)
         {
             UserDetailModel userDetails;
-            using (LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities())
+            using (LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities())
             {
                 if (id != 1)
                 {
@@ -103,7 +103,7 @@ namespace DAL.Concreate
         public UserDetailModel GetUserDetailsOne(ValididateUser_OnePortal Model)
         {
             UserDetailModel userDetails;
-            using (LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities())
+            using (LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities())
             {
                 if (Model.EmailID != "admin@tolaram.com")
                 {

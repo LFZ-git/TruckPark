@@ -12,7 +12,7 @@ namespace DAL.Concreate
     {
         // IListOfValueDAL _iListOfvalueDAL;
 
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
         public List<ListOfValueModel> GetListOfValue(int id)
         {
             var result = entities.M_LOV_G(id).ToList();

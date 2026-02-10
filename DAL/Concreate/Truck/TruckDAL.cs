@@ -12,7 +12,7 @@ namespace DAL.Concreate
 {
     public class TruckDAL: BaseClassDAL, ITruckDAL
     {
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
 
         public ResponseInfo AddTruck(AddTruckPark model)
         {

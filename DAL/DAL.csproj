@@ -190,19 +190,7 @@
     <Compile Include="Organization_G_Result.cs">
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProformaInvoice.cs">
-      <DependentUpon>LFTZIPContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProformaInvoiceB4Clean.cs">
-      <DependentUpon>LFTZIPContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProformaInvoiceDet.cs">
-      <DependentUpon>LFTZIPContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="proformaInvoiceDetails_G_Result.cs">
-      <DependentUpon>LFTZIPContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProformaInvoiceDetB4Clean.cs">
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
     <Compile Include="ProformaInvoiceList_G_Result.cs">
@@ -253,9 +241,6 @@
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
     <Compile Include="TruckDetailsAPI_List_G_Result.cs">
-      <DependentUpon>LFTZIPContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TruckDetailsB4Cleanup.cs">
       <DependentUpon>LFTZIPContext.tt</DependentUpon>
     </Compile>
     <Compile Include="TruckDetails_G_Result.cs">

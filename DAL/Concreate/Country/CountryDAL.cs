@@ -13,7 +13,7 @@ namespace DAL.Concreate
         //ICountryDAL _iCountryDAL;
 
         //LFTZ_InvestorPortalEntities entities = new LFTZ_InvestorPortalEntities();
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
 
         public List<M_CountryModel> GetCountry()
         {

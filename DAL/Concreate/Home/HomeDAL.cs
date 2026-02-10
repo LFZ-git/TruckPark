@@ -18,7 +18,7 @@ namespace DAL.Concreate
 {
     public class HomeDAL : BaseClassDAL, IHomeDAL
     {
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
 
         public ResponseInfo CheckLoginDAL(UserDetailModel model)
         {

@@ -11,7 +11,7 @@ namespace DAL.Concreate
 {
     public class RoleDAL: BaseClassDAL, IRoleDAL
     {
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
 
         public List<RoleModel> GetRole()
         {

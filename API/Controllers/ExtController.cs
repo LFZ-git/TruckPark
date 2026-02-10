@@ -80,9 +80,9 @@ namespace API.Controllers
                     model.StatusesHistory = JsonConvert.SerializeObject(model.Statuses);
                     var saveData = _iExtBAL.AddTruckParkData(model);
 
-                    if(saveData == null || !saveData.IsSuccess)
+                    if (saveData == null || !saveData.IsSuccess || saveData.IsUserMapFailed || saveData.IsMaterialTypeMapFailed || saveData.IsTransferTypeMapFailed || saveData.IsTruckCapacityMapFailed)
                     {
-                        return Content(System.Net.HttpStatusCode.BadRequest, new ExtAPIBaseRespModel(false, saveData.Msg));
+                        return Content(System.Net.HttpStatusCode.BadRequest, new ExtAPIBaseRespModel(false, saveData.Msg, saveData.IsUserMapFailed, saveData.IsMaterialTypeMapFailed, saveData.IsTransferTypeMapFailed, saveData.IsTruckCapacityMapFailed));
                     }
 
                     TruckDetailAPI truckDetails = _iExtBAL.GetTruckDetails(saveData.LongID.Value);
@@ -105,6 +105,6 @@ namespace API.Controllers
         {
             return Ok(_iExtBAL.GetDataForCheckoutAPI(Convert.ToInt64(id)));
         }*/
-       
+
     }
 }

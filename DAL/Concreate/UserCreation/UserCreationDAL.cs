@@ -13,7 +13,7 @@ namespace DAL.Concreate.UserCreation
 {
     public class UserCreationDAL : BaseClassDAL,IUserCreationDAL
     {
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
         UserInfo user = new UserInfo();
 
         public ResponseInfo SaveUserDAL(UserCreationModel model)

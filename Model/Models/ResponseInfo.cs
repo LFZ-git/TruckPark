@@ -17,6 +17,11 @@ namespace Model.Models
         public string Msg { get; set; }
 
         public bool IsSuccess { get; set; }
+
+        public bool IsUserMapFailed { get; set; } = false;
+        public bool IsMaterialTypeMapFailed { get; set; } = false;
+        public bool IsTransferTypeMapFailed { get; set; } = false;
+        public bool IsTruckCapacityMapFailed { get; set; } = false;
     }
 
 }

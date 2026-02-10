@@ -12,7 +12,7 @@ namespace DAL.Concreate
 {
     public class MenuDAL : IMenuDAL
     {
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
         public List<Model.Models.Menu.M_Modules> getMenu(string userId)
         {
             int roleId = Convert.ToInt32(userId);

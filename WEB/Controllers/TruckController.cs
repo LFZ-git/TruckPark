@@ -292,7 +292,7 @@ namespace WEB.Controllers
                     List<SendMailModel> detailsList = WebAPIHelper.CallApi<List<SendMailModel>>(HttpMethods.Post, "SendMailDetails", "Truck", model);
 
                     string eCallupUrl = ConfigurationManager.AppSettings["EXT_CallUp_StatusUpdateURL"];
-                   
+
                     if (Command == "checkout")
                     {
 
@@ -354,7 +354,7 @@ namespace WEB.Controllers
                                     Status = "in_terminal"
                                 };
 
-                                ResponseInfoAPI saveLog = new ResponseInfoAPI() 
+                                ResponseInfoAPI saveLog = new ResponseInfoAPI()
                                 {
                                     SourceIP = eCallupUrl,
                                     PayLoad = JsonConvert.SerializeObject(eUpdateReqModel)
@@ -586,7 +586,7 @@ namespace WEB.Controllers
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return RedirectToAction(page);
             }
@@ -627,7 +627,7 @@ namespace WEB.Controllers
                         Response.Buffer = true;
                         Response.Charset = "";
                         Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        Response.AddHeader("content-disposition", "attachment;filename=TruckCheckedOutList_"+DateTime.Now.ToString("dd - MM - yyyy")+".xlsx");
+                        Response.AddHeader("content-disposition", "attachment;filename=TruckCheckedOutList_" + DateTime.Now.ToString("dd - MM - yyyy") + ".xlsx");
                         using (MemoryStream MyMemoryStream = new MemoryStream())
                         {
                             wb.SaveAs(MyMemoryStream);

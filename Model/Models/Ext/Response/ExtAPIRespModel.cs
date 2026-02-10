@@ -20,7 +20,12 @@ namespace Model.Models.Ext.Response
         }
 
         public bool IsSuccess { get; set; }
+        public bool IsUserMapFailed { get; set; } = false;
+        public bool IsMaterialTypeMapFailed { get; set; } = false;
+        public bool IsTransferTypeMapFailed { get; set; } = false;
+        public bool IsTruckCapacityMapFailed { get; set; } = false;
         public string Message { get; set; } = string.Empty;
+
     }
 
     public class ExtAPIBaseRespModel
@@ -33,6 +38,17 @@ namespace Model.Models.Ext.Response
         public ExtAPIBaseRespModel(bool isSuccess, string message)
         {
             Response = new ExtAPIRespModel(isSuccess, message);
+        }
+
+        public ExtAPIBaseRespModel(bool isSuccess, string message, bool isUserMapFailed, bool isMaterialTypeMapFailed, bool isTransferTypeMapFailed, bool isTruckCapacityMapFailed)
+        {
+            Response = new ExtAPIRespModel(isSuccess, message)
+            {
+                IsUserMapFailed = isUserMapFailed,
+                IsMaterialTypeMapFailed = isMaterialTypeMapFailed,
+                IsTransferTypeMapFailed = isTransferTypeMapFailed,
+                IsTruckCapacityMapFailed = isTruckCapacityMapFailed
+            };
         }
 
         public ExtAPIRespModel Response { get; set; }

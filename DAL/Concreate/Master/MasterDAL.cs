@@ -10,7 +10,7 @@ namespace DAL.Concreate
 {
     public class MasterDAL: BaseClassDAL, IMasterDAL
     {
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
 
         public IList<Model.Models.M_TruckCapacity> GetTruckCapacity()
         {

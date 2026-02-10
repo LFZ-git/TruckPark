@@ -13,7 +13,7 @@ namespace DAL.Concreate
 {
     public class InvoiceDAL: BaseClassDAL, IInvoiceDAL
     {
-        LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities();
+        LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities();
 
         public ResponseInfo AddInvoice(AddProformaInvoice model)
         {

@@ -25,7 +25,7 @@ namespace WEB.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("E:\\\\Akshata\\\\New folder\\\\Git Project\\\\LFZ_TruckPark\\\\WEB\\\\Template\\\\Invoice.html")]
+        [global::System.Configuration.DefaultSettingValueAttribute("E:\\\\Akshata\\\\New folder\\\\Git Project\\\\LFZ_TruckPark_New\\\\WEB\\\\Template\\\\Invoice.html")]
         public string InvoiceTemplate {
             get {
                 return ((string)(this["InvoiceTemplate"]));

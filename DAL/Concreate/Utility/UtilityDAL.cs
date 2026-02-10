@@ -12,7 +12,7 @@ namespace DAL.Concreate
     {
         public void LogError(ErrorLogModel logModel)
         {
-            using (LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities())
+            using (LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities())
             {
                 ExceptionLog log = new ExceptionLog();
                 log.ExceptionMsg = logModel.ExceptionMsg;
@@ -25,7 +25,7 @@ namespace DAL.Concreate
 
         public void ActivityLog(ActivityModel activityModel)
         {
-            using (LFZ_TruckParkEntities entities = new LFZ_TruckParkEntities())
+            using (LFZ_TruckPark_NewEntities entities = new LFZ_TruckPark_NewEntities())
             {
                 ActivityLog log = new ActivityLog();
                 log.ModuleId = activityModel.ModuleId;
