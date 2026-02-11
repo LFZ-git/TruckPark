@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="InvoiceTemplate" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">E:\\Akshata\\New folder\\Git Project\\LFZ_TruckPark_New\\WEB\\Template\\Invoice.html</Value>
+      <Value Profile="(Default)">E:\\Akshata\\New folder\\Git Project\\LFZ_TruckPark\\WEB\\Template\\Invoice.html</Value>
     </Setting>
   </Settings>
 </SettingsFile>

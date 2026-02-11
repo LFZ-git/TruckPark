@@ -150,7 +150,7 @@
           <Property Name="GUID" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'LFZ_TruckPark_New.dbo.Map_Ent2Ent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'LFZ_TruckPark.dbo.Map_Ent2Ent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Map_Ent2Ent">
           <Key>
             <PropertyRef Name="GroupEntId" />
@@ -168,7 +168,7 @@ warning 6002: The table/view 'LFZ_TruckPark_New.dbo.Map_Ent2Ent' does not have a
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'LFZ_TruckPark_New.dbo.Map_RoleModule' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'LFZ_TruckPark.dbo.Map_RoleModule' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Map_RoleModule">
           <Key>
             <PropertyRef Name="RoleId" />
@@ -186,7 +186,7 @@ warning 6002: The table/view 'LFZ_TruckPark_New.dbo.Map_RoleModule' does not hav
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'LFZ_TruckPark_New.dbo.Map_UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'LFZ_TruckPark.dbo.Map_UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Map_UserRole">
           <Key>
             <PropertyRef Name="RoleId" />
