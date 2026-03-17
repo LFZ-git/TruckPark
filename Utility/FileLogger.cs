@@ -10,6 +10,40 @@ namespace Utility
 {
     public static class FileLogger
     {
+        public static void LogOrionReq(string companyCode, string reqJson)
+        {
+            try
+            {
+                string logPath = ConfigurationManager.AppSettings["ExtErrorLog"] + companyCode + "_" + DateTime.Now.ToString("dd-MM-yyyy") + "_log.txt";
+                using (StreamWriter sw = File.AppendText(logPath))
+                {
+                    sw.WriteLine("Date: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
+                    sw.WriteLine("Direction: REQUEST");
+                    sw.WriteLine("Company: " + companyCode);
+                    sw.WriteLine("Payload: " + reqJson);
+                    sw.WriteLine();
+                }
+            }
+            catch (Exception) { }
+        }
+
+        public static void LogOrionResp(string companyCode, string respJson)
+        {
+            try
+            {
+                string logPath = ConfigurationManager.AppSettings["ExtErrorLog"] + companyCode + "_" + DateTime.Now.ToString("dd-MM-yyyy") + "_log.txt";
+                using (StreamWriter sw = File.AppendText(logPath))
+                {
+                    sw.WriteLine("Date: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
+                    sw.WriteLine("Direction: RESPONSE");
+                    sw.WriteLine("Company: " + companyCode);
+                    sw.WriteLine("Payload: " + respJson);
+                    sw.WriteLine();
+                }
+            }
+            catch (Exception) { }
+        }
+
         public static void Log(string logText)
         {
             try

@@ -74,8 +74,11 @@
     <Compile Include="Models\Home\DashboardModel.cs" />
     <Compile Include="Models\Invoice\AddProformaInvoice.cs" />
     <Compile Include="Models\Invoice\InvoiceDetailsAPIModel.cs" />
+    <Compile Include="Models\Invoice\OrionReqModel.cs" />
+    <Compile Include="Models\Invoice\OrionRespModel.cs" />
     <Compile Include="Models\Invoice\ProformaInvoice.cs" />
     <Compile Include="Models\Invoice\ProformaInvoiceDetails.cs" />
+    <Compile Include="Models\Invoice\ProformaInvoiceFInalProcessModel.cs" />
     <Compile Include="Models\ListOfValue\ListOfValueModel.cs" />
     <Compile Include="Models\Master\M_TruckCapacity.cs" />
     <Compile Include="Models\Menu\M_Modules.cs" />

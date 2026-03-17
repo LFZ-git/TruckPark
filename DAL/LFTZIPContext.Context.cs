@@ -914,5 +914,26 @@ namespace DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Truck_CRUD_API", gUIDParameter, truckGUIDParameter, truckNoParameter, calledByOrgGUIDParameter, truckCapacityGUIDParameter, expectedArrivalDateParameter, expectedDepatureDateParameter, transferTypeGUIDParameter, transportNameParameter, transportNoParameter, driverNameParameter, driverNoParameter, materialTypeGUIDParameter, uDIDParameter, terminalGUIDParameter, outId, outMssg, outIsSuccess, outIsMaterialTypeMapFailed, outIsTransferTypeMapFailed, outIsTruckCapacityMapFailed, outIsUserMapFailed);
         }
+    
+        public virtual int ProformaInvoice_FinalProcess(string truckIdList, Nullable<int> proformaInvoiceId, Nullable<bool> isSuccess, Nullable<int> updatedById)
+        {
+            var truckIdListParameter = truckIdList != null ?
+                new ObjectParameter("TruckIdList", truckIdList) :
+                new ObjectParameter("TruckIdList", typeof(string));
+    
+            var proformaInvoiceIdParameter = proformaInvoiceId.HasValue ?
+                new ObjectParameter("ProformaInvoiceId", proformaInvoiceId) :
+                new ObjectParameter("ProformaInvoiceId", typeof(int));
+    
+            var isSuccessParameter = isSuccess.HasValue ?
+                new ObjectParameter("IsSuccess", isSuccess) :
+                new ObjectParameter("IsSuccess", typeof(bool));
+    
+            var updatedByIdParameter = updatedById.HasValue ?
+                new ObjectParameter("UpdatedById", updatedById) :
+                new ObjectParameter("UpdatedById", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProformaInvoice_FinalProcess", truckIdListParameter, proformaInvoiceIdParameter, isSuccessParameter, updatedByIdParameter);
+        }
     }
 }

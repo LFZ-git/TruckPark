@@ -21,5 +21,7 @@ namespace BAL.Interface
         ResponseInfo AddInvoicePdf(Model.Models.ProformaInvoice model);
 
         List<Model.Models.ProformaInvoiceTruckDetails> GetInvoiceTruckDetails(int id);
+
+        ResponseInfo ProcessInvoiceFinal(ProformaInvoiceFInalProcessModel model);
     }
 }

@@ -47,5 +47,10 @@ namespace BAL.Concreate
         {
             return _iInvoiceDAL.GetInvoiceTruckDetails(id);
         }
+
+        public ResponseInfo ProcessInvoiceFinal(ProformaInvoiceFInalProcessModel model)
+        {
+            return _iInvoiceDAL.ProcessInvoiceFinal(model);
+        }
     }
 }

@@ -72,5 +72,16 @@ namespace DAL.Concreate
             List<Model.Models.ProformaInvoiceTruckDetails> list = Mapping<List<Model.Models.ProformaInvoiceTruckDetails>>(result);
             return list;
         }
+
+        public ResponseInfo ProcessInvoiceFinal(ProformaInvoiceFInalProcessModel model)
+        {
+            entities.ProformaInvoice_FinalProcess(model.TruckIdList, model.ProformaInvoiceId, model.IsSuccess, model.UpdatedById);
+
+            return new ResponseInfo()
+            {
+                IsSuccess = true,
+                ID = model.ProformaInvoiceId
+            };
+        }
     }
 }

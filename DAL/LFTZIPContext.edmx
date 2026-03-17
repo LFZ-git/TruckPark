@@ -465,6 +465,12 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.Map_UserRole' does not have a pr
           <Parameter Name="TruckIdList" Type="varchar(max)" Mode="In" />
           <Parameter Name="OutParam" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="ProformaInvoice_FinalProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TruckIdList" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ProformaInvoiceId" Type="int" Mode="In" />
+          <Parameter Name="IsSuccess" Type="bit" Mode="In" />
+          <Parameter Name="UpdatedById" Type="int" Mode="In" />
+        </Function>
         <Function Name="ProformaInvoice_G" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="proformainvoiceid" Type="int" Mode="In" />
         </Function>
@@ -1310,6 +1316,12 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.Map_UserRole' does not have a pr
             <Parameter Name="OutIsTransferTypeMapFailed" Mode="InOut" Type="Boolean" />
             <Parameter Name="OutIsTruckCapacityMapFailed" Mode="InOut" Type="Boolean" />
             <Parameter Name="OutIsUserMapFailed" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ProformaInvoice_FinalProcess">
+            <Parameter Name="TruckIdList" Mode="In" Type="String" />
+            <Parameter Name="ProformaInvoiceId" Mode="In" Type="Int32" />
+            <Parameter Name="IsSuccess" Mode="In" Type="Boolean" />
+            <Parameter Name="UpdatedById" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="BillableTrucks_G_Result">
@@ -2784,6 +2796,7 @@ warning 6002: The table/view 'LFZ_TruckPark.dbo.Map_UserRole' does not have a pr
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="IsTruckExists" FunctionName="LFZ_TruckPark_NewModel.Store.IsTruckExists" />
           <FunctionImportMapping FunctionImportName="Truck_CRUD_API" FunctionName="LFZ_TruckPark_NewModel.Store.Truck_CRUD_API" />
+          <FunctionImportMapping FunctionImportName="ProformaInvoice_FinalProcess" FunctionName="LFZ_TruckPark_NewModel.Store.ProformaInvoice_FinalProcess" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

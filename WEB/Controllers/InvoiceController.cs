@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using Utility;
 using WEB.APIHelper;
 using WEB.Helper;
 
@@ -85,19 +86,58 @@ namespace WEB.Controllers
 
                     //----------------Invoice orion genetartion starts CALL METHOD
 
-                    model1 = CallAPIData(model1.CustomerCode, model1.InvoiceAmount, model1.InvoiceReference);
-                    //----------------Invoice orion genetartion  CALL METHOD ENDS
+                    var (isSuccess, message) = SendToOrion(new OrionReqModel()
+                    {
+                        CustomerCode = model1.CustomerCode,
+                        InvoiceAmount = model1.InvoiceAmount,
+                        InvoiceReference = model1.InvoiceReference
+                    });
+
+                    WebAPIHelper.CallApi<ResponseInfo>(HttpMethods.Post, "ProcessInvoiceFinal", "Invoice", new ProformaInvoiceFInalProcessModel()
+                    {
+                        TruckIdList = formCollection["TruckDetailsId"],
+                        ProformaInvoiceId = response.ID.Value,
+                        IsSuccess = isSuccess,
+                        UpdatedById = ((UserDetailModel)Session["UserDetails"]).UDID
+                    });
+
+                    if(isSuccess)
+                    {
+                        TempData["alertTitle"] = "Invoice Generation Successful";
+                        TempData["type"] = "success";
+                    }
+                    else
+                    {
+                        TempData["alertTitle"] = "Failue Generating Invoice";
+                        TempData["type"] = "error";
+                    }
+
+                    TempData["msg"] = message;
                 }
-                TempData["msg"] = "Invoice Generated Successfully.";
-                TempData["alertTitle"] = "Success";
-                TempData["type"] = "success";
+                else
+                {
+                    WebAPIHelper.CallApi<ResponseInfo>(HttpMethods.Post, "ProcessInvoiceFinal", "Invoice", new ProformaInvoiceFInalProcessModel()
+                    {
+                        TruckIdList = formCollection["TruckDetailsId"],
+                        ProformaInvoiceId = response.ID.Value,
+                        IsSuccess = false,
+                        UpdatedById = ((UserDetailModel)Session["UserDetails"]).UDID
+                    });
+
+                    TempData["alertTitle"] = "Failue Generating Invoice";
+                    TempData["type"] = "error";
+                    TempData["msg"] = "Invalid Proforma Invoice ID";
+                }
             }
             catch (Exception ex)
             {
-                TempData["msg"] = "Something went wrong.";
-                TempData["alertTitle"] = "Error";
+                FileLogger.LogException(ex);
+
+                TempData["alertTitle"] = "Failue Generating Invoice";
                 TempData["type"] = "error";
+                TempData["msg"] = ex.Message;
             }
+
             return RedirectToAction("Generate");
         }
 
@@ -106,42 +146,56 @@ namespace WEB.Controllers
 
 
         //----------------Invoice orion genetartion starts
-        public InvoiceDetailsAPIModel CallAPIData(string CustomerCode, string InvoiceAmount, string InvoiceReference)
+        public (bool, string) SendToOrion(OrionReqModel req)
         {
-            InvoiceDetailsAPIModel model = new InvoiceDetailsAPIModel();
             try
             {
+                if (ConfigurationManager.AppSettings["EnableOrionCall"] != "1")
+                {
+                    return (true, "Orion Call skipped as its currently disabled");
+                }
 
+                string url = ConfigurationManager.AppSettings["OrionReqURL"];
+                string apiKey = ConfigurationManager.AppSettings["OrionApiKey"];
+                string compId = ConfigurationManager.AppSettings["OrionCompId"];
 
-
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://197.149.93.70:10053/LFTZ_APIS/orderDetailsv2.php?apiKey=MTgzOTMyVFVFU0RBWSAg&companyID=LFTZ");
-
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
                 httpWebRequest.Method = "POST";
-
-                httpWebRequest.Headers.Add("apikey:MTgzOTMyVFVFU0RBWSAg");
-                httpWebRequest.Headers.Add("compid:LFTZ");
+                httpWebRequest.Headers.Add("apikey:" + apiKey);
+                httpWebRequest.Headers.Add("compid:" + compId);
                 httpWebRequest.ContentType = "application/json";
+
+                string requestBody = JsonConvert.SerializeObject(req);
+
+                FileLogger.LogOrionReq(req.CustomerCode, requestBody);
+
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    string param = "{" + "\"CustomerCode\":\"" + CustomerCode + "\"," + "\"InvoiceAmount\":\"" + InvoiceAmount + "\"," + "\"InvoiceReference\":\"" + InvoiceReference + "\"}";
-                    dynamic json = JsonConvert.DeserializeObject(param);
-                    streamWriter.Write(json);
+                    streamWriter.Write(requestBody);
                     streamWriter.Flush();
-                    streamWriter.Close();
-                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var result = streamReader.ReadToEnd();
-                    }
                 }
-                return model;
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    string result = streamReader.ReadToEnd();
+                    OrionRespModel response = JsonConvert.DeserializeObject<OrionRespModel>(result);
+
+                    FileLogger.LogOrionResp(req.CustomerCode, JsonConvert.SerializeObject(response));
+
+                    if (response.Status == 1)
+                        return (true, response.StatusMessage);
+                    else
+                        return (false, response.StatusMessage);
+                }
             }
             catch (Exception ex)
             {
+                FileLogger.LogException(ex);
 
+                return (false, ex.Message);
             }
-            return model;
-
         }
 
         //----------------Invoice orion genetartion ENDs

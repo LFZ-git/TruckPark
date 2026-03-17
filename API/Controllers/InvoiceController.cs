@@ -52,5 +52,11 @@ namespace API.Controllers
         {
             return Ok(_iInvoiceBAL.GetInvoiceTruckDetails(Id));
         }
+
+        [HttpPost]
+        public IHttpActionResult ProcessInvoiceFinal(ProformaInvoiceFInalProcessModel model)
+        {
+            return Ok(_iInvoiceBAL.ProcessInvoiceFinal(model));
+        }
     }
 }
