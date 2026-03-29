@@ -42,16 +42,20 @@ namespace WEB.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var json = response.Content.ReadAsStringAsync().Result;
-                JsonSerializerSettings config = new JsonSerializerSettings { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore };
-                T result = JsonConvert.DeserializeObject<T>(json,config);
-                return result;
+                try
+                {
+                    JsonSerializerSettings config = new JsonSerializerSettings { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore };
+                    T result = JsonConvert.DeserializeObject<T>(json, config);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(json, ex);
+                }
             }
             else
             {
                 throw new Exception("Problem while deserilization");
-#pragma warning disable CS0162 // Unreachable code detected
-                return null;
-#pragma warning restore CS0162 // Unreachable code detected
             }
         }
 
@@ -85,11 +89,19 @@ namespace WEB.Controllers
                 // Post to the Server and parse the response.
                 HttpResponseMessage response = await client.PostAsync("Token", content);
                 string jsonString = await response.Content.ReadAsStringAsync();
-                object responseData = JsonConvert.DeserializeObject(jsonString);
-                Session["token"] = ((dynamic)responseData).access_token;
 
-                // return the Access Token.
-                return ((dynamic)responseData).access_token;
+                try
+                {
+                    object responseData = JsonConvert.DeserializeObject(jsonString);
+                    Session["token"] = ((dynamic)responseData).access_token;
+
+                    // return the Access Token.
+                    return ((dynamic)responseData).access_token;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(jsonString, ex);
+                }
 
             }
         }
